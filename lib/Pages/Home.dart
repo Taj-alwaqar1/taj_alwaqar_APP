@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: CustomAppBar(" المعلمين"),
+          title: CustomAppBar("المعلمين"),
           backgroundColor: darkGreen,
           leading: Builder(
             builder: (context) => IconButton(
