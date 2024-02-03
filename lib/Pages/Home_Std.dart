@@ -33,7 +33,9 @@ class Home extends StatelessWidget {
           ),
           actions: [
             IconButton(onPressed: 
-            (){}, icon: Icon(Icons.search,color: goldenColor,size: 40,))
+            (){
+            Navigator.pushNamed(context,'/search');
+            }, icon: Icon(Icons.search,color: goldenColor,size: 40,))
           ],
         ),
         body: SingleChildScrollView(
