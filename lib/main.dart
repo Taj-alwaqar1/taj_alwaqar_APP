@@ -7,6 +7,7 @@ import 'package:frist_file_taj_alwaqar/LogIn&&SignIn/signin.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:frist_file_taj_alwaqar/Pages/TeacherDetail.dart';
 import 'package:frist_file_taj_alwaqar/Shared/search.dart';
 import 'package:frist_file_taj_alwaqar/l10n/l10n.dart';
 import 'package:frist_file_taj_alwaqar/pages/chat.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
         // '/Home': (context) => Home(),
         '/search': (context) => searchPage(),
         '/NewMessagePAge': (context) => NewMessagePAge(),
-
+         '/teacherDetail': (context) => TeacherDetail(),
          
       }
         ),
