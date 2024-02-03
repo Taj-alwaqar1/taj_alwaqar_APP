@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/Shared/appBar.dart';
 import 'package:frist_file_taj_alwaqar/Shared/color.dart';
 
+import '../Shared/HalaqhList.dart';
 import '../Shared/SideBar.dart';
 
 class halaqh extends StatelessWidget {
@@ -12,21 +13,40 @@ class halaqh extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-      appBar: AppBar(
-        title: CustomAppBar("الحلقات"),
-        backgroundColor: darkGreen,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.account_circle_rounded,
-                size: 40, color:goldenColor),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
+     return Container(
+       decoration: BoxDecoration(
+        gradient: GradientGreen,),
+       child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: CustomAppBar("الحلقات"),
+          backgroundColor: darkGreen,
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: Icon(Icons.account_circle_rounded,
+                  size: 40, color:goldenColor),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            ),
           ),
         ),
-      ),
-      drawer: SideBar(),
-    );
+        drawer: SideBar(),
+        body: SingleChildScrollView(
+          child: Column(children: [
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+            HalaqhList(HalaqhName: ' عثمان بن عفان',),
+          ]),
+        ),
+           ),
+     );
   }
 }
