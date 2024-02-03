@@ -13,12 +13,13 @@ import 'package:frist_file_taj_alwaqar/pages/chat.dart';
 import 'package:frist_file_taj_alwaqar/pages/halaqh.dart';
 import 'package:provider/provider.dart';
 
+import 'Pages/Home_Tec.dart';
 import 'Screen/Screen.dart';
 import 'Shared/appBar.dart';
 
 import 'Shared/tabBarST.dart';
 
-import 'pages/home.dart';
+
 import 'pages/newMessage.dart';
 
 Future<void> main() async {
@@ -46,8 +47,8 @@ class MyApp extends StatelessWidget {
           locale: Locale('ar'),
            initialRoute: '/',
       routes: {
-        '/': (context) => userScreen(),
-        '/Home': (context) => Home(),
+        '/': (context) => Login(),
+        // '/Home': (context) => Home(),
         '/search': (context) => searchPage(),
         '/NewMessagePAge': (context) => NewMessagePAge(),
 

@@ -2,13 +2,15 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frist_file_taj_alwaqar/Pages/Home_Std.dart';
 import 'package:frist_file_taj_alwaqar/Shared/color.dart';
 import 'package:frist_file_taj_alwaqar/Shared/tabBarST.dart';
 import 'package:frist_file_taj_alwaqar/pages/AI.dart';
 import 'package:frist_file_taj_alwaqar/pages/halaqh.dart';
-import 'package:frist_file_taj_alwaqar/pages/home.dart';
+
 import 'package:frist_file_taj_alwaqar/pages/quran.dart';
 import 'package:provider/provider.dart';
+import '../Pages/Home_Tec.dart';
 import '../pages/chat.dart';
 
 class userScreen extends StatefulWidget {
@@ -24,6 +26,8 @@ class _userScreenState extends State<userScreen> {
 
   int currentpage = 2;
 
+
+  
   @override
   void dispose() {
     _pageController.dispose();
@@ -33,6 +37,7 @@ class _userScreenState extends State<userScreen> {
   @override
   Widget build(BuildContext context) {
       // final UserTypeIndex = Provider.of<PageIndex>(context);
+       final UserTypeIndex = Provider.of<UserType>(context);
     return Scaffold(
       bottomNavigationBar: SizedBox(
         height: 100,
@@ -120,7 +125,7 @@ class _userScreenState extends State<userScreen> {
         children: [
           AI(),
           Quran(),
-          Home(),
+           UserTypeIndex.indexOfTabBar == 0 ?   Home():HomePageTec(),
           Chat(),
           halaqh(),
         ],

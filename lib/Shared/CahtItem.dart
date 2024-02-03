@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/Shared/color.dart';
-import 'package:frist_file_taj_alwaqar/pages/home.dart';
+import 'package:frist_file_taj_alwaqar/Pages/Home_Std.dart';
 
 class ChatItem extends StatelessWidget {
  String NameOfChatItem;
