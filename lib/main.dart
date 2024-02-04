@@ -46,14 +46,14 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: Locales.delegates,
           supportedLocales: L10n.all,
           locale: Locale('ar'),
-           initialRoute: '/',
+          initialRoute: '/',
       routes: {
         '/': (context) => Login(),
         // '/Home': (context) => Home(),
         '/search': (context) => searchPage(),
         '/NewMessagePAge': (context) => NewMessagePAge(),
          '/teacherDetail': (context) => TeacherDetail(),
-         
+      
       }
         ),
       ),

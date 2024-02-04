@@ -10,6 +10,7 @@ class Curriculum extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
     return Container(
       padding: EdgeInsets.all(8),
       margin: EdgeInsets.symmetric(horizontal: 8),

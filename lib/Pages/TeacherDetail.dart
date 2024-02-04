@@ -24,6 +24,7 @@ class _TeacherDetailState extends State<TeacherDetail> {
     final PageController _pageController = PageController(initialPage: 2);
 
     int currentpage = 2;
+    // bool isRegisterd = true;
     return Container(
       decoration: BoxDecoration(gradient: GradientGreen),
       child: Scaffold(
@@ -221,34 +222,43 @@ class _TeacherDetailState extends State<TeacherDetail> {
                                     SizedBox(
                                       height: 22,
                                     ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pushReplacement(
+                                    // if (!isRegisterd)
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                    userScreen()));
-                                      },
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                goldenColor),
-                                        padding: MaterialStateProperty.all(
+                                              builder: (context) =>
+                                                  userScreen(),
+                                            ),
+                                          );
+                                        },
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  goldenColor),
+                                          padding: MaterialStateProperty.all(
                                             EdgeInsets.symmetric(
-                                                horizontal: 20, vertical: 10)),
-                                        shape: MaterialStateProperty.all(
+                                                horizontal: 20, vertical: 10),
+                                          ),
+                                          shape: MaterialStateProperty.all(
                                             RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(15))),
-                                      ),
-                                      child: Text(
-                                        "انضمام",
-                                        style: TextStyle(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          "انضمام",
+                                          style: TextStyle(
                                             fontSize: 22,
                                             color: yallowTextColor,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                    // if(isRegisterd)
+                                    // Text("data"),
                                     SizedBox(
                                       height: 22,
                                     ),
