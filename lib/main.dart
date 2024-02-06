@@ -12,6 +12,7 @@ import 'package:frist_file_taj_alwaqar/Shared/search.dart';
 import 'package:frist_file_taj_alwaqar/l10n/l10n.dart';
 import 'package:frist_file_taj_alwaqar/pages/chat.dart';
 import 'package:frist_file_taj_alwaqar/pages/halaqh.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
 import 'Pages/Home_Tec.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           create: (context) => UserType(),)
       ],
       child: LocaleBuilder(
-        builder: (locale) => MaterialApp(
+        builder: (locale) => GetMaterialApp(
           title: 'Flutter Locales',
           debugShowCheckedModeBanner: false,
           localizationsDelegates: Locales.delegates,

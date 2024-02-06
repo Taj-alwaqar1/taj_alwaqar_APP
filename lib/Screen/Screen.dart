@@ -2,11 +2,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frist_file_taj_alwaqar/Pages/Halaqh.dart';
 import 'package:frist_file_taj_alwaqar/Pages/Home_Std.dart';
 import 'package:frist_file_taj_alwaqar/Shared/color.dart';
 import 'package:frist_file_taj_alwaqar/Shared/tabBarST.dart';
 import 'package:frist_file_taj_alwaqar/pages/AI.dart';
-import 'package:frist_file_taj_alwaqar/pages/halaqh.dart';
+
 
 import 'package:frist_file_taj_alwaqar/pages/quran.dart';
 import 'package:provider/provider.dart';
@@ -127,7 +128,7 @@ class _userScreenState extends State<userScreen> {
           Quran(),
            UserTypeIndex.indexOfTabBar == 0 ?   Home():HomePageTec(),
           Chat(),
-          halaqh(),
+          CreateOrJoinHalaqh(),
         ],
       ),
     );

@@ -24,7 +24,6 @@ class _TeacherDetailState extends State<TeacherDetail> {
     final PageController _pageController = PageController(initialPage: 2);
 
     int currentpage = 2;
-    // bool isRegisterd = true;
     return Container(
       decoration: BoxDecoration(gradient: GradientGreen),
       child: Scaffold(
@@ -222,43 +221,34 @@ class _TeacherDetailState extends State<TeacherDetail> {
                                     SizedBox(
                                       height: 22,
                                     ),
-                                    // if (!isRegisterd)
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.pushReplacement(
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) =>
-                                                  userScreen(),
-                                            ),
-                                          );
-                                        },
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  goldenColor),
-                                          padding: MaterialStateProperty.all(
+                                                builder: (context) =>
+                                                    userScreen()));
+                                      },
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                goldenColor),
+                                        padding: MaterialStateProperty.all(
                                             EdgeInsets.symmetric(
-                                                horizontal: 20, vertical: 10),
-                                          ),
-                                          shape: MaterialStateProperty.all(
+                                                horizontal: 20, vertical: 10)),
+                                        shape: MaterialStateProperty.all(
                                             RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          "انضمام",
-                                          style: TextStyle(
+                                                borderRadius:
+                                                    BorderRadius.circular(15))),
+                                      ),
+                                      child: Text(
+                                        "انضمام",
+                                        style: TextStyle(
                                             fontSize: 22,
                                             color: yallowTextColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    // if(isRegisterd)
-                                    // Text("data"),
+                                    ),
                                     SizedBox(
                                       height: 22,
                                     ),
@@ -320,50 +310,148 @@ class _TeacherDetailState extends State<TeacherDetail> {
                   style: TextStyle(color: yallowTextColor, fontSize: 27),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(top: 10),
-                margin: EdgeInsets.symmetric(
-                  horizontal: 50,
-                ),
-                height: 126,
-                width: 324,
-                decoration: BoxDecoration(
-                  gradient: GradientGreen,
-                  shape: BoxShape.rectangle,
-                  border: Border.all(width: 3),
-                ),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      left: 10,
-                      bottom: 50,
-                      child: CircleAvatar(
-                        radius: 20,
-                        child: ClipOval(
-                            child: Image.asset(
-                                "assets/img/person-icon-black-9.jpg")),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        padding: EdgeInsets.all(18),
+                        height: 470,
+                        decoration: BoxDecoration(
+                          color: greenColor,
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(30),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(
+                                28.0,
+                              ),
+                              child: TextField(
+                                maxLines: 3,
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black),
+                                  ),
+                                  labelText: "قيمني",
+                                  labelStyle: TextStyle(
+                                      color: Colors.black, fontSize: 18),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 22,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.stars),
+                                Icon(Icons.stars),
+                                Icon(Icons.stars),
+                                Icon(Icons.stars),
+                                Icon(Icons.stars),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 32,
+                            ),
+                            Container(
+                              height: 60,
+                              width: 230,
+                              decoration: BoxDecoration(
+                                color: darkGreen,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "ارسال",
+                                  style: TextStyle(
+                                      color: yallowTextColor, fontSize: 20),
+                                ),
+//row stars
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    isScrollControlled: true,
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.only(top: 10),
+                  height: 126,
+                  margin: EdgeInsets.fromLTRB(50, 0, 50, 40),
+                  decoration: BoxDecoration(
+                    gradient: GradientGreen,
+                    shape: BoxShape.rectangle,
+                    border: Border.all(width: 1.4),
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 10,
+                        bottom: 50,
+                        child: CircleAvatar(
+                          radius: 20,
+                          child: ClipOval(
+                              child: Image.asset(
+                                  "assets/img/person-icon-black-9.jpg")),
+                        ),
                       ),
-                    ),
-                    Positioned(
-                        bottom: 50,
-                        left: 80,
-                        child: Text(" اسامه ***",
-                            style: TextStyle(
-                                color: yallowTextColor, fontSize: 19))),
-                    Positioned(
-                        bottom: 50,
-                        right: 80,
-                        child: Icon(
-                          Icons.stars,
-                          color: goldenColor,
-                        )),
-                    Positioned(
-                        bottom: 50,
-                        right: 10,
-                        child: Text(" 2",
-                            style: TextStyle(
-                                color: yallowTextColor, fontSize: 19))),
-                  ],
+                      Positioned(
+                          bottom: 50,
+                          left: 60,
+                          child: Text(" اسامه ***",
+                              style: TextStyle(
+                                  color: yallowTextColor, fontSize: 19))),
+                      Positioned(
+                          bottom: 80,
+                          right: 40,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.stars,
+                                color: goldenColor,
+                                size: 20,
+                              ),
+                              Icon(
+                                Icons.stars,
+                                size: 20,
+                                color: goldenColor,
+                              ),
+                              Icon(
+                                Icons.stars,
+                                size: 20,
+                                color: goldenColor,
+                              ),
+                              Icon(
+                                Icons.stars,
+                                size: 20,
+                                color: goldenColor,
+                              ),
+                              Icon(
+                                Icons.stars,
+                                size: 20,
+                                color: goldenColor,
+                              ),
+                            ],
+                          )),
+                      Positioned(
+                          bottom: 80,
+                          right: 10,
+                          child: Text(" 2",
+                              style: TextStyle(
+                                  color: yallowTextColor, fontSize: 19))),
+                    ],
+                  ),
                 ),
               ),
             ],
