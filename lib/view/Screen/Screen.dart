@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/AI.dart';
+
 import 'package:frist_file_taj_alwaqar/view/Pages/Chat.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/Halaqh.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/Home_Std.dart';

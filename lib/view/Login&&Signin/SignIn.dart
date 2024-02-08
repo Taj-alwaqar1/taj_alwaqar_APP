@@ -52,43 +52,130 @@ class _SignInState extends State<SignIn> {
               SizedBox(
                 height: 20,
               ),
-              fieldsForInfo(
-                isPassword: false,
-                labelTextfield: 'اسم المستخدم',
-                typeOFtext: TextInputType.name,
-              ),
+
+               Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(10),
+                        //  border: Border.all(color: yallowTextColor,width: 2)
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.name,
+                        textInputAction: TextInputAction.next,
+                        obscureText: false,
+                        decoration: fieldsForInfovar.copyWith(
+                        labelText: 'اسم المستخدم'),
+                      ),
+                    ),
+                  ),
+                ),
+
+            
               SizedBox(
                 height: 20,
               ),
-              fieldsForInfo(
-                isPassword: false,
-                labelTextfield: 'الاسم الأول',
-                typeOFtext: TextInputType.name,
-              ),
+
+              Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(10),
+                        //  border: Border.all(color: yallowTextColor,width: 2)
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.name,
+                        textInputAction: TextInputAction.next,
+                        obscureText: false,
+                        decoration: fieldsForInfovar.copyWith(
+                        labelText:'الاسم الأول'),
+                      ),
+                    ),
+                  ),
+                ),
+
+
               SizedBox(
                 height: 20,
               ),
-              fieldsForInfo(
-                isPassword: false,
-                labelTextfield: 'الاسم الاخير',
-                typeOFtext: TextInputType.name,
-              ),
+
+
+                 Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(10),
+                        //  border: Border.all(color: yallowTextColor,width: 2)
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.name,
+                        textInputAction: TextInputAction.next,
+                        obscureText: false,
+                        decoration: fieldsForInfovar.copyWith(
+                        labelText:'الاسم الاخير'),
+                      ),
+                    ),
+                  ),
+                ),
+              
+              
               SizedBox(
                 height: 20,
               ),
-              fieldsForInfo(
-                isPassword: false,
-                labelTextfield: 'العمر',
-                typeOFtext: TextInputType.number,
-              ),
+              Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(10),
+                        //  border: Border.all(color: yallowTextColor,width: 2)
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.next,
+                        obscureText: false,
+                        decoration: fieldsForInfovar.copyWith(
+                        labelText:'العمر'),
+                      ),
+                    ),
+                  ),
+                ),
+              
               SizedBox(
                 height: 20,
               ),
-              fieldsForInfo(
-                isPassword: false,
-                labelTextfield: 'رقم الجوال',
-                typeOFtext: TextInputType.phone,
-              ),
+              Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(10),
+                        //  border: Border.all(color: yallowTextColor,width: 2)
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.next,
+                        obscureText: false,
+                        decoration: fieldsForInfovar.copyWith(
+                        labelText:'رقم الجوال'),
+                      ),
+                    ),
+                  ),
+                ),
+              
               SizedBox(
                 height: 20,
               ),
@@ -99,19 +186,52 @@ class _SignInState extends State<SignIn> {
                     SizedBox(height: 20),
                   ],
                 ),
-              fieldsForInfo(
-                isPassword: false,
-                labelTextfield: 'البريد الإلكتروني',
-                typeOFtext: TextInputType.emailAddress,
-              ),
+Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(10),
+                        //  border: Border.all(color: yallowTextColor,width: 2)
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        obscureText: false,
+                        decoration: fieldsForInfovar.copyWith(
+                        labelText:'البريد الإلكتروني'),
+                      ),
+                    ),
+                  ),
+                ),
               SizedBox(
                 height: 20,
               ),
-              fieldsForInfo(
-                isPassword: true,
-                labelTextfield: 'كلمة المرور',
-                typeOFtext: TextInputType.visiblePassword,
-              ),
+
+              Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(10),
+                        //  border: Border.all(color: yallowTextColor,width: 2)
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.visiblePassword,
+                        textInputAction: TextInputAction.next,
+                        obscureText: true,
+                        decoration: fieldsForInfovar.copyWith(
+                        labelText:'كلمة المرور'),
+                      ),
+                    ),
+                  ),
+                ),
+              
+              
               SizedBox(
                 height: 20,
               ),

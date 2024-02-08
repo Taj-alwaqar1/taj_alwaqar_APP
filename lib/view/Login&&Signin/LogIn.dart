@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/view/Login&&Signin/SignIn.dart'; 
+import 'package:frist_file_taj_alwaqar/view/Login&&Signin/SignIn.dart';
 import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/CustomTextFeild.dart';
- 
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -27,24 +26,53 @@ class Login extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                fieldsForInfo(
-                  labelTextfield: "الإسم او البريد الإلكتروني",
-                  isPassword: false,
-                  typeOFtext: TextInputType.emailAddress,
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(10),
+                        //  border: Border.all(color: yallowTextColor,width: 2)
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        obscureText: false,
+                        decoration: fieldsForInfovar.copyWith(
+                            labelText: "الإسم او البريد الإلكتروني"),
+                      ),
+                    ),
+                  ),
+                ),
+                
+                SizedBox(
+                  height: 30,
+                ),
+
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(10),
+                        //  border: Border.all(color: yallowTextColor,width: 2)
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        obscureText: true,
+                        decoration: fieldsForInfovar.copyWith(
+                        labelText: "كلمة المرور"),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
-                  height: 15,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                fieldsForInfo(
-                  labelTextfield: "كلمة المرور",
-                  isPassword: true,
-                  typeOFtext: TextInputType.visiblePassword,
-                ),
-                SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
                 ElevatedButton(
                   onPressed: () {
