@@ -4,11 +4,10 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/AppBar.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 
-import '../Screen/Screen.dart';
-import '../Shared/appBar.dart';
-import '../Shared/color.dart';
-
+  
 class NewMessagePAge extends StatefulWidget {
   const NewMessagePAge({super.key});
 

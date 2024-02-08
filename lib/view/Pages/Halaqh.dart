@@ -2,13 +2,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Screen/Screen.dart';
-import 'package:frist_file_taj_alwaqar/pages/halaqh.dart';
-import 'package:frist_file_taj_alwaqar/Shared/appBar.dart';
-import 'package:frist_file_taj_alwaqar/Shared/color.dart';
+import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 
-import '../Shared/HalaqhList.dart';
-import '../Shared/SideBar.dart';
+ 
+
 
 // class halaqh extends StatelessWidget {
 //   const halaqh({super.key});

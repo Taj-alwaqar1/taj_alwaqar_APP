@@ -2,17 +2,23 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Pages/Halaqh.dart';
-import 'package:frist_file_taj_alwaqar/Pages/Home_Std.dart';
-import 'package:frist_file_taj_alwaqar/Shared/color.dart';
-import 'package:frist_file_taj_alwaqar/Shared/tabBarST.dart';
-import 'package:frist_file_taj_alwaqar/pages/AI.dart';
+import 'package:frist_file_taj_alwaqar/view/Pages/AI.dart';
+import 'package:frist_file_taj_alwaqar/view/Pages/Chat.dart';
+import 'package:frist_file_taj_alwaqar/view/Pages/Halaqh.dart';
+import 'package:frist_file_taj_alwaqar/view/Pages/Home_Std.dart';
+import 'package:frist_file_taj_alwaqar/view/Pages/Home_Tec.dart';
+import 'package:frist_file_taj_alwaqar/view/Pages/Quran.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+ 
+
+ 
 
 
-import 'package:frist_file_taj_alwaqar/pages/quran.dart';
+ 
+import 'package:frist_file_taj_alwaqar/view/Shared/tabBarST.dart';
 import 'package:provider/provider.dart';
-import '../Pages/Home_Tec.dart';
-import '../pages/chat.dart';
+ 
+ 
 
 class userScreen extends StatefulWidget {
  const userScreen({Key? key}) : super(key: key);

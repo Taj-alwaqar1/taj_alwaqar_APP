@@ -2,11 +2,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Shared/SideBar.dart';
-import 'package:frist_file_taj_alwaqar/Shared/color.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/AppBar.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/CahtItem.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/SideBar.dart';
 
-import '../Shared/CahtItem.dart';
-import '../Shared/appBar.dart';
+ 
 
 class Chat extends StatelessWidget {
   const Chat({super.key});

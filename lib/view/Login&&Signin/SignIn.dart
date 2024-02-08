@@ -1,15 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/LogIn&&SignIn/login.dart';
+import 'package:frist_file_taj_alwaqar/view/Login&&Signin/LogIn.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/CustomTextFeild.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/DropMenu.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/tabBarST.dart';
 import 'package:provider/provider.dart';
-
-import '../Shared/CustomTextFeild.dart';
-import '../Shared/DropMenu.dart';
-import '../Shared/color.dart';
-
-
-import '../Shared/tabBarST.dart';
+ 
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});

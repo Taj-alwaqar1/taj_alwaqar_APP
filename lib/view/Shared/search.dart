@@ -2,7 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Shared/color.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+ 
 
 class searchPage extends StatelessWidget {
   const searchPage({super.key});

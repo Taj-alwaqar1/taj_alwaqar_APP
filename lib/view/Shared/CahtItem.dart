@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Shared/color.dart';
-import 'package:frist_file_taj_alwaqar/Pages/Home_Std.dart';
+ 
+import 'package:frist_file_taj_alwaqar/view/Pages/Home_Std.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 
 class ChatItem extends StatelessWidget {
  String NameOfChatItem;

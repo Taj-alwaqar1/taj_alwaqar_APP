@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Shared/appBar.dart';
-
-import '../Shared/ItemHomeTec.dart';
-import '../Shared/SideBar.dart';
-import '../Shared/color.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/AppBar.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+ 
+import 'package:frist_file_taj_alwaqar/view/Shared/ItemHomeTec.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/SideBar.dart';
+ 
 
 class HomePageTec extends StatefulWidget {
   const HomePageTec({super.key});

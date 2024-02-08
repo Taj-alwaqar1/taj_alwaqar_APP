@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Shared/color.dart';
-import 'package:frist_file_taj_alwaqar/pages/halaqh.dart';
-
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+ 
 class HomeTecItem extends StatelessWidget {
   String halaqhName, stdName;
   HomeTecItem({super.key, required this.halaqhName, required this.stdName});

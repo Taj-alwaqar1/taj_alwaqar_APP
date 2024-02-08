@@ -1,11 +1,12 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Shared/tabBarST.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+
 
 import 'package:provider/provider.dart';
 
-import 'color.dart';
+
 
 // ignore: must_be_immutable
 class dropMenu extends StatefulWidget {

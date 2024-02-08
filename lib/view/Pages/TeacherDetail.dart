@@ -2,15 +2,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Screen/Screen.dart';
-import 'package:frist_file_taj_alwaqar/Shared/color.dart';
-import 'package:frist_file_taj_alwaqar/Shared/curriculum.dart';
-import 'package:frist_file_taj_alwaqar/pages/AI.dart';
-import 'package:frist_file_taj_alwaqar/pages/chat.dart';
-import 'package:frist_file_taj_alwaqar/pages/halaqh.dart';
-
-import 'package:frist_file_taj_alwaqar/pages/quran.dart';
-
+import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Curriculum.dart';
+ 
 class TeacherDetail extends StatefulWidget {
   const TeacherDetail({Key? key}) : super(key: key);
 
@@ -182,10 +177,18 @@ class _TeacherDetailState extends State<TeacherDetail> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "المنهج",
-                                      style: TextStyle(
-                                          color: yallowTextColor, fontSize: 30),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        IconButton( onPressed: () {  }, icon: Icon(Icons.delete,size: 30,color: goldenColor,)),
+                                        Text(
+                                          "المنهج",
+                                          style: TextStyle(
+                                              color: yallowTextColor, fontSize: 30),
+                                        ),
+                                        IconButton( onPressed: () {  }, icon: Icon(Icons.edit,size: 30,color: goldenColor,)),
+                                      ],
                                     ),
                                     SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
@@ -221,34 +224,8 @@ class _TeacherDetailState extends State<TeacherDetail> {
                                     SizedBox(
                                       height: 22,
                                     ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    userScreen()));
-                                      },
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                goldenColor),
-                                        padding: MaterialStateProperty.all(
-                                            EdgeInsets.symmetric(
-                                                horizontal: 20, vertical: 10)),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(15))),
-                                      ),
-                                      child: Text(
-                                        "انضمام",
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            color: yallowTextColor,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
+                                    // JoinButton(),
+                                    TimeForTsme3(),
                                     SizedBox(
                                       height: 22,
                                     ),
@@ -496,6 +473,74 @@ class CardMenu extends StatelessWidget {
               Text(
                 "عدد الطلاب ${numberOfStudent}",
                 style: TextStyle(color: yallowTextColor, fontSize: 18),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class JoinButton extends StatelessWidget {
+  const JoinButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => userScreen()));
+      },
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(goldenColor),
+        padding: MaterialStateProperty.all(
+            EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+        shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+      ),
+      child: Text(
+        "انضمام",
+        style: TextStyle(
+            fontSize: 22, color: yallowTextColor, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class TimeForTsme3 extends StatelessWidget {
+  const TimeForTsme3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+            margin: EdgeInsets.symmetric(vertical: 10),
+            child: Text("وقت التسميع",style: TextStyle(color: yallowTextColor,fontSize: 18),)),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.circle,size: 20,color: goldenColor,),
+                  Text("الظهر",style: TextStyle(color: yallowTextColor,fontSize: 18)),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.circle,size: 20,color: goldenColor,),
+                  Text("الظهر",style: TextStyle(color: yallowTextColor,fontSize: 18)),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.circle,size: 20,color: goldenColor,),
+                  Text("الظهر",style: TextStyle(color: yallowTextColor,fontSize: 18)),
+                ],
               ),
             ],
           ),

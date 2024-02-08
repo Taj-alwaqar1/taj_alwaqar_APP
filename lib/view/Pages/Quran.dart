@@ -2,9 +2,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Shared/SideBar.dart';
-import 'package:frist_file_taj_alwaqar/Shared/appBar.dart';
-import 'package:frist_file_taj_alwaqar/Shared/color.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/AppBar.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+ 
+import 'package:frist_file_taj_alwaqar/view/Shared/SideBar.dart';
 
 class SurahName {
   String surahname;
