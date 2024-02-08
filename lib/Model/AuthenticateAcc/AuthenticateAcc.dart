@@ -19,6 +19,22 @@ class AuthenticateSignin extends GetxController{
   // registerOrNot(User?user){
   //   user==null? Get.offAll(Login()):Get.offAll(Home());
   // }
-
+ registerUser(String email, String password) async {
+  try {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    print("object");
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'weak-password') {
+      print('The password provided is too weak.');
+    } else if (e.code == 'email-already-in-use') {
+      print('The account already exists for that email.');
+    }
+  } catch (e) {
+    print(e);
+  }
+}
 
 }

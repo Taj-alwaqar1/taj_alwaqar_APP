@@ -229,7 +229,7 @@ class SignIn extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    controller.registerUser();
+                    controller.signIn();
                   
                   },
                   style: ButtonStyle(
