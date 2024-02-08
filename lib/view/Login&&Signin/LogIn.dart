@@ -65,8 +65,8 @@ class Login extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
                         obscureText: true,
-                        decoration: fieldsForInfovar.copyWith(
-                        labelText: "كلمة المرور"),
+                        decoration:
+                            fieldsForInfovar.copyWith(labelText: "كلمة المرور"),
                       ),
                     ),
                   ),
