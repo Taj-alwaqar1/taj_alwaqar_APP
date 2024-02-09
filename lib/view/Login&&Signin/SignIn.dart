@@ -164,7 +164,7 @@ class SignIn extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         obscureText: false,
                         decoration:
-                            fieldsForInfovar.copyWith(labelText: 'رقم الجوال'),
+                        fieldsForInfovar.copyWith(labelText: 'رقم الجوال'),
                       ),
                     ),
                   ),
