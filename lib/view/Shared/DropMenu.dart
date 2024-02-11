@@ -1,26 +1,18 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:frist_file_taj_alwaqar/Controller/sharedController/dropmenuController.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
-
+import 'package:get/get.dart';
 
 import 'package:provider/provider.dart';
 
-
-
 // ignore: must_be_immutable
-class dropMenu extends StatefulWidget {
-  const dropMenu({super.key});
+class dropMenu extends StatelessWidget {
+  final DropMenuController controllerDropMenu = Get.put(DropMenuController());
 
-  @override
-  State<dropMenu> createState() => _dropMenuState();
-}
-
-class _dropMenuState extends State<dropMenu> {
-  late String value;
   @override
   Widget build(BuildContext context) {
-     value ="مستوى الطالب";
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
@@ -31,34 +23,39 @@ class _dropMenuState extends State<dropMenu> {
           color: greenColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: DropdownButton<String>(
-          iconSize: 35,
-          iconEnabledColor: yallowTextColor,
-          underline: Container(
-            color: greenColor,
+        child: Obx(
+          () => DropdownButton<String>(
+            iconSize: 35,
+            iconEnabledColor: yallowTextColor,
+            underline: Container(
+              color: greenColor,
+            ),
+            dropdownColor: greenColor,
+            isExpanded: true,
+            onChanged: (String? newValue) {
+              controllerDropMenu.changeinitvalue(newValue);
+          
+            },
+            value: controllerDropMenu.initvalue.value,
+            hint: Text(controllerDropMenu.initvalue.value),
+            items: <String>[
+              if (controllerDropMenu.initvalue.value != 'مبتدئ' &&
+                  controllerDropMenu.initvalue.value != 'متوسط' &&
+                  controllerDropMenu.initvalue.value != 'عالي')
+                controllerDropMenu.initvalue.value,
+              'مبتدئ',
+              'متوسط',
+              'عالي',
+            ].map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style:
+                        const TextStyle(fontSize: 24, color: yallowTextColor),
+                  ));
+            }).toList(),
           ),
-          dropdownColor: greenColor,
-          value: value,
-          isExpanded: true,
-          hint:Text (value),
-          onChanged: (String? newValue) {
-            setState(() {
-              value = newValue!;
-            });
-          },
-          items: <String>[
-           value,
-            'مبتدئ',
-            'متوسط',
-            'عالي',
-          ].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-                value: value,
-                child: Text(
-                  value,
-                  style: const TextStyle(fontSize: 24, color: yallowTextColor),
-                ));
-          }).toList(),
         ),
       ),
     );

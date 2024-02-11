@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frist_file_taj_alwaqar/Controller/sharedController/TabBarController.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/AI.dart';
 
 import 'package:frist_file_taj_alwaqar/view/Pages/Chat.dart';
@@ -17,6 +18,7 @@ import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 
  
 import 'package:frist_file_taj_alwaqar/view/Shared/tabBarST.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
  
  
@@ -34,6 +36,7 @@ class _userScreenState extends State<userScreen> {
 
   int currentpage = 2;
 
+    final TabBarController controllerTabBar = Get.put(TabBarController());
 
   
   @override
@@ -45,7 +48,7 @@ class _userScreenState extends State<userScreen> {
   @override
   Widget build(BuildContext context) {
       // final UserTypeIndex = Provider.of<PageIndex>(context);
-       final UserTypeIndex = Provider.of<UserType>(context);
+  
     return Scaffold(
       bottomNavigationBar: SizedBox(
         height: 100,
@@ -133,7 +136,7 @@ class _userScreenState extends State<userScreen> {
         children: [
           AI(),
           Quran(),
-           UserTypeIndex.indexOfTabBar == 0 ?   Home():HomePageTec(),
+           controllerTabBar.indexOfTabBar == 0 ?   Home():HomePageTec(),
           Chat(),
           CreateOrJoinHalaqh(),
         ],

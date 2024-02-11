@@ -31,6 +31,7 @@ Future<void> main() async {
   );
   await Locales.init(['en', 'fa', 'ar']);
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatefulWidget {
@@ -41,42 +42,27 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-   @override
-    initState() {
-      FirebaseAuth.instance.authStateChanges().listen((User? user) {
-        if (user == null) {
-          print('User is currently signed out!');
-        } else {
-          print('User is signed in!');
-        }
-      });
-    }
+
+
   @override
   Widget build(BuildContext context) {
-   
-
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<UserType>(
-          create: (context) => UserType(),
-        )
-      ],
-      child: LocaleBuilder(
+     return LocaleBuilder(
         builder: (locale) => GetMaterialApp(
             title: 'Flutter Locales',
             debugShowCheckedModeBanner: false,
             localizationsDelegates: Locales.delegates,
             supportedLocales: L10n.all,
             locale: Locale('ar'),
-            initialRoute: '/',
-            routes: {
-              '/': (context) => Login(),
+             home: FirebaseAuth.instance.currentUser== null ? Login():userScreen() ,
+            
+             routes: {
+              // '/': (context) => Login(),
               // '/Home': (context) => Home(),
               '/search': (context) => searchPage(),
               '/NewMessagePAge': (context) => NewMessagePAge(),
               '/teacherDetail': (context) => TeacherDetail(),
             }),
-      ),
-    );
+      );
+    
   }
 }

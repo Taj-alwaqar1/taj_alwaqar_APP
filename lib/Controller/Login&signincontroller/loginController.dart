@@ -12,6 +12,8 @@ class LogInController extends GetxController {
 
    bool isLoading=false;
 
+  bool isVisibile = true;
+
     final AuthenticateLogIn AuthenticateLogInController =
       Get.put(AuthenticateLogIn());
 
@@ -45,11 +47,15 @@ class LogInController extends GetxController {
     if (isValid) {
        AuthenticateLogInController.LogInAcc(EmailController.text, passwordController.text); 
       loginFormKey.currentState!.save(); 
-    
+     Get.offAll(()=>userScreen());
     } else {
       Get.snackbar("error", "insert Some Value");
       loading();
     }
-     
+      
+  }
+   Visibile() {
+    isVisibile = !isVisibile;
+    update();
   }
 }

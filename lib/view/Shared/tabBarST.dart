@@ -1,38 +1,20 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:frist_file_taj_alwaqar/Controller/sharedController/TabBarController.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+import 'package:get/get.dart';
  
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 
-class StudentOrTeacher extends StatefulWidget {
+class StudentOrTeacher extends StatelessWidget {
   StudentOrTeacher({super.key});
-
-  @override
-  _StudentOrTeacherState createState() => _StudentOrTeacherState();
-}
-
-class _StudentOrTeacherState extends State<StudentOrTeacher>
-    with SingleTickerProviderStateMixin {
-   late TabController tabController;
-
-  @override
-  void initState() {
-    tabController = TabController(length: 2, vsync: this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
-  }
-
+      final TabBarController controllerTabBar = Get.put(TabBarController());
   @override
   Widget build(BuildContext context) {
-    final UserTypeIndex = Provider.of<UserType>(context);
-    UserTypeIndex.indexOfTabBar = tabController.index;
+
+  controllerTabBar.initState();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 40),
       child: Column(
@@ -53,9 +35,9 @@ class _StudentOrTeacherState extends State<StudentOrTeacher>
                 indicator: BoxDecoration(
                   color: Colors.black12,
                 ),
-                controller: tabController,
+                controller: controllerTabBar.tabController,
                 onTap: (value) {
-                  UserTypeIndex.tabControllerChange(value);
+                  controllerTabBar.tabControllerChange(value);
                 },
                 tabs: [
                   Tab(
@@ -88,11 +70,11 @@ class _StudentOrTeacherState extends State<StudentOrTeacher>
 //                       children: [SignIn(), Login()],
 //                     ),
 //                   ),
-class UserType with ChangeNotifier {
-   int indexOfTabBar=0;
+// class UserType with ChangeNotifier {
+//    int indexOfTabBar=0;
 
-  tabControllerChange(int index) {
-    indexOfTabBar = index;
-    notifyListeners();
-  }
-}
+//   tabControllerChange(int index) {
+//     indexOfTabBar = index;
+//     notifyListeners();
+//   }
+// }

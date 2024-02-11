@@ -7,8 +7,9 @@ import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Curriculum.dart';
  
 class TeacherDetail extends StatefulWidget {
-  const TeacherDetail({Key? key}) : super(key: key);
+  const TeacherDetail({super.key});
 
+ 
   @override
   State<TeacherDetail> createState() => _TeacherDetailState();
 }
