@@ -5,17 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 
- 
-
-
 // class halaqh extends StatelessWidget {
 //   const halaqh({super.key});
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return Container(
-      // decoration: BoxDecoration(
-      //   gradient: GradientGreen,
+// decoration: BoxDecoration(
+//   gradient: GradientGreen,
 //       ),
 //       child: Scaffold(
 //         backgroundColor: Colors.transparent,
@@ -79,7 +76,8 @@ class CreateOrJoinHalaqh extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: GradientGreen,),
+        gradient: GradientGreen,
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Center(
@@ -89,7 +87,7 @@ class CreateOrJoinHalaqh extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned(
-                    top: 50, // Adjust the top position as needed
+                    top: 50,  
                     left: 0,
                     right: 0,
                     child: Container(

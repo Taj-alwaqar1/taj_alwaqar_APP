@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:frist_file_taj_alwaqar/Controller/Login&signincontroller/SigninController.dart';
 import 'package:frist_file_taj_alwaqar/Controller/sharedController/dropmenuController.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import 'package:provider/provider.dart';
 // ignore: must_be_immutable
 class dropMenu extends StatelessWidget {
   final DropMenuController controllerDropMenu = Get.put(DropMenuController());
+    final SigninController controllerSignin = Get.put(SigninController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class dropMenu extends StatelessWidget {
             isExpanded: true,
             onChanged: (String? newValue) {
               controllerDropMenu.changeinitvalue(newValue);
-          
+              controllerSignin.getlevelStd(newValue);
             },
             value: controllerDropMenu.initvalue.value,
             hint: Text(controllerDropMenu.initvalue.value),

@@ -11,20 +11,15 @@ import 'package:frist_file_taj_alwaqar/view/Pages/Home_Std.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/Home_Tec.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/Quran.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
- 
 
- 
-
-
- 
 import 'package:frist_file_taj_alwaqar/view/Shared/tabBarST.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
- 
- 
+
+import '../../Controller/sharedController/botoomNavController.dart';
 
 class userScreen extends StatefulWidget {
- const userScreen({Key? key}) : super(key: key);
+  const userScreen({Key? key}) : super(key: key);
 
   @override
   State<userScreen> createState() => _userScreenState();
@@ -32,111 +27,24 @@ class userScreen extends StatefulWidget {
 
 class _userScreenState extends State<userScreen> {
 
-  final PageController _pageController = PageController(initialPage: 2);
 
-  int currentpage = 2;
+  final TabBarController controllerTabBar = Get.put(TabBarController());
 
-    final TabBarController controllerTabBar = Get.put(TabBarController());
-
-  
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-      // final UserTypeIndex = Provider.of<PageIndex>(context);
-  
-    return Scaffold(
-      bottomNavigationBar: SizedBox(
-        height: 100,
-        child: CupertinoTabBar(
-            backgroundColor: greenColor,
-            onTap: (index) {
-              _pageController.jumpToPage(index);
+    final bottomNavnController controllernav = Get.put(bottomNavnController());
 
-              setState(() {
-                currentpage = index;
-              });
-            },
-            items: [
-              BottomNavigationBarItem(
-                  icon: Container(
-                    height: 50,
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                        color: currentpage == 0 ? goldenColor : greenColor,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Image.asset(
-                      'assets/icon/machine-learning.png',
-                      color: currentpage == 0 ? greenColor : goldenColor,
-                    ),
-                  ),
-                  label: ""),
-              BottomNavigationBarItem(
-                  icon: Container(
-                    height: 50,
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                        color: currentpage == 1 ? goldenColor : greenColor,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Image.asset(
-                      'assets/icon/open-book.png',
-                      color: currentpage == 1 ? greenColor : goldenColor,
-                    ),
-                  ),
-                  label: ""),
-              BottomNavigationBarItem(
-                  icon: Container(
-                    height: 50,
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                        color: currentpage == 2 ? goldenColor : greenColor,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Image.asset(
-                      'assets/icon/home.png',
-                      color: currentpage == 2 ? greenColor : goldenColor,
-                    ),
-                  ),
-                  label: ""),
-              BottomNavigationBarItem(
-                  icon: Container(
-                    height: 48,
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                        color: currentpage == 3 ? goldenColor : greenColor,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Image.asset(
-                      'assets/icon/envelope.png',
-                      color: currentpage == 3 ? greenColor : goldenColor,
-                    ),
-                  ),
-                  label: ""),
-              BottomNavigationBarItem(
-                  icon: Container(
-                    height: 50,
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                        color: currentpage == 4 ? goldenColor : greenColor,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Image.asset(
-                      'assets/icon/study.png',
-                      color: currentpage == 4 ? greenColor : goldenColor,
-                    ),
-                  ),
-                  label: ""),
-            ]),
-      ),
+    return Scaffold(
+      bottomNavigationBar: botoom(),
       body: PageView(
         onPageChanged: (index) {},
         physics: NeverScrollableScrollPhysics(),
-        controller: _pageController,
+        controller: controllernav.pageControllerindex,
         children: [
           AI(),
           Quran(),
-           controllerTabBar.indexOfTabBar == 0 ?   Home():HomePageTec(),
+          controllerTabBar.indexOfTabBar == 0 ? Home() : HomePageTec(),
           Chat(),
           CreateOrJoinHalaqh(),
         ],
@@ -145,12 +53,99 @@ class _userScreenState extends State<userScreen> {
   }
 }
 
-// class PageIndex with ChangeNotifier {
-//    int indexOfPage=0;
-
-//   tabControllerChange(int index) {
-//     indexOfPage = index;
-//     notifyListeners();
-//   }
-// }
-
+Widget botoom() {
+  final bottomNavnController controllernav = Get.put(bottomNavnController());
+  return SizedBox(
+    height: 100,
+    child: Obx(
+      () => CupertinoTabBar(
+          backgroundColor: greenColor,
+          onTap: (index) {
+            controllernav.pageControllerindex.jumpToPage(index);
+            controllernav.changepageindex(index);
+            
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: Container(
+                  height: 50,
+                  padding: EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                      color: controllernav.currentpage.value == 0
+                          ? goldenColor
+                          : greenColor,
+                      borderRadius: BorderRadius.circular(25)),
+                  child: Image.asset('assets/icon/machine-learning.png',
+                      color: controllernav.currentpage.value == 0
+                          ? greenColor
+                          : goldenColor),
+                ),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Container(
+                  height: 50,
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: controllernav.currentpage.value == 1
+                          ? goldenColor
+                          : greenColor,
+                      borderRadius: BorderRadius.circular(25)),
+                  child: Image.asset(
+                    'assets/icon/open-book.png',
+                    color: controllernav.currentpage.value == 1
+                        ? greenColor
+                        : goldenColor,
+                  ),
+                ),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Container(
+                  height: 50,
+                  padding: EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                      color: controllernav.currentpage.value == 2
+                          ? goldenColor
+                          : greenColor,
+                      borderRadius: BorderRadius.circular(25)),
+                  child: Image.asset('assets/icon/home.png',
+                      color: controllernav.currentpage.value == 2
+                          ? greenColor
+                          : goldenColor),
+                ),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Container(
+                  height: 48,
+                  padding: EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                      color: controllernav.currentpage.value == 3
+                          ? goldenColor
+                          : greenColor,
+                      borderRadius: BorderRadius.circular(25)),
+                  child: Image.asset('assets/icon/envelope.png',
+                      color: controllernav.currentpage.value == 3
+                          ? greenColor
+                          : goldenColor),
+                ),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Container(
+                  height: 50,
+                  padding: EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                      color: controllernav.currentpage.value == 4
+                          ? goldenColor
+                          : greenColor,
+                      borderRadius: BorderRadius.circular(25)),
+                  child: Image.asset(
+                    'assets/icon/study.png',
+                    color: controllernav.currentpage.value == 4
+                        ? greenColor
+                        : goldenColor,
+                  ),
+                ),
+                label: ""),
+          ]),
+    ),
+  );
+}

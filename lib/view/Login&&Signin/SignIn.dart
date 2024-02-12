@@ -70,6 +70,8 @@ class SignIn extends StatelessWidget {
                         obscureText: false,
                         decoration: fieldsForInfovar.copyWith(
                             labelText: 'اسم المستخدم'),
+                        validator: (value) => controller.ValidateUserNameFeild(value!),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
                   ),
@@ -94,6 +96,13 @@ class SignIn extends StatelessWidget {
                         obscureText: false,
                         decoration:
                             fieldsForInfovar.copyWith(labelText: 'الاسم الأول'),
+                        onSaved: (value) {
+                          controller.fristNameController.text = value!;
+                        },
+                        validator: (value) {
+                          return controller.ValidateTexfFeild(value!);
+                        },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
                   ),
@@ -118,6 +127,13 @@ class SignIn extends StatelessWidget {
                         obscureText: false,
                         decoration: fieldsForInfovar.copyWith(
                             labelText: 'الاسم الاخير'),
+                        onSaved: (value) {
+                          controller.lastNameController.text = value!;
+                        },
+                        validator: (value) {
+                          return controller.ValidateTexfFeild(value!);
+                        },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
                   ),
@@ -142,6 +158,13 @@ class SignIn extends StatelessWidget {
                         obscureText: false,
                         decoration:
                             fieldsForInfovar.copyWith(labelText: 'العمر'),
+                        onSaved: (value) {
+                          controller.ageController.text = value!;
+                        },
+                        validator: (value) {
+                          return controller.ValidateAgeFeild(value!);
+                        },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
                   ),
@@ -166,6 +189,13 @@ class SignIn extends StatelessWidget {
                         obscureText: false,
                         decoration:
                             fieldsForInfovar.copyWith(labelText: 'رقم الجوال'),
+                        onSaved: (value) {
+                          controller.phoneNumberController.text = value!;
+                        },
+                        validator: (value) {
+                          return controller.ValidateNumFeild(value!);
+                        },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
                   ),
