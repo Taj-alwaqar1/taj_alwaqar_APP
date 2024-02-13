@@ -58,10 +58,9 @@ class _TeacherDetailState extends State<TeacherDetail> {
                   Positioned(
                     right: 120,
                     child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
                       radius: 30,
-                      child: ClipOval(
-                          child: Image.asset(
-                              "assets/img/person-icon-black-9.jpg")),
+                      backgroundImage: AssetImage("assets/img/avatar.png"),
                     ),
                   ),
                   Positioned(
@@ -324,11 +323,9 @@ class _TeacherDetailState extends State<TeacherDetail> {
                       left: 10,
                       bottom: 50,
                       child: CircleAvatar(
-                        radius: 20,
-                        child: ClipOval(
-                            child: Image.asset(
-                                "assets/img/person-icon-black-9.jpg")),
-                      ),
+                          backgroundColor: Colors.transparent,
+                          radius: 22,
+                          backgroundImage: AssetImage("assets/img/avatar.png")),
                     ),
                     Positioned(
                         bottom: 50,

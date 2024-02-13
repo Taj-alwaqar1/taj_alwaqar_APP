@@ -5,12 +5,9 @@ import 'package:frist_file_taj_alwaqar/Controller/sharedController/sideBarContro
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/sideBarItem.dart';
 import 'package:get/get.dart';
- 
-
- 
 
 Widget SideBar() {
-  final sideBarController controller =Get.put(sideBarController()); 
+  final sideBarController controller = Get.put(sideBarController());
   return Drawer(
     child: Container(
       color: greenColor,
@@ -30,14 +27,15 @@ Widget SideBar() {
                 Row(
                   children: [
                     CircleAvatar(
-                        radius: 30,
+                      backgroundColor: Colors.transparent,
+                        radius: 30, 
                         backgroundImage:
-                            AssetImage("assets/img/person-icon-black-9.jpg")),
+                            AssetImage("assets/img/avatar.png")),
                     SizedBox(
                       width: 25,
                     ),
                     Text(
-                      "صالح",
+                      controller.username,
                       style: TextStyle(
                         fontSize: 30,
                         color: yallowTextColor,
@@ -53,119 +51,112 @@ Widget SideBar() {
             height: 25,
           ),
           ListTile(
-            onTap: () {
-              
-            },
-      title: Row(
-        children: [
-          ImageIcon(
-            AssetImage("assets/icon/sport.png"),
-            color: goldenColor,
-            size: 30,
+            onTap: () {},
+            title: Row(
+              children: [
+                ImageIcon(
+                  AssetImage("assets/icon/sport.png"),
+                  color: goldenColor,
+                  size: 30,
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                Text(
+                  "انجازاتي",
+                  style: SideBarItemsstyle,
+                ),
+              ],
+            ),
           ),
-          SizedBox(
-            width: 12,
-          ),
-          Text(
-            "انجازاتي",
-            style: SideBarItemsstyle,
-          ),
-        ],
-      ),
-    ),
-          ListTile(
-            onTap: () {
-              
-            },
-      title: Row(
-        children: [
-          ImageIcon(
-            AssetImage("assets/icon/mosque.png"),
-            color: goldenColor,
-            size: 30,
-          ),
-          SizedBox(
-            width: 12,
-          ),
-          Text(
-            "الموقع",
-            style: SideBarItemsstyle,
-          ),
-        ],
-      ),
-    ),
           SizedBox(
             height: 25,
           ),
           ListTile(
-            onTap: () {
-              
-            },
-      title: Row(
-        children: [
-          ImageIcon(
-            AssetImage("assets/icon/chat.png"),
-            color: goldenColor,
-            size: 30,
+            onTap: () {},
+            title: Row(
+              children: [
+                ImageIcon(
+                  AssetImage("assets/icon/mosque.png"),
+                  color: goldenColor,
+                  size: 30,
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                Text(
+                  "الموقع",
+                  style: SideBarItemsstyle,
+                ),
+              ],
+            ),
           ),
-          SizedBox(
-            width: 12,
-          ),
-          Text(
-            "استعلام",
-            style: SideBarItemsstyle,
-          ),
-        ],
-      ),
-    ),
-          SizedBox(
-            height: 25,
-          ),
-         ListTile(
-            onTap: () {
-              
-            },
-      title: Row(
-        children: [
-          ImageIcon(
-            AssetImage("assets/icon/night-mode.png"),
-            color: goldenColor,
-            size: 30,
-          ),
-          SizedBox(
-            width: 12,
-          ),
-          Text(
-            "النمط الليلي",
-            style: SideBarItemsstyle,
-          ),
-        ],
-      ),
-    ),
           SizedBox(
             height: 25,
           ),
           ListTile(
-            onTap: () {
-              
-            },
-      title: Row(
-        children: [
-          ImageIcon(
-            AssetImage("assets/icon/settings.png"),
-            color: goldenColor,
-            size: 30,
+            onTap: () {},
+            title: Row(
+              children: [
+                ImageIcon(
+                  AssetImage("assets/icon/chat.png"),
+                  color: goldenColor,
+                  size: 30,
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                Text(
+                  "استعلام",
+                  style: SideBarItemsstyle,
+                ),
+              ],
+            ),
           ),
           SizedBox(
-            width: 12,
+            height: 25,
           ),
-          Text(
-            " الإعدادات",
-            style: SideBarItemsstyle,
+          ListTile(
+            onTap: () {},
+            title: Row(
+              children: [
+                ImageIcon(
+                  AssetImage("assets/icon/night-mode.png"),
+                  color: goldenColor,
+                  size: 30,
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                Text(
+                  "النمط الليلي",
+                  style: SideBarItemsstyle,
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
-    ),
+          SizedBox(
+            height: 25,
+          ),
+          ListTile(
+            onTap: () {},
+            title: Row(
+              children: [
+                ImageIcon(
+                  AssetImage("assets/icon/settings.png"),
+                  color: goldenColor,
+                  size: 30,
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                Text(
+                  " الإعدادات",
+                  style: SideBarItemsstyle,
+                ),
+              ],
+            ),
+          ),
           SizedBox(
             height: 25,
           ),
@@ -173,23 +164,23 @@ Widget SideBar() {
             onTap: () {
               controller.signOut();
             },
-      title: Row(
-        children: [
-          ImageIcon(
-            AssetImage("assets/icon/logout.png"),
-            color: goldenColor,
-            size: 30,
+            title: Row(
+              children: [
+                ImageIcon(
+                  AssetImage("assets/icon/logout.png"),
+                  color: goldenColor,
+                  size: 30,
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                Text(
+                  " تسجيل الخروج ",
+                  style: SideBarItemsstyle,
+                ),
+              ],
+            ),
           ),
-          SizedBox(
-            width: 12,
-          ),
-          Text(
-            " تسجيل الخروج ",
-            style: SideBarItemsstyle,
-          ),
-        ],
-      ),
-    ),
           SizedBox(
             height: 25,
           ),

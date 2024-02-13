@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/loginAcc.dart';
 import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
 import 'package:get/get.dart';
+import 'package:frist_file_taj_alwaqar/Controller/Login&signincontroller/SigninController.dart';
 
 class LogInController extends GetxController {
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
@@ -11,7 +12,7 @@ class LogInController extends GetxController {
   final passwordController = TextEditingController();
 
    bool isLoading=false;
-
+  
   bool isVisibile = true;
 
     final AuthenticateLogIn AuthenticateLogInController =

@@ -2,9 +2,10 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/AuthenticateAcc.dart';
-import 'package:frist_file_taj_alwaqar/Model/SendUserData/sendUserData.dart';
 import 'package:frist_file_taj_alwaqar/view/Login&&Signin/LogIn.dart';
 import 'package:get/get.dart';
+
+import '../../Model/sendDataToStore/SendUserData.dart';
 
 class SigninController extends GetxController {
   final GlobalKey<FormState> signinFormKey = GlobalKey<FormState>();
@@ -19,18 +20,9 @@ class SigninController extends GetxController {
   final passwordController = TextEditingController();
   final AuthenticateSignin Authenticatecontroller =
       Get.put(AuthenticateSignin());
-  final SendUserData sendUserDataToModel =Get.put(SendUserData());    
 
-// sendUserDataToModel.adduser(
-//   UserNameController.text,
-//   fristNameController.text,
-//   lastNameController.text,
-//   ageController.text,
-//   phoneNumberController.text,
-//   levelOfStdController.text,
-//   emailController.text,
-//   passwordController.text,
-// );
+  final SendUserData sendUserinfo = Get.put(SendUserData());
+
   bool isLoading = false;
 
   bool isVisibile = true;
@@ -57,36 +49,36 @@ class SigninController extends GetxController {
   }
 
   String? ValidateUserNameFeild(String value) {
-    if (value.isEmpty||!RegExp(r'^[a-zA-Z][a-zA-Z0-9_-]{2,15}$').hasMatch(value)) {
+    if (value.isEmpty ||
+        !RegExp(r'^[a-zA-Z][a-zA-Z0-9_-]{2,15}$').hasMatch(value)) {
       loading();
-    return "Enter correct usernam";
-      
+      return "Enter correct usernam";
     }
     return null;
   }
+
   String? ValidateAgeFeild(String value) {
-    if (value.isEmpty||!RegExp (r'^\d{1,3}$').hasMatch(value)) {
+    if (value.isEmpty || !RegExp(r'^\d{1,2}$').hasMatch(value)) {
       loading();
-    return "Enter correct usernam";
-      
+      return "Enter correct usernam";
     }
     return null;
   }
-  
+
   String? ValidateNumFeild(String value) {
-    if (value.isEmpty||!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s\.\/0-9]+$').hasMatch(value)) {
+    if (value.isEmpty ||
+        !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s\.\/0-9]+$')
+            .hasMatch(value)) {
       loading();
-    return "Enter correct number";
-      
+      return "Enter correct number";
     }
     return null;
   }
-  
+
   String? ValidateTexfFeild(String value) {
-    if (value.isEmpty||!RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+    if (value.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
       loading();
-    return "Enter correct Name";
-      
+      return "Enter correct Name";
     }
     return null;
   }
@@ -120,9 +112,24 @@ class SigninController extends GetxController {
   loading() {
     isLoading = !isLoading;
   }
-  getlevelStd(newValue){
-    levelOfStdController.value=newValue;
+
+  getlevelStd(newValue) {
+    levelOfStdController.text = newValue;
+    
   }
-  
-  // sendUserDataToModel.adduser(UserNameController.text, fristNameController.text, lastNameController.text, ageController.text, phoneNumberController.text, levelOfStdController.text, emailController.text, passwordController.text);
-}
+
+   SendDateToModel() {
+    sendUserinfo.addstudents(
+      UserNameController.text,
+      fristNameController.text,
+      lastNameController.text,
+      ageController.text,
+      phoneNumberController.text,
+      levelOfStdController.text,
+      emailController.text,
+      passwordController.text,
+    );
+  }
+
+   }
+

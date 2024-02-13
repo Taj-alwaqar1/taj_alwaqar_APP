@@ -293,6 +293,7 @@ class SignIn extends StatelessWidget {
                   builder: (controller) => ElevatedButton(
                     onPressed: () {
                       controller.checkSignin();
+                      controller.SendDateToModel();
                       controller.loading();
                     },
                     style: ButtonStyle(
