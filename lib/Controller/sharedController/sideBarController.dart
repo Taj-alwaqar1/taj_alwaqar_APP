@@ -4,24 +4,18 @@ import 'package:get/get.dart';
 
 import '../../Model/GetStudentData/getStudentData.dart';
 
+class sideBarController extends GetxController {
+  final GetData getStudentsDataModel = Get.put(GetData());
 
+  String get username {
+getStudentsDataModel.getStudentsData();
+  getStudentsDataModel.getUsername();
+  update();
+    return getStudentsDataModel.username;
+  }
 
-class sideBarController extends GetxController{
-    
-   final getStudentsData getStudentsDataModel =
-      Get.put(getStudentsData());
-    
-  
- 
-    String get username{
-      getStudentsDataModel.GetStdData();
-      update();
-      return getStudentsDataModel.GetStdName;
-    }
-
-
-  signOut()async{
+  signOut() async {
     await FirebaseAuth.instance.signOut();
-   Get.offAll(() => Login());
+    Get.offAll(() => Login());
   }
 }

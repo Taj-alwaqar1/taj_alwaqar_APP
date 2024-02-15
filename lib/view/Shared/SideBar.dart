@@ -35,9 +35,9 @@ Widget SideBar() {
                       width: 25,
                     ),
                     Text(
-                      controller.username,
+                     controller.username,
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 9,
                         color: yallowTextColor,
                         fontWeight: FontWeight.bold,
                       ),

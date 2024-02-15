@@ -31,7 +31,6 @@ Future<void> main() async {
   );
   await Locales.init(['en', 'fa', 'ar']);
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatefulWidget {
@@ -42,27 +41,24 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-
   @override
   Widget build(BuildContext context) {
-     return LocaleBuilder(
-        builder: (locale) => GetMaterialApp(
-            title: 'Flutter Locales',
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: Locales.delegates,
-            supportedLocales: L10n.all,
-            locale: Locale('ar'),
-             home: FirebaseAuth.instance.currentUser== null ? Login():userScreen() ,
-            
-             routes: {
-              // '/': (context) => Login(),
-              // '/': (context) => userScreen(),
-              '/search': (context) => searchPage(),
-              '/NewMessagePAge': (context) => NewMessagePAge(),
-              '/teacherDetail': (context) => TeacherDetail(),
-            }),
-      );
-    
+    return LocaleBuilder(
+      builder: (locale) => GetMaterialApp(
+        title: 'Flutter Locales',
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: Locales.delegates,
+        supportedLocales: L10n.all,
+        locale: Locale('ar'),
+        home:
+            FirebaseAuth.instance.currentUser == null ? Login() : userScreen(),
+        getPages: [
+          GetPage(name: '/', page: () => Login()),
+          GetPage(name: '/search', page: () => searchPage()),
+          GetPage(name: '/NewMessagePAge', page: () => NewMessagePAge()),
+          GetPage(name: '/teacherDetail', page: () => TeacherDetail()),
+        ],
+      ),
+    );
   }
 }

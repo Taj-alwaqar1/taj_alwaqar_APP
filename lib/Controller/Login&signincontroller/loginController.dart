@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/loginAcc.dart';
@@ -46,7 +46,7 @@ class LogInController extends GetxController {
      checkLogIn() {
     final isValid = loginFormKey.currentState!.validate();
     if (isValid) {
-       AuthenticateLogInController.LogInAcc(EmailController.text, passwordController.text); 
+       AuthenticateLogInController.LogInAcc(EmailController.text, passwordController.text);  
       loginFormKey.currentState!.save(); 
      Get.offAll(()=>userScreen());
     } else {

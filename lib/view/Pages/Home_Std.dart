@@ -6,11 +6,10 @@ import 'package:frist_file_taj_alwaqar/view/Shared/AppBar.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/HomeList.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/SideBar.dart';
-
- 
+import 'package:frist_file_taj_alwaqar/view/Shared/search.dart';
+import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,32 +24,56 @@ class Home extends StatelessWidget {
           leading: Builder(
             builder: (context) => IconButton(
               icon: Icon(Icons.account_circle_rounded,
-                  size: 40, color:goldenColor),
+                  size: 40, color: goldenColor),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
             ),
           ),
           actions: [
-            IconButton(onPressed: 
-            (){
-            Navigator.pushNamed(context,'/search');
-            }, icon: Icon(Icons.search,color: goldenColor,size: 40,))
+            IconButton(
+                onPressed: () {
+                  // Navigator.pushNamed(context, '/search');
+                  Get.to(searchPage());
+                },
+                icon: Icon(
+                  Icons.search,
+                  color: goldenColor,
+                  size: 40,
+                ))
           ],
         ),
         body: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
-                TeachersList(teacherName: ' عدي',),
-                TeachersList(teacherName: ' اسامه الغامدي',),
-                TeachersList(teacherName: ' انس',),
-                TeachersList(teacherName: ' علي',),
-                TeachersList(teacherName: ' يوسف',),
-                TeachersList(teacherName: ' حمد',),
-                TeachersList(teacherName: ' يونس',),
-                TeachersList(teacherName: ' خالد',),
-                TeachersList(teacherName: ' عبدالرحمن',),
+                TeachersList(
+                  teacherName: ' عدي',
+                ),
+                TeachersList(
+                  teacherName: ' اسامه الغامدي',
+                ),
+                TeachersList(
+                  teacherName: ' انس',
+                ),
+                TeachersList(
+                  teacherName: ' علي',
+                ),
+                TeachersList(
+                  teacherName: ' يوسف',
+                ),
+                TeachersList(
+                  teacherName: ' حمد',
+                ),
+                TeachersList(
+                  teacherName: ' يونس',
+                ),
+                TeachersList(
+                  teacherName: ' خالد',
+                ),
+                TeachersList(
+                  teacherName: ' عبدالرحمن',
+                ),
               ],
             ),
           ),

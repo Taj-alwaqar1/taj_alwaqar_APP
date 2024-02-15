@@ -1,28 +1,44 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class getStudentsData {
+class GetData {
   final List<QueryDocumentSnapshot> StdData = [];
-  GetStdData() async {
+  
+late String username;
+getStudentsData() async {
     try {
-      QuerySnapshot querySnapshot =
-          await FirebaseFirestore.instance.collection("students").get();
-      StdData.addAll(querySnapshot.docs);    
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        final docID = user.uid;
+        final querySnapshot = await FirebaseFirestore.instance
+            .collection('students')
+            .where('userId', isEqualTo: docID)
+            .get();
+        StdData.addAll(querySnapshot.docs);
+      } else {
+        // Handle the case where there's no logged-in user
+      }
     } catch (error) {
-      // Handle error
       print("Error fetching data: $error");
     }
   }
 
-  String get GetStdName =>  StdData.isNotEmpty ? StdData[0]['username'] : "xxxxx" ;
-
-  //  @override
-  // void onInit() {z
-  //   super.onInit();
-  //   getStdData();
-  // }
+ getUsername() async {
+    try {
+        final user = FirebaseAuth.instance.currentUser;
+       final docID = user!.uid;
+      if (user != null) {
+        final docSnapshot = await FirebaseFirestore.instance
+            .collection("students")
+            .doc(docID)
+            .get();
+        return username= docSnapshot['username'];
+      } else {
+        return "User not found";
+      }
+    } catch (error) {
+      print("Error fetching username: $error");
+      return username= "Error fetching username";
+    }
+  }
 }

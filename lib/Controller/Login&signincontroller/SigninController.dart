@@ -21,7 +21,7 @@ class SigninController extends GetxController {
   final AuthenticateSignin Authenticatecontroller =
       Get.put(AuthenticateSignin());
 
-  final SendUserData sendUserinfo = Get.put(SendUserData());
+  final SendStdData sendUserinfo = Get.put(SendStdData());
 
   bool isLoading = false;
 
@@ -119,7 +119,7 @@ class SigninController extends GetxController {
   }
 
    SendDateToModel() {
-    sendUserinfo.addstudents(
+    sendUserinfo.addStudents(
       UserNameController.text,
       fristNameController.text,
       lastNameController.text,

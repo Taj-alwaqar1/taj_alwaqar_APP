@@ -9,7 +9,7 @@ class AuthenticateLogIn extends GetxController {
   late String messageErrorLogin;
   LogInAcc(String email, String password) async {
     try {
-      final credential = await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       Get.snackbar("error", "Email or password wrong");
