@@ -5,6 +5,7 @@ import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/AuthenticateAcc.dar
 import 'package:frist_file_taj_alwaqar/view/Login&&Signin/LogIn.dart';
 import 'package:get/get.dart';
 
+import '../../Model/GetStudentData/getStudentData.dart';
 import '../../Model/sendDataToStore/SendUserData.dart';
 
 class SigninController extends GetxController {
@@ -23,6 +24,8 @@ class SigninController extends GetxController {
 
   final SendStdData sendUserinfo = Get.put(SendStdData());
 
+
+GetData getinfo= Get.put(GetData());
   bool isLoading = false;
 
   bool isVisibile = true;
@@ -117,7 +120,7 @@ class SigninController extends GetxController {
     levelOfStdController.text = newValue;
   }
 
-  SendDateToModel() {
+  SendDateToModel() async{
     sendUserinfo.addUser(
       UserNameController.text,
       fristNameController.text,
@@ -128,6 +131,7 @@ class SigninController extends GetxController {
       emailController.text,
       passwordController.text,
     );
+    await getinfo.getUsername();
     Get.off(()=>Login());
   }
 }
