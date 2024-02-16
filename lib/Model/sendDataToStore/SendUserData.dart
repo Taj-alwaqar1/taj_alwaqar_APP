@@ -2,10 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-class SendStdData extends GetxController {
-    final user = FirebaseAuth.instance.currentUser;
+import '../AuthenticateAcc/AuthenticateAcc.dart';
 
-  Future<void> addStudents(
+class SendStdData extends GetxController {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<void> addUser(
       String username,
       String fristname,
       String lastname,
@@ -14,14 +17,10 @@ class SendStdData extends GetxController {
       String levelstd,
       String email,
       String password) async {
+    final user = _auth.currentUser;
+    final uid = user!.uid;
+    final docRef = _firestore.collection('users').doc(uid);
     try {
-      // Assuming you have the user ID (adapt based on your logic)
-       // Get the authenticated user's ID
-final docID = user!.uid;
-      // Create a new document with user ID as the ID
-      final docRef = FirebaseFirestore.instance.collection('students').doc(docID);
-
-      // Add data to the document
       await docRef.set({
         "username": username,
         "fristname": fristname,
@@ -32,13 +31,10 @@ final docID = user!.uid;
         "email": email,
         "password": password,
       });
-
-      print("User Added");
-    } catch (error) {
-      print("Failed to add user: $error");
-      // Handle errors appropriately
+      print('User added successfully!');
+    } catch (e) {
+      print('Error adding user: $e');
     }
+   
   }
-
-  // ... other methods if needed
 }

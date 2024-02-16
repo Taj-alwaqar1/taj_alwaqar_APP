@@ -97,7 +97,7 @@ class SigninController extends GetxController {
       signinFormKey.currentState!.save();
       await Authenticatecontroller.registerUser(
           emailController.text, passwordController.text);
-      Get.off(() => Login());
+      SendDateToModel();
     } else
       Get.snackbar("error", Authenticatecontroller.messageErrorSignin);
 
@@ -115,11 +115,10 @@ class SigninController extends GetxController {
 
   getlevelStd(newValue) {
     levelOfStdController.text = newValue;
-    
   }
 
-   SendDateToModel() {
-    sendUserinfo.addStudents(
+  SendDateToModel() {
+    sendUserinfo.addUser(
       UserNameController.text,
       fristNameController.text,
       lastNameController.text,
@@ -129,7 +128,6 @@ class SigninController extends GetxController {
       emailController.text,
       passwordController.text,
     );
+    Get.off(()=>Login());
   }
-
-   }
-
+}

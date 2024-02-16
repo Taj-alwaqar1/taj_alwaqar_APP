@@ -1,44 +1,45 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
 class GetData {
-  final List<QueryDocumentSnapshot> StdData = [];
-  
-late String username;
-getStudentsData() async {
-    try {
-      final user = FirebaseAuth.instance.currentUser;
-      if (user != null) {
-        final docID = user.uid;
-        final querySnapshot = await FirebaseFirestore.instance
-            .collection('students')
-            .where('userId', isEqualTo: docID)
-            .get();
-        StdData.addAll(querySnapshot.docs);
-      } else {
-        // Handle the case where there's no logged-in user
+  final List<Map<String, dynamic>> studentsData = []; // Or use a Stream if needed
+    final RxString username = ''.obs; 
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<Map<String, dynamic>?> getStudentsData() async {
+    final user = _auth.currentUser;
+
+    if (user != null) {
+      final uid = user.uid;
+      final docRef = _firestore.collection('users').doc(uid);
+
+      try {
+        final snapshot = await docRef.get();
+        if (snapshot.exists) {
+          return snapshot.data() as Map<String, dynamic>;
+        } else {
+          print('No user data found for UID: $uid');
+          return null;
+        }
+      } catch (e) {
+        print('Error getting user data: $e');
+        return null;
       }
-    } catch (error) {
-      print("Error fetching data: $error");
+    } else {
+      return null;
     }
   }
 
- getUsername() async {
-    try {
-        final user = FirebaseAuth.instance.currentUser;
-       final docID = user!.uid;
-      if (user != null) {
-        final docSnapshot = await FirebaseFirestore.instance
-            .collection("students")
-            .doc(docID)
-            .get();
-        return username= docSnapshot['username'];
-      } else {
-        return "User not found";
-      }
-    } catch (error) {
-      print("Error fetching username: $error");
-      return username= "Error fetching username";
+  Future<String?> getUsername() async {
+    final userData = await getStudentsData();
+    if (userData != null && userData.containsKey('username')) {
+      
+      return username.value= userData['username'];
+    } else {
+      return null;
     }
   }
 }

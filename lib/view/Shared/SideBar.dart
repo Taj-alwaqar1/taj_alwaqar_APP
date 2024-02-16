@@ -34,12 +34,14 @@ Widget SideBar() {
                     SizedBox(
                       width: 25,
                     ),
-                    Text(
-                     controller.username,
-                      style: TextStyle(
-                        fontSize: 9,
-                        color: yallowTextColor,
-                        fontWeight: FontWeight.bold,
+                    Obx(()=>
+                       Text(
+                       controller.username.value,
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: yallowTextColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -51,7 +53,9 @@ Widget SideBar() {
             height: 25,
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+          
+            },
             title: Row(
               children: [
                 ImageIcon(

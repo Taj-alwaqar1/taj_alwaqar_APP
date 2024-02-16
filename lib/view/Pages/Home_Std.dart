@@ -9,7 +9,9 @@ import 'package:frist_file_taj_alwaqar/view/Shared/SideBar.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/search.dart';
 import 'package:get/get.dart';
 
+
 class Home extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +35,6 @@ class Home extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  // Navigator.pushNamed(context, '/search');
                   Get.to(searchPage());
                 },
                 icon: Icon(

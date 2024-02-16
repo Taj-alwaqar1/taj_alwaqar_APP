@@ -1,14 +1,16 @@
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+
+import '../../Controller/Login&signincontroller/SigninController.dart';
 
 class AuthenticateSignin extends GetxController {
   late String messageErrorSignin;
 
+
+
   registerUser(String email, String password) async {
     try {
-     final credential =  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );

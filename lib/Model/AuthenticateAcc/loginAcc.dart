@@ -11,6 +11,7 @@ class AuthenticateLogIn extends GetxController {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+
     } on FirebaseAuthException catch (e) {
       Get.snackbar("error", "Email or password wrong");
       print(e.toString());

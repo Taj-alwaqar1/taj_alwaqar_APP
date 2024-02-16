@@ -7,13 +7,23 @@ import '../../Model/GetStudentData/getStudentData.dart';
 class sideBarController extends GetxController {
   final GetData getStudentsDataModel = Get.put(GetData());
 
-  String get username {
-getStudentsDataModel.getStudentsData();
-  getStudentsDataModel.getUsername();
-  update();
-    return getStudentsDataModel.username;
-  }
 
+
+     RxString get username => getStudentsDataModel.username; 
+//   RxString get username {
+// // getStudentsDataModel.getStudentsData();
+//   getStudentsDataModel.getUsername();
+//   update();
+//     return getStudentsDataModel.username;
+//   }
+void fetchUsername() async {
+    await getStudentsDataModel.getUsername();
+  }
+  @override
+  void onInit()  {
+    super.onInit();
+     fetchUsername();
+  }
   signOut() async {
     await FirebaseAuth.instance.signOut();
     Get.offAll(() => Login());
