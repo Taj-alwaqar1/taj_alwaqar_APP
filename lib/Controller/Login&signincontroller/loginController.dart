@@ -6,11 +6,14 @@ import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
 import 'package:get/get.dart';
 import 'package:frist_file_taj_alwaqar/Controller/Login&signincontroller/SigninController.dart';
 
+import '../../Model/GetUserData/getStudentData.dart';
+
 class LogInController extends GetxController {
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   final EmailController = TextEditingController();
   final passwordController = TextEditingController();
 
+GetData getinfo= Get.put(GetData());
    bool isLoading=false;
   
   bool isVisibile = true;
@@ -43,12 +46,14 @@ class LogInController extends GetxController {
     return null;
   }
 
-     checkLogIn() {
+     checkLogIn()async {
     final isValid = loginFormKey.currentState!.validate();
     if (isValid) {
        AuthenticateLogInController.LogInAcc(EmailController.text, passwordController.text);  
       loginFormKey.currentState!.save(); 
-     Get.offAll(()=>userScreen());
+          await getinfo.getUsername();
+          
+   
     } else {
       Get.snackbar("error", "insert Some Value");
       loading();

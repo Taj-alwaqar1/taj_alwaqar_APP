@@ -36,7 +36,7 @@ Widget SideBar() {
                     ),
                     Obx(()=>
                        Text(
-                       controller.username.value,
+                      controller.username.value, 
                         style: TextStyle(
                           fontSize: 30,
                           color: yallowTextColor,

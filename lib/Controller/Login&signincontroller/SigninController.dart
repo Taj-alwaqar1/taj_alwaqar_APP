@@ -5,14 +5,15 @@ import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/AuthenticateAcc.dar
 import 'package:frist_file_taj_alwaqar/view/Login&&Signin/LogIn.dart';
 import 'package:get/get.dart';
 
-import '../../Model/GetStudentData/getStudentData.dart';
+import '../../Model/GetUserData/getStudentData.dart';
 import '../../Model/sendDataToStore/SendUserData.dart';
+import '../sharedController/homeListController.dart';
 
 class SigninController extends GetxController {
   final GlobalKey<FormState> signinFormKey = GlobalKey<FormState>();
 
   final UserNameController = TextEditingController();
-  final fristNameController = TextEditingController();
+  final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final ageController = TextEditingController();
   final phoneNumberController = TextEditingController();
@@ -24,7 +25,6 @@ class SigninController extends GetxController {
 
   final SendStdData sendUserinfo = Get.put(SendStdData());
 
-
 GetData getinfo= Get.put(GetData());
   bool isLoading = false;
 
@@ -33,7 +33,7 @@ GetData getinfo= Get.put(GetData());
   @override
   void dispose() {
     UserNameController.dispose();
-    fristNameController.dispose();
+    firstNameController.dispose();
     lastNameController.dispose();
     ageController.dispose();
     phoneNumberController.dispose();
@@ -101,6 +101,7 @@ GetData getinfo= Get.put(GetData());
       await Authenticatecontroller.registerUser(
           emailController.text, passwordController.text);
       SendDateToModel();
+
     } else
       Get.snackbar("error", Authenticatecontroller.messageErrorSignin);
 
@@ -123,7 +124,7 @@ GetData getinfo= Get.put(GetData());
   SendDateToModel() async{
     sendUserinfo.addUser(
       UserNameController.text,
-      fristNameController.text,
+      firstNameController.text,
       lastNameController.text,
       ageController.text,
       phoneNumberController.text,
@@ -132,6 +133,6 @@ GetData getinfo= Get.put(GetData());
       passwordController.text,
     );
     await getinfo.getUsername();
-    Get.off(()=>Login());
+
   }
 }

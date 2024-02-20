@@ -3,12 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class GetData {
-  final List<Map<String, dynamic>> studentsData = []; // Or use a Stream if needed
+  final List<Map<String, dynamic>> studentsData = [];
     final RxString username = ''.obs; 
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+   
   Future<Map<String, dynamic>?> getStudentsData() async {
     final user = _auth.currentUser;
 
@@ -36,7 +37,14 @@ class GetData {
   Future<String?> getUsername() async {
     final userData = await getStudentsData();
     if (userData != null && userData.containsKey('username')) {
-      
+      return username.value= userData['username'];
+    } else {
+      return null;
+    }
+  }
+  Future<String?> GetUserEmail() async {
+    final userData = await getStudentsData();
+    if (userData != null && userData.containsKey('username')) {
       return username.value= userData['username'];
     } else {
       return null;

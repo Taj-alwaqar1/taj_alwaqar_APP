@@ -19,6 +19,7 @@ import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
 import 'view/Pages/Home_Tec.dart';
+import 'view/Pages/chatscreen.dart';
 import 'view/Screen/Screen.dart';
 
 import 'view/Shared/search.dart';

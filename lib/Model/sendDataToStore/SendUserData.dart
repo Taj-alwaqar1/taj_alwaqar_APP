@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
+import '../../view/Login&&Signin/LogIn.dart';
 import '../AuthenticateAcc/AuthenticateAcc.dart';
 
 class SendStdData extends GetxController {
@@ -10,7 +11,7 @@ class SendStdData extends GetxController {
 
   Future<void> addUser(
       String username,
-      String fristname,
+      String firstname,
       String lastname,
       String age,
       String phonenumber,
@@ -23,7 +24,7 @@ class SendStdData extends GetxController {
     try {
       await docRef.set({
         "username": username,
-        "fristname": fristname,
+        "firstname": firstname,
         "lastname": lastname,
         "age": age,
         "phonenumber": phonenumber,
@@ -32,6 +33,7 @@ class SendStdData extends GetxController {
         "password": password,
       });
       print('User added successfully!');
+          Get.off(()=>Login());
     } catch (e) {
       print('Error adding user: $e');
     }

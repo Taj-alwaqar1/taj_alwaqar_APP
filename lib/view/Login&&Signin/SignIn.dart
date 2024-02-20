@@ -90,14 +90,14 @@ class SignIn extends StatelessWidget {
                         //  border: Border.all(color: yallowTextColor,width: 2)
                       ),
                       child: TextFormField(
-                        controller: controller.fristNameController,
+                        controller: controller.firstNameController,
                         keyboardType: TextInputType.name,
                         textInputAction: TextInputAction.next,
                         obscureText: false,
                         decoration:
                             fieldsForInfovar.copyWith(labelText: 'الاسم الأول'),
                         onSaved: (value) {
-                          controller.fristNameController.text = value!;
+                          controller.firstNameController.text = value!;
                         },
                         validator: (value) {
                           return controller.ValidateTexfFeild(value!);
