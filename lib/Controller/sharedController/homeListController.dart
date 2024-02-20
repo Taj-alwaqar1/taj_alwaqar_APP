@@ -11,8 +11,10 @@ class HomeListController extends GetxController {
 
   @override
   void onInit() async {
-    super.onInit();
     await getTeacherData.getTeacherNames();
-    update();
+
+    super.onInit();
+    
+   
   }
 }

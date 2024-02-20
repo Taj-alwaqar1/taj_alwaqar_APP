@@ -44,16 +44,17 @@ class Home extends StatelessWidget {
                 ))
           ],
         ),
-        body: ListView.builder(
-          itemCount: controller.teachersName.length,
-          itemBuilder: (BuildContext context, int index) {
-            return SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: [
-                    Obx(() {
-                      final teacherName = controller.teachersName.value[index];
-                      return Container(
+        body: Obx(
+          () => ListView.builder(
+            itemCount: controller.teachersName.length,
+            itemBuilder: (BuildContext context, int index) {
+              final teacherName = controller.teachersName.value[index];
+
+              return SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      Container(
                           margin:
                               EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                           height: 70,
@@ -109,13 +110,13 @@ class Home extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ));
-                    }),
-                  ],
+                          )),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
         drawer: SideBar(),
       ),
