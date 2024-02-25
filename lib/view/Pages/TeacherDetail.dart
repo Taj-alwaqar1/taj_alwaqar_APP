@@ -14,20 +14,18 @@ import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Curriculum.dart';
 import 'package:get/get.dart';
 
+import '../../Controller/pagesController/TeacherDetailController.dart';
 import '../../Controller/sharedController/TabBarController.dart';
 
-class TeacherDetail extends StatefulWidget {
+class TeacherDetail extends StatelessWidget {
   const TeacherDetail({super.key});
 
-  @override
-  State<TeacherDetail> createState() => _TeacherDetailState();
-}
-
-class _TeacherDetailState extends State<TeacherDetail> {
   @override
   Widget build(BuildContext context) {
     final bottomNavnController controllernav = Get.put(bottomNavnController());
     final TabBarController controllerTabBar = Get.put(TabBarController());
+final ControllerTecher =Get.put(TeacherController());
+
 
     return Container(
       decoration: BoxDecoration(gradient: GradientGreen),
@@ -35,9 +33,8 @@ class _TeacherDetailState extends State<TeacherDetail> {
         backgroundColor: Colors.transparent,
         bottomNavigationBar: botoom(),
         appBar: AppBar(
-          title: Center(
-              child: Text("المعلمين",
-                  style: TextStyle(color: yallowTextColor, fontSize: 29))),
+          title: Text("المعلم : ${ControllerTecher.Name}",
+              style: TextStyle(color: yallowTextColor, fontSize: 29)),
           backgroundColor: darkGreen,
         ),
         body: SingleChildScrollView(
@@ -68,7 +65,7 @@ class _TeacherDetailState extends State<TeacherDetail> {
                       right: 10,
                       child: Column(
                         children: [
-                          Text("الاسم: اسامه الغامدي",
+                          Text("الاسم:  ${ControllerTecher.Name.value}",
                               style: TextStyle(
                                   color: yallowTextColor, fontSize: 19)),
                           Text("التقييم:4.6",

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
+import '../../Controller/Login&signincontroller/SigninController.dart';
 import '../../view/Login&&Signin/LogIn.dart';
 import '../AuthenticateAcc/AuthenticateAcc.dart';
 
@@ -21,22 +22,24 @@ class SendStdData extends GetxController {
     final user = _auth.currentUser;
     final uid = user!.uid;
     final docRef = _firestore.collection('users').doc(uid);
+
+
+  userInfo userAccounet=
+    userInfo(
+        username: username,
+        firstname: firstname,
+        lastname: lastname,
+        age: age,
+        phonenumber: phonenumber,
+        levelstd: levelstd,
+        email: email,
+        password: password);
     try {
-      await docRef.set({
-        "username": username,
-        "firstname": firstname,
-        "lastname": lastname,
-        "age": age,
-        "phonenumber": phonenumber,
-        "levelstd": levelstd,
-        "email": email,
-        "password": password,
-      });
+      await docRef.set(userAccounet.convetToMap());
       print('User added successfully!');
-          Get.off(()=>Login());
+      Get.off(() => Login());
     } catch (e) {
       print('Error adding user: $e');
     }
-   
   }
 }

@@ -25,7 +25,7 @@ class SigninController extends GetxController {
 
   final SendStdData sendUserinfo = Get.put(SendStdData());
 
-GetData getinfo= Get.put(GetData());
+  GetData getinfo = Get.put(GetData());
   bool isLoading = false;
 
   bool isVisibile = true;
@@ -101,7 +101,6 @@ GetData getinfo= Get.put(GetData());
       await Authenticatecontroller.registerUser(
           emailController.text, passwordController.text);
       SendDateToModel();
-
     } else
       Get.snackbar("error", Authenticatecontroller.messageErrorSignin);
 
@@ -121,7 +120,7 @@ GetData getinfo= Get.put(GetData());
     levelOfStdController.text = newValue;
   }
 
-  SendDateToModel() async{
+  SendDateToModel() async {
     sendUserinfo.addUser(
       UserNameController.text,
       firstNameController.text,
@@ -133,6 +132,40 @@ GetData getinfo= Get.put(GetData());
       passwordController.text,
     );
     await getinfo.getUsername();
+  }
+}
 
+class userInfo {
+  String username;
+  String firstname;
+  String lastname;
+  String age;
+  String phonenumber;
+  String levelstd;
+  String email;
+  String password;
+  userInfo({
+    required this.username,
+    required this.firstname,
+    required this.lastname,
+    required this.age,
+    required this.phonenumber,
+    required this.levelstd,
+    required this.email,
+    required this.password,
+  });
+  
+  Map <String,dynamic>convetToMap(){
+   return {
+    'username':username,
+    'firstname':firstname,
+    'lastname':lastname,
+    'age':age,
+    'phonenumber':phonenumber,
+    'levelstd':levelstd,
+    'email':email,
+    'password':password,
+   };
+   
   }
 }

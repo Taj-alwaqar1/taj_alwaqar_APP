@@ -4,70 +4,85 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+import 'package:get/get.dart';
 
-// class halaqh extends StatelessWidget {
-//   const halaqh({super.key});
+import '../Shared/AppBar.dart';
+import '../Shared/HalaqhList.dart';
+import '../Shared/SideBar.dart';
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-// decoration: BoxDecoration(
-//   gradient: GradientGreen,
-//       ),
-//       child: Scaffold(
-//         backgroundColor: Colors.transparent,
-//         appBar: AppBar(
-//           title: CustomAppBar("الحلقات"),
-//           backgroundColor: darkGreen,
-//           leading: Builder(
-//             builder: (context) => IconButton(
-//               icon: Icon(Icons.account_circle_rounded,
-//                   size: 40, color: goldenColor),
-//               onPressed: () {
-//                 Scaffold.of(context).openDrawer();
-//               },
-//             ),
-//           ),
-//         ),
-//         drawer: SideBar(),
-//         body: SingleChildScrollView(
-//           child: Column(children: [
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//             HalaqhList(
-//               HalaqhName: ' عثمان بن عفان',
-//             ),
-//           ]),
-//         ),
-//       ),
-//     );
-//   }
-// }
+class halaqh extends StatelessWidget {
+  const halaqh({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+decoration: BoxDecoration(
+  gradient: GradientGreen,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: CustomAppBar("الحلقات"),
+          backgroundColor: darkGreen,
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: Icon(Icons.account_circle_rounded,
+                  size: 40, color: goldenColor),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            ),
+          ),
+           actions: [
+              TextButton(
+                  onPressed: () {
+                   Get.off(()=>userScreen());
+                  },
+                  child: Text(
+                    "إلغاء",
+                    style: TextStyle(fontSize: 26, color: yallowTextColor),
+                  ))
+            ],
+        ),
+        drawer: SideBar(),
+        body: SingleChildScrollView(
+          child: Column(children: [
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+            HalaqhList(
+              HalaqhName: ' عثمان بن عفان',
+            ),
+          ]),
+        ),
+      ),
+    );
+  }
+}
 
 class CreateOrJoinHalaqh extends StatelessWidget {
   const CreateOrJoinHalaqh({super.key});
@@ -138,10 +153,7 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 70),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => userScreen()));
+                        Get.off(()=>halaqh());
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(goldenColor),

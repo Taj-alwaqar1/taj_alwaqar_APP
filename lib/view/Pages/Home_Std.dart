@@ -9,9 +9,12 @@ import 'package:frist_file_taj_alwaqar/view/Shared/SideBar.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/search.dart';
 import 'package:get/get.dart';
 
-class Home extends StatelessWidget {
-  final HomeListController controller = Get.put(HomeListController());
+import '../../Controller/pagesController/TeacherDetailController.dart';
+import 'TeacherDetail.dart';
 
+class Home extends StatelessWidget {
+  final HomeListController controllerHomelist = Get.put(HomeListController());
+final ControllerTecher =Get.put(TeacherController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,10 +49,9 @@ class Home extends StatelessWidget {
         ),
         body: Obx(
           () => ListView.builder(
-            itemCount: controller.teachersName.length,
+            itemCount: controllerHomelist.teachersName.length,
             itemBuilder: (BuildContext context, int index) {
-              final teacherName = controller.teachersName.value[index];
-
+              final teacherName = controllerHomelist.teachersName.value[index];
               return SingleChildScrollView(
                 child: Center(
                   child: Column(
@@ -65,8 +67,7 @@ class Home extends StatelessWidget {
                           child: GestureDetector(
                             child: ListTile(
                               onTap: () {
-                                // Navigator.pushNamed(
-                                //     context, '/teacherDetail'); // hhh
+                             ControllerTecher.navigateToTeacherDetail(teacherName);
                               },
                               title: Row(
                                 mainAxisAlignment:

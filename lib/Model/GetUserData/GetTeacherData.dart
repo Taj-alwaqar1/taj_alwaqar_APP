@@ -1,4 +1,4 @@
-// ignore_for_file: curly_braces_in_flow_control_structures, avoid_single_cascade_in_expression_statements, unnecessary_cast
+// ignore_for_file: curly_braces_in_flow_control_structures, avoid_single_cascade_in_expression_statements
 
 import 'dart:ffi';
 
@@ -27,10 +27,10 @@ class GetTeacherData extends GetxController {
             .toList();
         for (final userData in teachersData) {
           if (userData['levelstd'] == "" &&
-              !doesContain(teachersName, userData['fristname'])) {
-            final String teacherName = userData['fristname'];
-            teachersName..value.add(teacherName); // Use add for reactive updates
-            print(teacherName);
+              !doesContain(teachersName, userData['firstname'])) {
+            final String teacherName = userData['firstname'];
+            teachersName.value.add(teacherName); // Use add for reactive updates
+  
           }
         }
       }
