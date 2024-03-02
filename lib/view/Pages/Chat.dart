@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,14 +6,17 @@ import 'package:frist_file_taj_alwaqar/view/Shared/AppBar.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/CahtItem.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/SideBar.dart';
+import 'package:get/get.dart';
 
- 
+import '../../Controller/pagesController/messageController.dart';
 
 class Chat extends StatelessWidget {
   const Chat({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ControllerChat = Get.put(MessageController());
+
     return Container(
       decoration: BoxDecoration(
         gradient: GradientGreen,
@@ -41,18 +44,82 @@ class Chat extends StatelessWidget {
           ),
         ),
         drawer: SideBar(),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              ChatItem(
-                NameOfChatItem: 'صالح',
-              ),
-            ],
+        body:
+            Obx(
+          () => ListView.builder(
+            itemCount: ControllerChat.userName.length,
+            itemBuilder: (BuildContext context, int index) {
+              final userName = ControllerChat.userName.value[index];
+              final email = ControllerChat.userEmail.value[index];
+              return SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: darkGreen,
+                          border: Border(
+                            bottom: BorderSide(
+                              color: goldenColor,
+                              width: 2.0,
+                            ),
+                          ),
+                        ),
+                        child: GestureDetector(
+                          child: ListTile(
+                            onTap: () {
+                            ControllerChat.navigateToTeacherDetail(userName,email) ;
+                            },
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(55),
+                                        color: greenColor,
+                                        border: Border.all(
+                                            color: goldenColor, width: 2),
+                                      ),
+                                      child: Icon(
+                                        Icons.person,
+                                        color: goldenColor,
+                                        size: 33,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      userName,
+                                      style: TextStyle(
+                                          color: yallowTextColor, fontSize: 28),
+                                    ),
+                                  ],
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios_sharp,
+                                  color: goldenColor,
+                                  size: 30,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.pushNamed(context,'/NewMessagePAge');
+            Navigator.pushNamed(context, '/NewMessagePAge');
           },
           backgroundColor: greenColor,
           shape: RoundedRectangleBorder(

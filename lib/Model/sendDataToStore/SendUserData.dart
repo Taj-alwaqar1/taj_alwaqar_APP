@@ -26,6 +26,7 @@ class SendStdData extends GetxController {
 
   userInfo userAccounet=
     userInfo(
+        uid:uid,
         username: username,
         firstname: firstname,
         lastname: lastname,

@@ -136,6 +136,7 @@ class SigninController extends GetxController {
 }
 
 class userInfo {
+  String uid;
   String username;
   String firstname;
   String lastname;
@@ -145,6 +146,7 @@ class userInfo {
   String email;
   String password;
   userInfo({
+    required this.uid,
     required this.username,
     required this.firstname,
     required this.lastname,
@@ -157,6 +159,7 @@ class userInfo {
   
   Map <String,dynamic>convetToMap(){
    return {
+    'uid':uid,
     'username':username,
     'firstname':firstname,
     'lastname':lastname,

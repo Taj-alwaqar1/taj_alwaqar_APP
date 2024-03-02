@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+import 'package:get/get.dart';
+
+import '../../Controller/pagesController/messageController.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -13,6 +16,8 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
+    final ControllerChat = Get.put(MessageController());
+
     return Container(
       decoration: BoxDecoration(
         gradient: GradientGreen,
@@ -20,22 +25,26 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-            backgroundColor: greenColor,
-            title: Row(
-              children: [
-                SizedBox(width: 20),
-                Center(
-                    child: Text(
-                  'another user name ',
-                  style: TextStyle(
-                      color: yallowTextColor, fontWeight: FontWeight.bold),
-                ))
-              ],
-            ),
-            leading: IconButton(
-              onPressed: () {},
+          backgroundColor: greenColor,
+          title: Row(
+            children: [
+              SizedBox(width: 60),
+              Text(
+                ControllerChat.Name.value,
+                style: TextStyle(
+                    color: yallowTextColor, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {
+              print(ControllerChat.specificuseremail.value);
+              },
               icon: Icon(Icons.video_call),
-            )),
+            ),
+          ],
+        ),
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
