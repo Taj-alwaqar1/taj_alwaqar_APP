@@ -18,6 +18,8 @@ import 'package:frist_file_taj_alwaqar/l10n/l10n.dart';
 import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
+import 'Bindings/message.dart';
+import 'Controller/pagesController/messageController.dart';
 import 'view/Pages/Home_Tec.dart';
 import 'view/Pages/chatscreen.dart';
 import 'view/Screen/Screen.dart';
@@ -57,7 +59,8 @@ class _MyAppState extends State<MyApp> {
           GetPage(name: '/', page: () => Login()),
           GetPage(name: '/search', page: () => searchPage()),
           GetPage(name: '/NewMessagePAge', page: () => NewMessagePAge()),
-          GetPage(name: '/teacherDetail', page: () => TeacherDetail()),
+          GetPage(name: '/chat', page: () => ChatScreen(),binding: MessageDataBinding() ),
+          GetPage(name: '/teacherDetail', page: () => TeacherDetail() ),
         ],
       ),
     );

@@ -57,6 +57,10 @@ class SurahBuilderController extends GetxController {
     getSurahName();
   }
 
+
+
+
+
   Future readJson() async {
 try {
       final String response = await rootBundle.loadString(

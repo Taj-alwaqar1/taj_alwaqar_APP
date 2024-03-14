@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_null_comparison
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,7 @@ class Chat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final ControllerChat = Get.put(MessageController());
 
     return Container(
@@ -44,13 +45,11 @@ class Chat extends StatelessWidget {
           ),
         ),
         drawer: SideBar(),
-        body:
-            Obx(
+        body: Obx(
           () => ListView.builder(
             itemCount: ControllerChat.userName.length,
             itemBuilder: (BuildContext context, int index) {
               final userName = ControllerChat.userName.value[index];
-              final email = ControllerChat.userEmail.value[index];
               return SingleChildScrollView(
                 child: Center(
                   child: Column(
@@ -68,7 +67,14 @@ class Chat extends StatelessWidget {
                         child: GestureDetector(
                           child: ListTile(
                             onTap: () {
-                            ControllerChat.navigateToTeacherDetail(userName,email) ;
+                              final id =
+                                  ControllerChat.useridMethode[index];
+                              if (id!=null) {
+                                 ControllerChat.navigateToChatScreen(
+                                  userName, id);
+                                 ControllerChat.displayMsg();
+                              }
+                             
                             },
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

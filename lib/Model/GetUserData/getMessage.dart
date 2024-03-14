@@ -1,13 +1,21 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:frist_file_taj_alwaqar/Controller/Login&signincontroller/SigninController.dart';
+import 'package:frist_file_taj_alwaqar/Controller/pagesController/messageController.dart';
 import 'package:get/get.dart';
 
-class GetMessageInfo{
- final userName = RxList<String>([]).obs;
- final userEmail = RxList<String>([]).obs;
-  
+import '../../Controller/sharedController/sideBarController.dart';
+
+class GetMessageInfo {
+  final userName = RxList<String>([]).obs;
+  final userid = RxList<String>([]).obs;
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance; 
+
+  
 
   Future<RxList<String>> getUserNames() async {
     try {
@@ -18,16 +26,15 @@ class GetMessageInfo{
         return RxList<String>([]);
       }
       await for (var userSnapshot
-          in _firestore.collection('users').snapshots()) {
+          in firestore.collection('users').snapshots()) {
         final UserData = userSnapshot.docs
             .where((doc) => doc.data()['uid'] != user.uid)
             .map((doc) => doc.data() as Map<String, dynamic>)
             .toList();
         for (final userData in UserData) {
-           {
+          {
             final String UserName = userData['username'];
             userName.value.add(UserName); // Use add for reactive updates
-  
           }
         }
       }
@@ -38,35 +45,35 @@ class GetMessageInfo{
     }
   }
 
-
-  Future<RxList<String>> getUseremail() async {
+  Future<RxList<String>> getUserid() async {
     try {
       // Check if user is authenticated
       final User? user = _auth.currentUser;
+
       if (user == null) {
         print('User is not authenticated.');
         return RxList<String>([]);
       }
       await for (var userSnapshot
-          in _firestore.collection('users').snapshots()) {
+          in firestore.collection('users').snapshots()) {
         final UserData = userSnapshot.docs
-        .where((doc) => doc.data()['uid'] != user.uid)
+            .where((doc) => doc.data()['uid'] != user?.uid)
             .map((doc) => doc.data() as Map<String, dynamic>)
             .toList();
         for (final UserInfo in UserData) {
-           {
-            final String Email = UserInfo['email'];
-            userEmail.value.add(Email); // Use add for reactive updates
-  
+          {
+            final String id = UserInfo['uid'];
+            userid.value.add(id); // Use add for reactive updates
           }
         }
       }
-      return userEmail.value;
+      return userid.value;
     } catch (e) {
       print('Error occurred: $e');
       return RxList<String>([]);
     }
   }
+
 
 
 
