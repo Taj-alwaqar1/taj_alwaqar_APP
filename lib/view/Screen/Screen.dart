@@ -18,21 +18,13 @@ import 'package:provider/provider.dart';
 
 import '../../Controller/sharedController/botoomNavController.dart';
 
-class userScreen extends StatefulWidget {
-  const userScreen({Key? key}) : super(key: key);
+class userScreen extends StatelessWidget {
 
-  @override
-  State<userScreen> createState() => _userScreenState();
-}
-
-class _userScreenState extends State<userScreen> {
-
-
-  final TabBarController controllerTabBar = Get.put(TabBarController());
 
 
   @override
   Widget build(BuildContext context) {
+  final TabBarController controllerTabBar = Get.put(TabBarController());
     final bottomNavnController controllernav = Get.put(bottomNavnController());
 
     return Scaffold(

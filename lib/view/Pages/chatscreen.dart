@@ -133,10 +133,10 @@ Widget ChatRightItem(msgContent item) {
               bottom: 5
             ),
             decoration: BoxDecoration(
-                color: Color.fromRGBO(217, 217, 217, 0.71),
+                color: greenColor,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15),bottomLeft: Radius.circular(15),)),
             child: item.type == "text"
-                ? Text('${item.content}')
+                ? Text('${item.content}',style: TextStyle(color: yallowTextColor),)
                 : ConstrainedBox(
                     constraints: BoxConstraints(
                       maxWidth: 90,
@@ -174,10 +174,10 @@ Widget ChatLeftItem(msgContent item) {
               bottom: 5
             ),
             decoration: BoxDecoration(
-                color: Color.fromRGBO(217, 217, 217, 0.71),
+                color: greenColor,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15),bottomRight: Radius.circular(15),)),
             child: item.type == "text"
-                ? Text('${item.content}')
+                ? Text('${item.content}',style: TextStyle(color: yallowTextColor),)
                 : ConstrainedBox(
                     constraints: BoxConstraints(
                       maxWidth: 90,

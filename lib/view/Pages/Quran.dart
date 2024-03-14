@@ -90,7 +90,8 @@ class SurahBuilder extends StatelessWidget {
         leading: IconButton(
             onPressed: () {
               controller.deletesurah();
-              Get.off(() => Quran());
+                Navigator.pop(context);
+              // Get.off(() => Quran());
             },
             icon: Icon(
               Icons.arrow_back,

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/Controller/sharedController/sideBarController.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/SideBarAccount.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/sideBarItem.dart';
 import 'package:get/get.dart';
 
@@ -24,27 +25,41 @@ Widget SideBar() {
             ),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                        radius: 30, 
-                        backgroundImage:
-                            AssetImage("assets/img/avatar.png")),
-                    SizedBox(
-                      width: 25,
-                    ),
-                    Obx(()=>
-                       Text(
-                      controller.username.value, 
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: yallowTextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => Account_Info());
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(greenColor),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                      const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
                       ),
                     ),
-                  ],
+                    elevation: MaterialStateProperty.all(0.0),
+                  ),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                          backgroundColor: greenColor,
+                          radius: 30,
+                          backgroundImage: AssetImage("assets/img/avatar.png")),
+                      SizedBox(
+                        width: 25,
+                      ),
+                      Obx(
+                        () => Text(
+                          controller.username.value,
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: yallowTextColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -53,9 +68,7 @@ Widget SideBar() {
             height: 25,
           ),
           ListTile(
-            onTap: () {
-             
-            },
+            onTap: () {},
             title: Row(
               children: [
                 ImageIcon(

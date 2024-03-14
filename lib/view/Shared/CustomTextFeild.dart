@@ -14,3 +14,31 @@ const fieldsForInfovar = InputDecoration(
   ),
   contentPadding: EdgeInsets.all(8),
 );
+
+const fieldsForInfovarHalaqh = InputDecoration(
+  labelStyle: TextStyle(
+    color: yallowTextColor,
+    fontSize: 24,
+  ),
+  border: InputBorder.none,
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: yallowTextColor, width: 2),
+    borderRadius: BorderRadius.all(
+      Radius.circular(20),
+    ),
+  ),
+  contentPadding: EdgeInsets.all(10),
+);
+
+const fieldsForAccountUser = InputDecoration(
+  labelStyle: TextStyle(
+    color: yallowTextColor,
+    fontSize: 18,
+  ),
+  border: InputBorder.none,
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: yallowTextColor, width: 3),
+    borderRadius: BorderRadius.all(Radius.circular(20)),
+  ),
+  contentPadding: EdgeInsets.all(8),
+);
