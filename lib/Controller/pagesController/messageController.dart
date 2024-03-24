@@ -4,16 +4,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:frist_file_taj_alwaqar/Controller/pagesController/callController.dart';
 import 'package:frist_file_taj_alwaqar/view/Login&&Signin/LogIn.dart';
 import 'package:get/get.dart';
 
+import '../../Model/sendDataToStore/SendCallData.dart';
 import '../../Model/GetUserData/getMessage.dart';
 import '../../Model/sendDataToStore/Sendmessage.dart';
 import '../../view/Pages/chatscreen.dart';
 
 class MessageController extends GetxController {
   RxString Name = "".obs;
-  //for the another user like to uid
+  //for the another user like touid not me the user in the another siade 
   RxString userid = "".obs;
 
   var to_uid = ''.obs;
@@ -31,6 +33,7 @@ class MessageController extends GetxController {
 
   final GetUsername = Get.put(GetMessageInfo());
   final sendmessage = Get.put(SendMessage());
+  final CallController = Get.put(callRepository());
 
   var listener;
 
@@ -69,15 +72,18 @@ class MessageController extends GetxController {
     await sendmessage.goChat(userid.value, Name.value);
     final data = Get.parameters;
     doc_id = data['doc_id'];
+    // CallController
     print(doc_id);
     to_uid.value = data['to_uid'] ?? "";
+    // CallController
     print(to_uid.value);
     to_name.value = data['to_name'] ?? "";
+    // CallController
     print(to_name.value);
 
     displayMsg();
   }
-
+//here get message 
   displayMsg() {
     var messages = firestore
         .collection('message')

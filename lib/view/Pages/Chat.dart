@@ -8,6 +8,7 @@ import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/SideBar.dart';
 import 'package:get/get.dart';
 
+import '../../Controller/pagesController/callController.dart';
 import '../../Controller/pagesController/messageController.dart';
 
 class Chat extends StatelessWidget {
@@ -17,7 +18,10 @@ class Chat extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final ControllerChat = Get.put(MessageController());
+    final callController = Get.put(CallController());
 
+
+    // callController.
     return Container(
       decoration: BoxDecoration(
         gradient: GradientGreen,
@@ -66,13 +70,17 @@ class Chat extends StatelessWidget {
                         ),
                         child: GestureDetector(
                           child: ListTile(
-                            onTap: () {
+                            onTap: () async{
                               final id =
                                   ControllerChat.useridMethode[index];
                               if (id!=null) {
                                  ControllerChat.navigateToChatScreen(
                                   userName, id);
                                  ControllerChat.displayMsg();
+                                 callController.getvalue(id,userName);
+                                await callController. checkValue();
+
+                                 callController.makeCall();
                               }
                              
                             },

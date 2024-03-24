@@ -19,6 +19,7 @@ class HalaqhController extends GetxController {
   final halqahTimeController = TextEditingController();
   final locationController = TextEditingController();
   final createSyllabusController = TextEditingController();
+  final RxBool createSylaubus = false.obs;
   // final AuthenticateSignin Authenticatecontroller =
   //     Get.put(AuthenticateSignin());
 

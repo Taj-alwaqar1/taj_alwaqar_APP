@@ -42,3 +42,15 @@ const fieldsForAccountUser = InputDecoration(
   ),
   contentPadding: EdgeInsets.all(8),
 );
+
+const fieldsForCreateSylabus = InputDecoration(
+  labelStyle: TextStyle(
+    color: yallowTextColor,
+    fontSize: 18,
+  ),
+  border: InputBorder.none,
+  // focusedBorder: OutlineInputBorder(
+  //   borderSide: BorderSide(color: yallowTextColor, width: 2),
+  // ),
+  contentPadding: EdgeInsets.all(4),
+);

@@ -24,8 +24,7 @@ class TeacherDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     final bottomNavnController controllernav = Get.put(bottomNavnController());
     final TabBarController controllerTabBar = Get.put(TabBarController());
-final ControllerTecher =Get.put(TeacherController());
-
+    final ControllerTecher = Get.put(TeacherController());
 
     return Container(
       decoration: BoxDecoration(gradient: GradientGreen),
@@ -89,96 +88,7 @@ final ControllerTecher =Get.put(TeacherController());
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: GestureDetector(
                   onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Dialog(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: greenColor,
-                              borderRadius: BorderRadius.circular(11),
-                            ),
-                            height: 400,
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      IconButton(
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.delete,
-                                            size: 30,
-                                            color: goldenColor,
-                                          )),
-                                      Text(
-                                        "المنهج",
-                                        style: TextStyle(
-                                            color: yallowTextColor,
-                                            fontSize: 30),
-                                      ),
-                                      IconButton(
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.edit,
-                                            size: 30,
-                                            color: goldenColor,
-                                          )),
-                                    ],
-                                  ),
-                                  SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        Curriculum(
-                                          halaqhDays: 'الاحد',
-                                          nameOfSurah: 'الحج',
-                                          startVerse: 1,
-                                          endVerse: 5,
-                                        ),
-                                        Curriculum(
-                                          halaqhDays: 'الاثنين',
-                                          nameOfSurah: 'الحج',
-                                          startVerse: 5,
-                                          endVerse: 10,
-                                        ),
-                                        Curriculum(
-                                          halaqhDays: 'الثلاثاء',
-                                          nameOfSurah: 'الحج',
-                                          startVerse: 10,
-                                          endVerse: 15,
-                                        ),
-                                        Curriculum(
-                                          halaqhDays: 'الاربعاء',
-                                          nameOfSurah: 'الحج',
-                                          startVerse: 15,
-                                          endVerse: 20,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 22,
-                                  ),
-                                  // JoinButton(),
-                                  TimeForTsme3(),
-                                  SizedBox(
-                                    height: 22,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    );
+                    DisplayHalaqhCurriculm(context);
                   },
                   child: Row(
                     children: [
@@ -506,4 +416,92 @@ class TimeForTsme3 extends StatelessWidget {
       ],
     );
   }
+}
+
+void DisplayHalaqhCurriculm(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: Container(
+          decoration: BoxDecoration(
+            color: greenColor,
+            borderRadius: BorderRadius.circular(11),
+          ),
+          height: 400,
+          child: Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.delete,
+                          size: 30,
+                          color: goldenColor,
+                        )),
+                    Text(
+                      "المنهج",
+                      style: TextStyle(color: yallowTextColor, fontSize: 30),
+                    ),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.edit,
+                          size: 30,
+                          color: goldenColor,
+                        )),
+                  ],
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Curriculum(
+                        halaqhDays: 'الاحد',
+                        nameOfSurah: 'الحج',
+                        startVerse: 1,
+                        endVerse: 5,
+                      ),
+                      Curriculum(
+                        halaqhDays: 'الاثنين',
+                        nameOfSurah: 'الحج',
+                        startVerse: 5,
+                        endVerse: 10,
+                      ),
+                      Curriculum(
+                        halaqhDays: 'الثلاثاء',
+                        nameOfSurah: 'الحج',
+                        startVerse: 10,
+                        endVerse: 15,
+                      ),
+                      Curriculum(
+                        halaqhDays: 'الاربعاء',
+                        nameOfSurah: 'الحج',
+                        startVerse: 15,
+                        endVerse: 20,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 22,
+                ),
+                // JoinButton(),
+                TimeForTsme3(),
+                SizedBox(
+                  height: 22,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  );
 }

@@ -31,6 +31,7 @@ class HalaqhData extends GetxController {
         "halqahTime": halqahTime,
         "location": location,
         "createSyllabus": createSyllabus,
+        "uid": uid,
       });
       print('Halaqh added successfully!');
       // Get.off(() => DisplayHalaqh());
