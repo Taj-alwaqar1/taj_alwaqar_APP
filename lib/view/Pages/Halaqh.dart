@@ -116,7 +116,9 @@ class CreateOrJoinHalaqh extends StatelessWidget {
 }
 
 void BottomSheet(BuildContext context) {
-  final HalaqhController controller = Get.put(HalaqhController());
+  final HalaqhController halaqhController = Get.put(HalaqhController());
+  final CreateSylaubsController Syllabuscontroller = Get.put(CreateSylaubsController());
+  
   showModalBottomSheet(
     isScrollControlled: true,
     context: context,
@@ -125,12 +127,12 @@ void BottomSheet(BuildContext context) {
         height: MediaQuery.of(context).size.height * 0.8,
         decoration: BoxDecoration(
           gradient: GradientGreen,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
         ),
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Form(
-            key: controller.HalaqhFormKey,
+            key: halaqhController.HalaqhFormKey,
             child: Column(
               children: [
                 Directionality(
@@ -143,17 +145,17 @@ void BottomSheet(BuildContext context) {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: TextFormField(
-                        controller: controller.mosqueNameController,
+                        controller: halaqhController.mosqueNameController,
                         keyboardType: TextInputType.name,
                         textInputAction: TextInputAction.next,
                         obscureText: false,
                         decoration: fieldsForInfovarHalaqh.copyWith(
                             labelText: 'اسم المسجد'),
                         onSaved: (value) {
-                          controller.mosqueNameController.text = value!;
+                          halaqhController.mosqueNameController.text = value!;
                         },
                         validator: (value) {
-                          return controller.validateMosqueName(value!);
+                          return halaqhController.validateMosqueName(value!);
                         },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
@@ -173,17 +175,17 @@ void BottomSheet(BuildContext context) {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: TextFormField(
-                        controller: controller.halqahNameController,
+                        controller: halaqhController.halqahNameController,
                         keyboardType: TextInputType.name,
                         textInputAction: TextInputAction.next,
                         obscureText: false,
                         decoration: fieldsForInfovarHalaqh.copyWith(
                             labelText: 'اسم الحلقة'),
                         onSaved: (value) {
-                          controller.halqahNameController.text = value!;
+                          halaqhController.halqahNameController.text = value!;
                         },
                         validator: (value) {
-                          return controller.validateHalaqhName(value!);
+                          return halaqhController.validateHalaqhName(value!);
                         },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
@@ -203,14 +205,14 @@ void BottomSheet(BuildContext context) {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: TextFormField(
-                        controller: controller.teacherNameController,
+                        controller: halaqhController.teacherNameController,
                         keyboardType: TextInputType.name,
                         textInputAction: TextInputAction.next,
                         obscureText: false,
                         decoration: fieldsForInfovarHalaqh.copyWith(
                             labelText: 'اسم المدرس'),
                         onSaved: (value) {
-                          controller.teacherNameController.text = value!;
+                          halaqhController.teacherNameController.text = value!;
                         },
                         validator: (value) {
                           // return controller.ValidateAgeFeild(value!);
@@ -274,7 +276,9 @@ void BottomSheet(BuildContext context) {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         child: ElevatedButton(
-                                            onPressed: () {}, // اضافة
+                                            onPressed: () {
+                                             Get.off(());
+                                            }, // اضافة
                                             style: ButtonStyle(
                                                 backgroundColor:
                                                     MaterialStateProperty.all(
@@ -307,9 +311,9 @@ void BottomSheet(BuildContext context) {
                                       children: [
                                         ContainerSylaubs(context),
                                         SizedBox(width: 20),
-                                        ContainerSylaubs2(context),
-                                        SizedBox(width: 20),
                                         ContainerSylaubs1(context),
+                                        SizedBox(width: 20),
+                                        ContainerSylaubs2(context),
                                         SizedBox(width: 20),
                                       ],
                                     ),
@@ -347,10 +351,12 @@ void BottomSheet(BuildContext context) {
                   height: 30,
                 ),
                 GetBuilder<HalaqhController>(
-                  builder: (controller) => ElevatedButton(
+                  builder: (halaqhController) => ElevatedButton(
                     onPressed: () {
-                      controller.checkCreateHalaqh();
-                      Get.toNamed('/DisplayHalaqh');
+                     
+                      halaqhController.checkCreateHalaqh();
+                      halaqhController.SendDateToModel();
+                      // Get.toNamed('/DisplayHalaqh');
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(goldenColor),
@@ -409,155 +415,17 @@ Container ContainerSylaubs(BuildContext context) {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
-                    keyboardType: TextInputType.name,
-                    textInputAction: TextInputAction.next,
-                    obscureText: false,
-                    decoration:
-                        fieldsForCreateSylabus.copyWith(labelText: 'اليوم '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: greenColor,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
-                    keyboardType: TextInputType.name,
-                    textInputAction: TextInputAction.next,
-                    obscureText: false,
-                    decoration: fieldsForCreateSylabus.copyWith(
-                        labelText: 'اسم السوره '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: greenColor,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
-                    keyboardType: TextInputType.name,
-                    textInputAction: TextInputAction.next,
-                    obscureText: false,
-                    decoration: fieldsForCreateSylabus.copyWith(
-                        labelText: 'رقم بداية الاية '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: greenColor,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
-                    keyboardType: TextInputType.name,
-                    textInputAction: TextInputAction.next,
-                    obscureText: false,
-                    decoration: fieldsForCreateSylabus.copyWith(
-                        labelText: 'رقم نهاية الاية '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
+                    controller: controller.SylabusDaysController[0],
 
-Container ContainerSylaubs2(BuildContext context) {
-  final CreateSylaubsController controller = Get.put(CreateSylaubsController());
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.all(
-        Radius.circular(20.0),
-      ),
-      gradient: GradientGreen,
-    ),
-    width: 250,
-    height: 300,
-    margin: EdgeInsets.all(15),
-    alignment: Alignment.topCenter,
-    child: Form(
-      key: controller.CreateSylaubsFormKey2,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: greenColor,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration:
-                        fieldsForCreateSylabus.copyWith(labelText: 'اليوم '),
+                     fieldsForCreateSyllabus.copyWith( labelText:
+                      'اليوم '),
+                      //    fieldsForCreateSyllabus.copyWith( labelText:
+                      // controller.SylabusDaysController [0].text.isEmpty ? 
+                      // 'اليوم ': controller.SylabusDaysController [0].text),
                     // validator: (value) =>
                     //     controller
                     //         .ValidateUserNameFeild(
@@ -580,12 +448,11 @@ Container ContainerSylaubs2(BuildContext context) {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
+                    controller: controller.NameOfSurahController[0],
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
-                    decoration: fieldsForCreateSylabus.copyWith(
+                    decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'اسم السوره '),
                     // validator: (value) =>
                     //     controller
@@ -609,12 +476,11 @@ Container ContainerSylaubs2(BuildContext context) {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
+                    controller: controller.StartVerseController[0],
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
-                    decoration: fieldsForCreateSylabus.copyWith(
+                    decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم بداية الاية '),
                     // validator: (value) =>
                     //     controller
@@ -638,12 +504,11 @@ Container ContainerSylaubs2(BuildContext context) {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
+                    controller: controller.EndVerseController[0],
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
-                    decoration: fieldsForCreateSylabus.copyWith(
+                    decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم نهاية الاية '),
                     // validator: (value) =>
                     //     controller
@@ -675,7 +540,7 @@ Container ContainerSylaubs1(BuildContext context) {
     margin: EdgeInsets.all(15),
     alignment: Alignment.topCenter,
     child: Form(
-      key: controller.CreateSylaubsFormKey1,
+      key: controller.CreateSylaubsFormKey2,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -693,13 +558,13 @@ Container ContainerSylaubs1(BuildContext context) {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
+                    controller: controller.SylabusDaysController[1],
+
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration:
-                        fieldsForCreateSylabus.copyWith(labelText: 'اليوم '),
+                        fieldsForCreateSyllabus.copyWith(labelText: 'اليوم '),
                     // validator: (value) =>
                     //     controller
                     //         .ValidateUserNameFeild(
@@ -722,12 +587,11 @@ Container ContainerSylaubs1(BuildContext context) {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
+                    controller: controller.NameOfSurahController[1],
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
-                    decoration: fieldsForCreateSylabus.copyWith(
+                    decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'اسم السوره '),
                     // validator: (value) =>
                     //     controller
@@ -751,12 +615,11 @@ Container ContainerSylaubs1(BuildContext context) {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
+                    controller: controller.StartVerseController[1],
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
-                    decoration: fieldsForCreateSylabus.copyWith(
+                    decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم بداية الاية '),
                     // validator: (value) =>
                     //     controller
@@ -780,12 +643,154 @@ Container ContainerSylaubs1(BuildContext context) {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    // controller: controller
-                    //     .UserNameController,
+                    controller: controller.EndVerseController[1],
+
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
-                    decoration: fieldsForCreateSylabus.copyWith(
+                    decoration: fieldsForCreateSyllabus.copyWith(
+                        labelText: 'رقم نهاية الاية '),
+                    // validator: (value) =>
+                    //     controller
+                    //         .ValidateUserNameFeild(
+                    //             value!),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Container ContainerSylaubs2(BuildContext context) {
+  final CreateSylaubsController controller = Get.put(CreateSylaubsController());
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+      gradient: GradientGreen,
+    ),
+    width: 250,
+    height: 300,
+    margin: EdgeInsets.all(15),
+    alignment: Alignment.topCenter,
+    child: Form(
+      key: controller.CreateSylaubsFormKey1,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: greenColor,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: TextFormField(
+                    controller: controller.SylabusDaysController[2],
+
+                    keyboardType: TextInputType.name,
+                    textInputAction: TextInputAction.next,
+                    obscureText: false,
+                    decoration:
+                        fieldsForCreateSyllabus.copyWith(labelText: 'اليوم '),
+                    // validator: (value) =>
+                    //     controller
+                    //         .ValidateUserNameFeild(
+                    //             value!),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: greenColor,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: TextFormField(
+                    controller: controller.NameOfSurahController[2],
+
+                    keyboardType: TextInputType.name,
+                    textInputAction: TextInputAction.next,
+                    obscureText: false,
+                    decoration: fieldsForCreateSyllabus.copyWith(
+                        labelText: 'اسم السوره '),
+                    // validator: (value) =>
+                    //     controller
+                    //         .ValidateUserNameFeild(
+                    //             value!),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: greenColor,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: TextFormField(
+                    controller: controller.StartVerseController[2],
+
+                    keyboardType: TextInputType.name,
+                    textInputAction: TextInputAction.next,
+                    obscureText: false,
+                    decoration: fieldsForCreateSyllabus.copyWith(
+                        labelText: 'رقم بداية الاية '),
+                    // validator: (value) =>
+                    //     controller
+                    //         .ValidateUserNameFeild(
+                    //             value!),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: greenColor,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: TextFormField(
+                    controller: controller.EndVerseController[2],
+
+                    keyboardType: TextInputType.name,
+                    textInputAction: TextInputAction.next,
+                    obscureText: false,
+                    decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم نهاية الاية '),
                     // validator: (value) =>
                     //     controller

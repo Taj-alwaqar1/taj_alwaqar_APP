@@ -43,7 +43,7 @@ const fieldsForAccountUser = InputDecoration(
   contentPadding: EdgeInsets.all(8),
 );
 
-const fieldsForCreateSylabus = InputDecoration(
+const fieldsForCreateSyllabus = InputDecoration(
   labelStyle: TextStyle(
     color: yallowTextColor,
     fontSize: 18,
