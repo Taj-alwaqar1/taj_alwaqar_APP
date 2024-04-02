@@ -46,6 +46,9 @@ class CreateSylaubsController extends GetxController {
 
   var Syllabus = [].obs;
 
+
+
+
   @override
   void dispose() {
     // SyllabusDaysController.dispose();

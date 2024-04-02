@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 import '../../Controller/sharedController/sideBarController.dart';
 
-class GetMessageInfo {
+class GetMessageInfo extends GetxController {
   final userName = RxList<String>([]).obs;
   final userid = RxList<String>([]).obs;
 
@@ -73,7 +73,27 @@ class GetMessageInfo {
       return RxList<String>([]);
     }
   }
-
+ 
+ 
+ 
+ 
+  Stream<List<MessageGroup>> getGroupChatStream(String groudId) {
+    return firestore
+        .collection('halaqh')
+        .doc(groudId)
+        .collection('chats')
+        .orderBy('timeSent')
+        .snapshots()
+        .map((event) {
+      List<MessageGroup> messages = [];
+      for (var document in event.docs) {
+        messages.add(MessageGroup.fromMap(document.data()));
+      }
+      print('okkkk');
+      return messages;
+    });
+    
+  }
  
 
 

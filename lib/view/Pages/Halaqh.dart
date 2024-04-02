@@ -18,6 +18,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../Controller/pagesController/SaveSyllaubsDataControler.dart';
 import '../../Controller/pagesController/createHalaqhController.dart';
+import 'ChatGroupScr.dart';
 
 class CreateOrJoinHalaqh extends StatelessWidget {
   const CreateOrJoinHalaqh({super.key});
@@ -86,7 +87,10 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 70),
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        await controller.getHalaqhNames();
+                        await controller.getHalaqhids();
+
                         Get.to(HalaqhList());
                       },
                       style: ButtonStyle(
@@ -117,8 +121,9 @@ class CreateOrJoinHalaqh extends StatelessWidget {
 
 void BottomSheet(BuildContext context) {
   final HalaqhController halaqhController = Get.put(HalaqhController());
-  final CreateSylaubsController Syllabuscontroller = Get.put(CreateSylaubsController());
-  
+  final CreateSylaubsController Syllabuscontroller =
+      Get.put(CreateSylaubsController());
+
   showModalBottomSheet(
     isScrollControlled: true,
     context: context,
@@ -154,9 +159,9 @@ void BottomSheet(BuildContext context) {
                         onSaved: (value) {
                           halaqhController.mosqueNameController.text = value!;
                         },
-                        validator: (value) {
-                          return halaqhController.validateMosqueName(value!);
-                        },
+                        // validator: (value) {
+                        //   return halaqhController.validateMosqueName(value!);
+                        // },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
@@ -184,9 +189,9 @@ void BottomSheet(BuildContext context) {
                         onSaved: (value) {
                           halaqhController.halqahNameController.text = value!;
                         },
-                        validator: (value) {
-                          return halaqhController.validateHalaqhName(value!);
-                        },
+                        // validator: (value) {
+                        //   return halaqhController.validateHalaqhName(value!);
+                        // },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
@@ -277,7 +282,7 @@ void BottomSheet(BuildContext context) {
                                                 BorderRadius.circular(20)),
                                         child: ElevatedButton(
                                             onPressed: () {
-                                             Get.off(());
+                                              Get.off(());
                                             }, // اضافة
                                             style: ButtonStyle(
                                                 backgroundColor:
@@ -352,11 +357,24 @@ void BottomSheet(BuildContext context) {
                 ),
                 GetBuilder<HalaqhController>(
                   builder: (halaqhController) => ElevatedButton(
-                    onPressed: () {
-                     
+                    onPressed: () async {
                       halaqhController.checkCreateHalaqh();
-                      halaqhController.SendDateToModel();
-                      // Get.toNamed('/DisplayHalaqh');
+                      await halaqhController.SendDateToModel();
+                      
+                      await halaqhController.checkAndReturnGroupUid();
+                      halaqhController.addGroupUidToFirestore(
+                          halaqhController.uid,
+                          halaqhController.currenthalaqhId.value);
+                   await  halaqhController.GetHalaqhName(
+                          halaqhController.currenthalaqhId);
+
+                      halaqhController.addGroupUidToFirestore(
+                          halaqhController.uid, halaqhController.GroupUid);
+                           
+                      Get.off(GroupChatScreen());
+                       halaqhController.addUserToGroup(
+                          halaqhController.currenthalaqhId.value,
+                          halaqhController.uid);
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(goldenColor),
@@ -421,11 +439,10 @@ Container ContainerSylaubs(BuildContext context) {
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration:
-                     fieldsForCreateSyllabus.copyWith( labelText:
-                      'اليوم '),
-                      //    fieldsForCreateSyllabus.copyWith( labelText:
-                      // controller.SylabusDaysController [0].text.isEmpty ? 
-                      // 'اليوم ': controller.SylabusDaysController [0].text),
+                        fieldsForCreateSyllabus.copyWith(labelText: 'اليوم '),
+                    //    fieldsForCreateSyllabus.copyWith( labelText:
+                    // controller.SylabusDaysController [0].text.isEmpty ?
+                    // 'اليوم ': controller.SylabusDaysController [0].text),
                     // validator: (value) =>
                     //     controller
                     //         .ValidateUserNameFeild(

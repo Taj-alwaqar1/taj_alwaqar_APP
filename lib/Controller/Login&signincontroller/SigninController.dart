@@ -130,6 +130,7 @@ class SigninController extends GetxController {
       levelOfStdController.text,
       emailController.text,
       passwordController.text,
+      ''
     );
     await getinfo.getUsername();
   }
@@ -144,6 +145,7 @@ class userInfo {
   String phonenumber;
   String levelstd;
   String email;
+  String groupUid;
   String password;
   
   userInfo({
@@ -156,6 +158,7 @@ class userInfo {
     required this.levelstd,
     required this.email,
     required this.password,
+    required this.groupUid,
   });
   
   Map <String,dynamic>convetToMap(){
@@ -169,6 +172,8 @@ class userInfo {
     'levelstd':levelstd,
     'email':email,
     'password':password,
+    'groupUid':groupUid,
+
    };
    
   }

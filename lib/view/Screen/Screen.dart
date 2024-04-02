@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unrelated_type_equality_checks, avoid_relative_lib_imports
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unrelated_type_equality_checks, avoid_relative_lib_imports, non_constant_identifier_names
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,30 +16,32 @@ import 'package:frist_file_taj_alwaqar/view/Shared/tabBarST.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import '../../Controller/pagesController/createHalaqhController.dart';
 import '../../Controller/sharedController/botoomNavController.dart';
+import '../Pages/ChatGroupScr.dart';
 
 class userScreen extends StatelessWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
-  final TabBarController controllerTabBar = Get.put(TabBarController());
+    final TabBarController controllerTabBar = Get.put(TabBarController());
     final bottomNavnController controllernav = Get.put(bottomNavnController());
-
+    final HalaqhController Halaqhcontroller = Get.put(HalaqhController());
+    Halaqhcontroller.checkAndReturnGroupUid();
     return Scaffold(
       bottomNavigationBar: botoom(),
-      body: PageView(
-        onPageChanged: (index) {},
-        physics: NeverScrollableScrollPhysics(),
-        controller: controllernav.pageControllerindex,
-        children: [
-          AI(),
-          Quran(),
-          controllerTabBar.indexOfTabBar == 0 ? Home() : HomePageTec(),
-          Chat(),
-          CreateOrJoinHalaqh(),
-        ],
+      body: Obx(
+        () => PageView(
+          onPageChanged: (index) {},
+          physics: NeverScrollableScrollPhysics(),
+          controller: controllernav.pageControllerindex,
+          children: [
+            AI(),
+            Quran(),
+            controllerTabBar.indexOfTabBar == 0 ? Home() : HomePageTec(),
+            Chat(),
+           Halaqhcontroller.GroupUid.value==null||Halaqhcontroller.GroupUid.isEmpty? CreateOrJoinHalaqh():GroupChatScreen (),
+          ],
+        ),
       ),
     );
   }
@@ -55,7 +57,6 @@ Widget botoom() {
           onTap: (index) {
             controllernav.pageControllerindex.jumpToPage(index);
             controllernav.changepageindex(index);
-            
           },
           items: [
             BottomNavigationBarItem(

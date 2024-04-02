@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +7,14 @@ import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/AuthenticateAcc.dar
 // import 'package:frist_file_taj_alwaqar/Model/createHalaqhModel.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/Halaqh.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 
+import '../../Model/GetUserData/getHalaqhinfo.dart';
+import '../../Model/GetUserData/getStudentData.dart';
+import '../../Model/sendDataToStore/SendUserData.dart';
 import '../../Model/sendDataToStore/SendUserData.dart';
 import '../../Model/sendDataToStore/createHalaqhModel.dart';
+import '../../view/Pages/ChatGroupScr.dart';
 import 'SaveSyllaubsDataControler.dart';
 
 class HalaqhController extends GetxController {
@@ -17,16 +23,28 @@ class HalaqhController extends GetxController {
   final mosqueNameController = TextEditingController();
   final halqahNameController = TextEditingController();
   final teacherNameController = TextEditingController();
+
   final halaqhDaysController = TextEditingController();
   final halqahTimeController = TextEditingController();
+
   final locationController = TextEditingController();
   final createSyllabusController = TextEditingController();
   final RxBool createSylaubus = false.obs;
 
   final HalaqhData sendHalaqhInfo = Get.put(HalaqhData());
 
-  CreateSylaubsController CreateSylaubscontroller  = Get.put(CreateSylaubsController());
+  final GetHalaqhInfo getHalaqhInfo = Get.put(GetHalaqhInfo());
+  final SendStdData SendStddata = Get.put(SendStdData());
+  final GetData Getdata = Get.put(GetData());
 
+  CreateSylaubsController CreateSylaubscontroller =
+      Get.put(CreateSylaubsController());
+
+    final String uid = FirebaseAuth.instance.currentUser!.uid;
+
+  RxString currenthalaqhName = ''.obs;
+  RxString currenthalaqhId = ''.obs;
+  String halaqhnameee='';
   // GetData getinfo = Get.put(GetData());
   bool isLoading = false;
 
@@ -85,60 +103,132 @@ class HalaqhController extends GetxController {
     }
   }
 
+  RxList<String> get HalaqhNames => getHalaqhInfo.HalaqhNames.value;
+
+  
+
+
+  RxString get GroupUid => Getdata.groupUid;
+
+
+  String get HalaqhName => getHalaqhInfo.halaqhName;
+
+
+
+  RxList<String> get Halaqhids => getHalaqhInfo.Halaqhids.value;
+
+  getHalaqhNames() {
+    getHalaqhInfo.getHalaqhNames();
+  }
+  getHalaqhids() {
+    getHalaqhInfo.getHalaqhids();
+  }
+
+
+
+
   SendDateToModel() async {
-    final String uid = FirebaseAuth.instance.currentUser!.uid;
+    var groupId = '${DateTime.now().millisecondsSinceEpoch}_${randomString(8)}';
+    currenthalaqhId.value=groupId;
+    final auth = FirebaseAuth.instance;
+    List<String> uids = [];
 
     halaqh halqhData = halaqh(
-      // createSyllabusController.text,
       mosqueName: mosqueNameController.text,
       halqahName: halqahNameController.text,
-
       teacherName: teacherNameController.text,
-
       halaqhDays: halaqhDaysController.text,
-
       halqahTime: halqahTimeController.text,
 
       teacheruid: uid,
-      //  Syllabus: [
-      //   CreateSylaubscontroller.Syllabus[0],
-      //   CreateSylaubscontroller.Syllabus[1],
-      //   CreateSylaubscontroller.Syllabus[2],
-      //  ],
-       
+      senderId: uid,
+      groupId: groupId,
+      lastMessage: '',
+      membersUid: [auth.currentUser!.uid, ...uids],
+      timeSent: DateTime.now(),
+
     );
-    CreateSylaubscontroller. addMembertoSyllabus();
-    sendHalaqhInfo.createHalaqh(halqhData);
-    // await getinfo.getUsername();
+    CreateSylaubscontroller.addMembertoSyllabus();
+
+       sendHalaqhInfo.createHalaqh(halqhData);
+    
+   
+    
   }
+
+  String randomString(int length) {
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    final random = Random();
+    final stringBuffer = StringBuffer();
+    for (var i = 0; i < length; i++) {
+      stringBuffer.write(chars[random.nextInt(chars.length)]);
+    }
+    return stringBuffer.toString();
+  }
+
+
+
+ getvalueAndGoToChatGroup(  halaqhid,halaqhname){
+  currenthalaqhId.value=halaqhid;
+  currenthalaqhName.value=halaqhname;
+
+ } 
+ 
+ addUserToGroup( groupId,  userId){
+ sendHalaqhInfo.addUserToGroup( groupId,  userId);
 }
 
+addGroupUidToFirestore( userId,groupId  ){
+ SendStddata.addGroupUidToFirestore( userId,groupId);
+}
+
+checkAndReturnGroupUid(){
+  Getdata.checkAndReturnGroupUid();
+}
+GiveHalaqhIdValue(){
+  // print('=====================${GroupUid.value}');s
+ currenthalaqhId.value=GroupUid.value;
+// GroupUid
+}
+
+GetHalaqhName(currenthalaqhId)async{
+// await checkAndReturnGroupUid();
+  currenthalaqhName.value =  
+  await getHalaqhInfo.ReturnHalaqhName(currenthalaqhId) ;
+  
+}
+
+
+}
+
+
+
+
 class halaqh {
-  //  mosqueNameController.text,
-  //     halqahNameController.text,
-  //     teacherNameController.text,
-  //     halaqhDaysController.text,
-  //     halqahTimeController.text,
-  //     locationController.text,
-  //     createSyllabusController.text,
-  String mosqueName;
-  String halqahName;
-  String teacherName;
-  String halaqhDays;
-  String halqahTime;
-  String teacheruid;
-  // List Syllabus;
-  // String mosqueName;
-  // String createSyllabus;
+  final String mosqueName;
+  final String halqahName;
+  final String teacherName;
+  final String halaqhDays;
+  final String halqahTime;
+  final String teacheruid;
+  final String senderId;
+  final String groupId;
+  final String lastMessage;
+  final List<String> membersUid;
+  final DateTime timeSent;
+
   halaqh({
     required this.mosqueName,
     required this.halqahName,
     required this.teacherName,
     required this.halaqhDays,
     required this.halqahTime,
-    // required this.createSyllabus,
     required this.teacheruid,
-    // required this.Syllabus,
+    required this.senderId,
+    required this.groupId,
+    required this.lastMessage,
+    required this.membersUid,
+    required this.timeSent,
   });
   Map<String, dynamic> toMap() {
     return {
@@ -147,9 +237,12 @@ class halaqh {
       'teacherName': teacherName,
       'halaqhDays': halaqhDays,
       'halqahTime': halqahTime,
-      // 'createSyllabus': createSyllabus,
       'teacheruid': teacheruid,
-      // 'Syllabus':Syllabus,
+      'senderId': senderId,
+      'groupId': groupId,
+      'lastMessage': lastMessage,
+      'membersUid': membersUid,
+      'timeSent': timeSent.millisecondsSinceEpoch,
     };
   }
 
@@ -163,9 +256,21 @@ class halaqh {
       // createSyllabus: map['createSyllabus'] ?? '',
       teacheruid: map['teacheruid'] ?? '',
       // Syllabus:map['Syllabus']??'',
+      senderId: map['senderId'] ?? '',
+      groupId: map['groupId'] ?? '',
+      lastMessage: map['lastMessage'] ?? '',
+      // groupPic: map['groupPic'] ?? '',
+      membersUid: List<String>.from(map['membersUid']),
+      timeSent: DateTime.fromMillisecondsSinceEpoch(map['timeSent']),
     );
   }
 }
+
+
+
+
+
+
 // class Sylabus {
 //   String day;
 //   String nameOfSurah;

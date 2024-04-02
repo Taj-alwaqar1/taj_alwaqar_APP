@@ -18,12 +18,12 @@ class SendStdData extends GetxController {
       String phonenumber,
       String levelstd,
       String email,
-      String password) async {
+      String password,
+      String groupUid
+      ) async {
     final user = _auth.currentUser;
     final uid = user!.uid;
     final docRef = _firestore.collection('users').doc(uid);
-
-
   userInfo userAccounet=
     userInfo(
         uid:uid,
@@ -34,7 +34,9 @@ class SendStdData extends GetxController {
         phonenumber: phonenumber,
         levelstd: levelstd,
         email: email,
-        password: password);
+        password: password,
+        groupUid:groupUid
+        );
     try {
       await docRef.set(userAccounet.convetToMap());
       print('User added successfully!');
@@ -43,4 +45,17 @@ class SendStdData extends GetxController {
       print('Error adding user: $e');
     }
   }
+  
+  
+  Future<void> addGroupUidToFirestore(String userId, String groupUid) async {
+  // Get a reference to the specific document
+  final docRef = FirebaseFirestore.instance.collection('users').doc(userId);
+
+  // Update the document, adding or setting the 'groupUid' field
+  await docRef.update({
+    'groupUid': groupUid,
+  });
+
+  print('groupUid added to document successfully!');
+}
 }

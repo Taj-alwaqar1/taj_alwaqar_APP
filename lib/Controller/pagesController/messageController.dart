@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,14 +10,16 @@ import 'package:frist_file_taj_alwaqar/Controller/pagesController/callController
 import 'package:frist_file_taj_alwaqar/view/Login&&Signin/LogIn.dart';
 import 'package:get/get.dart';
 
+import '../../Model/GetUserData/getStudentData.dart';
 import '../../Model/sendDataToStore/SendCallData.dart';
 import '../../Model/GetUserData/getMessage.dart';
 import '../../Model/sendDataToStore/Sendmessage.dart';
 import '../../view/Pages/chatscreen.dart';
+import '../Login&signincontroller/SigninController.dart';
 
 class MessageController extends GetxController {
   RxString Name = "".obs;
-  //for the another user like touid not me the user in the another siade 
+  //for the another user like touid not me the user in the another siade
   RxString userid = "".obs;
 
   var to_uid = ''.obs;
@@ -35,6 +39,13 @@ class MessageController extends GetxController {
   final sendmessage = Get.put(SendMessage());
   final CallController = Get.put(callRepository());
 
+  final GetData getStudentsDataModel = Get.put(GetData());
+
+  RxString get username => getStudentsDataModel.username;
+
+  final textControllerGroup = TextEditingController();
+  FocusNode contentnodeGroup = FocusNode();
+
   var listener;
 
   RxList<String> get userName => GetUsername.userName.value;
@@ -52,7 +63,7 @@ class MessageController extends GetxController {
     GetUsername.getUserid();
   }
 
-  sendmsg() async{
+  sendmsg() async {
     String sendContent = textController.text;
     final content = msgContent(
       uid: currentUser_id,
@@ -62,7 +73,6 @@ class MessageController extends GetxController {
     );
 
     await sendmessage.sendMsg(content, doc_id, textController, sendContent);
- 
   }
 
   void navigateToChatScreen(String Username, String id) async {
@@ -83,7 +93,8 @@ class MessageController extends GetxController {
 
     displayMsg();
   }
-//here get message 
+
+//here get message
   displayMsg() {
     var messages = firestore
         .collection('message')
@@ -120,6 +131,68 @@ class MessageController extends GetxController {
     msgScrolling.dispose();
     listener.dispose();
     super.dispose();
+  }
+
+  Stream<List<MessageGroup>> groupChatStream(String groupId) {
+    // print(groupId+'=============');
+    return GetUsername.getGroupChatStream(groupId);
+  }
+
+  void sendTextMessage({
+    required BuildContext context,
+    required String text,
+    required String recieverUserId,
+    // required userInfo senderUser,
+    // required bool isGroupChat,
+  }) async {
+    try {
+       DateTime timeSent = DateTime.now();
+      userInfo? recieverUserData;
+
+      // if (!isGroupChat) {
+      //   var userDataMap =
+      //       await firestore.collection('users').doc(recieverUserId).get();
+      //   recieverUserData = UserModel.fromMap(userDataMap.data()!);
+      // }
+
+      var messageId = DateTime.now().millisecondsSinceEpoch.toString() +
+          '_' +
+          randomString(8);
+
+      // _saveDataToContactsSubcollection(
+      //   senderUser,
+      //   recieverUserData,
+      //   text,
+      //   timeSent,
+      //   recieverUserId,
+      //   isGroupChat,
+      // );
+
+      sendmessage.saveMessageToMessageSubcollection(
+        recieverUserId: recieverUserId,
+        text: text,
+        timeSent: timeSent,
+        // messageType: MessageEnum.text,
+        messageId: messageId,
+        username: username.value,
+        // messageReply: messageReply,
+        recieverUserName: recieverUserData?.username,
+        senderUsername: username.value,
+        // isGroupChat: isGroupChat,
+      );
+    } catch (e) {
+      Get.snackbar('error in sendTextMessage', e.toString());
+    }
+  }
+
+  String randomString(int length) {
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    final random = Random();
+    final stringBuffer = StringBuffer();
+    for (var i = 0; i < length; i++) {
+      stringBuffer.write(chars[random.nextInt(chars.length)]);
+    }
+    return stringBuffer.toString();
   }
 }
 
@@ -202,5 +275,53 @@ class msgContent {
       'type': type,
       'addtime': addtime,
     };
+  }
+}
+
+class MessageGroup {
+  final String senderId;
+  final String recieverid;
+  final String text;
+  final DateTime timeSent;
+  final String messageId;
+  // final bool isSeen;
+  // final String repliedMessage;
+  // final String repliedTo;
+
+  MessageGroup({
+    required this.senderId,
+    required this.recieverid,
+    required this.text,
+    required this.timeSent,
+    required this.messageId,
+    // required this.isSeen,
+    // required this.repliedMessage,
+    // required this.repliedTo,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'senderId': senderId,
+      'recieverid': recieverid,
+      'text': text,
+      'timeSent': timeSent.millisecondsSinceEpoch,
+      'messageId': messageId,
+      // 'isSeen': isSeen,
+      // 'repliedMessage': repliedMessage,
+      // 'repliedTo': repliedTo,
+    };
+  }
+
+  factory MessageGroup.fromMap(Map<String, dynamic> map) {
+    return MessageGroup(
+      senderId: map['senderId'] ?? '',
+      recieverid: map['recieverid'] ?? '',
+      text: map['text'] ?? '',
+      timeSent: DateTime.fromMillisecondsSinceEpoch(map['timeSent']),
+      messageId: map['messageId'] ?? '',
+      // isSeen: map['isSeen'] ?? false,
+      // repliedMessage: map['repliedMessage'] ?? '',
+      // repliedTo: map['repliedTo'] ?? '',
+    );
   }
 }

@@ -18,16 +18,16 @@ class HalaqhData extends GetxController {
         createSylaubscontroller.Syllabus.map(
                 (element) => element.convetToMap() as Map<String, dynamic>)
             .toList();
-print(syllabusData.length);
+// print(syllabusData.length);
     try {
       await firestore
           .collection('halaqh')
-          .doc(HalaqhData.teacheruid)
+          .doc(HalaqhData.groupId)
           .set(HalaqhData.toMap());
       for (int i =0 ;i<syllabusData.length;i++) {
         await firestore
             .collection('halaqh')
-            .doc(HalaqhData.teacheruid)
+            .doc(HalaqhData.groupId)
             .collection('Syllabus')
             .add(syllabusData[i]);
     }
@@ -37,7 +37,81 @@ print(syllabusData.length);
     createSylaubscontroller.Syllabus.clear();
   syllabusData.clear();
 }
-// Future<void> sendSyllbus(SyllabusInfo Syllabus)async{
+
+Future<void> addUserToGroup(String groupId, String userId) async {
+  // 1. Reference the group document in Firestore
+  final groupRef = FirebaseFirestore.instance.collection('halaqh').doc(groupId);
+
+  // 2. Perform a transaction to ensure data consistency
+  await FirebaseFirestore.instance.runTransaction((transaction) async {
+    // 2.1 Get the current group data
+    final groupSnapshot = await transaction.get(groupRef);
+    final groupData = groupSnapshot.data();
+
+    // 2.2 Check if the user is already a member (optional)
+   if (groupData != null && groupData['membersUid'] != null && groupData['membersUid'].contains(userId)) {
+  // User already belongs to the group
+  throw Exception('User already belongs to the group'); // Or handle it differently
+}
+
+    // 2.3 Update the membersUid list
+   if (groupData != null) {
+  final updatedMembersUid = List<String>.from(groupData['membersUid']);
+ // Create a copy
+    updatedMembersUid.add(userId);
+     transaction.update(groupRef, {'membersUid': updatedMembersUid});
+   }else{
+    print('error nullllll in addUserToGroup');
+   }
+    // 2.4 Update the group document with the new membersUid list
+   
+  });
+}
+ 
+ 
+ 
+  //   void createGroup(BuildContext context, String name) async {
+  //   try {
+  //     List<String> uids = [];
+  //     //here to add user to group by the phone num 
+  //     // for (int i = 0; i < selectedContact.length; i++) {
+  //     //   var userCollection = await firestore
+  //     //       .collection('users')
+  //     //       .where(
+  //     //         'phoneNumber',
+  //     //         isEqualTo: selectedContact[i].phones[0].number.replaceAll(
+  //     //               ' ',
+  //     //               '',
+  //     //             ),
+  //     //       )
+  //     //       .get();
+  //     //   if (userCollection.docs.isNotEmpty && userCollection.docs[0].exists) {
+  //     //     uids.add(userCollection.docs[0].data()['uid']);
+  //     //   }
+  //     // }
+  //     var groupId = '${DateTime.now().millisecondsSinceEpoch}_${randomString(8)}';
+  //     Group group = Group(
+  //       senderId: auth.currentUser!.uid,
+  //       name: name,
+  //       groupId: groupId,
+  //       lastMessage: '',
+  //       membersUid: [auth.currentUser!.uid, ...uids],
+  //       timeSent: DateTime.now(),
+  //     );
+  //     await firestore.collection('groups').doc(groupId).set(group.toMap());
+  //   } catch (e) {
+  //     Get.snackbar("erorr", 'to send data group');
+  //   }
+  // }
+
+
+
+
+
+
+
+
+  // Future<void> sendSyllbus(SyllabusInfo Syllabus)async{
 //    try {
 //   await firestore
 //           .collection('halaqh')
@@ -48,7 +122,6 @@ print(syllabusData.length);
 //             Get.snackbar('error send halaqh data ', e.toString());
 //           }
 // }
-
   // Future<void> createHalaqh(
   //   String mosqueName,
   //   String halqahName,
