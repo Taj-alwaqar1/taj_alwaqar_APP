@@ -10,6 +10,7 @@ class GetTeacherData extends GetxController {
   final teachersName = RxList<String>([]).obs;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+ final RxBool userType =true.obs;
 
   Future<RxList<String>> getTeacherNames() async {
     try {
@@ -30,7 +31,6 @@ class GetTeacherData extends GetxController {
               !doesContain(teachersName, userData['firstname'])) {
             final String teacherName = userData['firstname'];
             teachersName.value.add(teacherName); // Use add for reactive updates
-  
           }
         }
       }
@@ -40,12 +40,34 @@ class GetTeacherData extends GetxController {
       return RxList<String>([]);
     }
   }
+
   bool doesContain(Rx<RxList<String>> list, String element) {
-  for (final item in list.value) {
-    if (item == element) {
-      return true;
+    for (final item in list.value) {
+      if (item == element) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Future getUserType() async {
+    try {
+      // Fetch the Firestore document
+ final docRef = FirebaseFirestore.instance.collection('users').doc(_auth.currentUser?.uid);
+  final docSnapshot = await docRef.get();
+
+  // Check if the 'stdlevel' field exists and has a value
+  if (docSnapshot.exists) {
+    if (docSnapshot.data()!['levelstd']=='') {
+      userType.value=false;
+    }
+    return userType.value;
+  } else {
+    return userType.value=true;
+  }
+    } catch (e) {
+      print('Error occurred: $e');
+      return RxList<String>([]);
     }
   }
-  return false;
-}
 }

@@ -180,6 +180,7 @@ class MessageController extends GetxController {
         senderUsername: username.value,
         // isGroupChat: isGroupChat,
       );
+      
     } catch (e) {
       Get.snackbar('error in sendTextMessage', e.toString());
     }

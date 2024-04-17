@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/AuthenticateAcc.dart';
+import 'package:frist_file_taj_alwaqar/Model/GetUserData/GetTeacherData.dart';
 // import 'package:frist_file_taj_alwaqar/Model/createHalaqhModel.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/Halaqh.dart';
 import 'package:get/get.dart';
@@ -105,6 +106,13 @@ class HalaqhController extends GetxController {
 
   RxList<String> get HalaqhNames => getHalaqhInfo.HalaqhNames.value;
 
+
+
+  RxList<String> get TeacherNames => getHalaqhInfo.TeacherNames.value;
+
+
+  RxList<String> get halaqhDays => getHalaqhInfo.halaqhDays.value;
+
   
 
 
@@ -123,7 +131,12 @@ class HalaqhController extends GetxController {
   getHalaqhids() {
     getHalaqhInfo.getHalaqhids();
   }
-
+   getTeacherNames() {
+    getHalaqhInfo.getTeacherNames();
+  }
+   gethalaqhDays() {
+    getHalaqhInfo.gethalaqhDays();
+  }
 
 
 

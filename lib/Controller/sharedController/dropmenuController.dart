@@ -17,22 +17,20 @@ HalaqhController Halaqhcontroller=Get.put(HalaqhController());
   void changeinitvalue(value) {
     initvalue.value = value;
     //send value to model
-  Signincontroller.levelOfStdController.value=value;
-
-
+  Signincontroller.levelOfStdController.text=value;
   }
 
 //create halaqh
   void changeinitvalue1(value) {
     initvalue1.value = value;
     //send value to model
-    Halaqhcontroller.halaqhDaysController.value=value;
+    Halaqhcontroller.halaqhDaysController.text=value;
   }
 
   void changeinitvalue2(value) {
     initvalue2.value = value;
     //send value to model
-    Halaqhcontroller.halqahTimeController.value=value;
+    Halaqhcontroller.halqahTimeController.text=value;
 
   }
 }

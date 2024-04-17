@@ -13,10 +13,10 @@ import '../../Controller/pagesController/TeacherDetailController.dart';
 import 'TeacherDetail.dart';
 
 class Home extends StatelessWidget {
-  final HomeListController controllerHomelist = Get.put(HomeListController());
-final ControllerTecher =Get.put(TeacherController());
   @override
   Widget build(BuildContext context) {
+    final HomeListController controllerHomelist = Get.put(HomeListController());
+    final ControllerTecher = Get.put(TeacherController());
     return Container(
       decoration: BoxDecoration(
         gradient: GradientGreen,
@@ -67,7 +67,8 @@ final ControllerTecher =Get.put(TeacherController());
                           child: GestureDetector(
                             child: ListTile(
                               onTap: () {
-                             ControllerTecher.navigateToTeacherDetail(teacherName);
+                                ControllerTecher.navigateToTeacherDetail(
+                                    teacherName);
                               },
                               title: Row(
                                 mainAxisAlignment:

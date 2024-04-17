@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
+import 'package:get/get_navigation/get_navigation.dart';
  
 
 class searchPage extends StatelessWidget {
@@ -18,7 +19,8 @@ class searchPage extends StatelessWidget {
             color: goldenColor,
           ),
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/');
+              navigator?.pop(context);
+
           },
         ),
         backgroundColor: darkGreen,

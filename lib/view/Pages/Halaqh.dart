@@ -90,6 +90,8 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                       onPressed: () async {
                         await controller.getHalaqhNames();
                         await controller.getHalaqhids();
+                        await controller.getTeacherNames();
+                        await controller.gethalaqhDays();
 
                         Get.to(HalaqhList());
                       },
@@ -282,7 +284,7 @@ void BottomSheet(BuildContext context) {
                                                 BorderRadius.circular(20)),
                                         child: ElevatedButton(
                                             onPressed: () {
-                                              Get.off(());
+                                              navigator?.pop(context);
                                             }, // اضافة
                                             style: ButtonStyle(
                                                 backgroundColor:
@@ -299,7 +301,7 @@ void BottomSheet(BuildContext context) {
                                 ],
                                 backgroundColor: darkGreen,
                                 surfaceTintColor: darkGreen,
-                                title: Center(child: CustomAppBar("المنهج ")),
+                                title: Center(child: CustomAppBar("المنهج")),
                                 // contentPadding: EdgeInsets.all(20),
                                 content: Container(
                                   width: double.infinity,
@@ -360,21 +362,22 @@ void BottomSheet(BuildContext context) {
                     onPressed: () async {
                       halaqhController.checkCreateHalaqh();
                       await halaqhController.SendDateToModel();
-                      
+
                       await halaqhController.checkAndReturnGroupUid();
                       halaqhController.addGroupUidToFirestore(
                           halaqhController.uid,
                           halaqhController.currenthalaqhId.value);
-                   await  halaqhController.GetHalaqhName(
-                          halaqhController.currenthalaqhId);
+                      await halaqhController.GetHalaqhName(
+                          halaqhController.currenthalaqhId.value);
 
-                      halaqhController.addGroupUidToFirestore(
-                          halaqhController.uid, halaqhController.GroupUid);
-                           
-                      Get.off(GroupChatScreen());
-                       halaqhController.addUserToGroup(
+                      await halaqhController.addGroupUidToFirestore(
+                          halaqhController.uid,
+                          halaqhController.GroupUid.value);
+
+                      await halaqhController.addUserToGroup(
                           halaqhController.currenthalaqhId.value,
                           halaqhController.uid);
+                      await Get.off(GroupChatScreen());
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(goldenColor),

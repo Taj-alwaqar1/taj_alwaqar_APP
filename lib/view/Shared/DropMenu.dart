@@ -10,11 +10,10 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class dropMenu extends StatelessWidget {
-  final DropMenuController controllerDropMenu = Get.put(DropMenuController());
-  final SigninController controllerSignin = Get.put(SigninController());
-
   @override
   Widget build(BuildContext context) {
+    final DropMenuController controllerDropMenu = Get.put(DropMenuController());
+    final SigninController controllerSignin = Get.put(SigninController());
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
@@ -33,6 +32,7 @@ class dropMenu extends StatelessWidget {
               color: greenColor,
             ),
             dropdownColor: greenColor,
+          
             isExpanded: true,
             onChanged: (String? newValue) {
               controllerDropMenu.changeinitvalue(newValue);

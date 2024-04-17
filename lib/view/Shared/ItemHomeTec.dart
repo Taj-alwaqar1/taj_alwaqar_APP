@@ -1,61 +1,71 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, body_might_complete_normally_nullable
 
 import 'package:flutter/material.dart';
+import 'package:frist_file_taj_alwaqar/view/Shared/AppBar.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
- 
+import 'package:get/get.dart';
+
+import '../../Controller/pagesController/Home_TecController.dart';
+import '../Screen/Screen.dart';
+
 class HomeTecItem extends StatelessWidget {
-  String halaqhName, stdName;
-  HomeTecItem({super.key, required this.halaqhName, required this.stdName});
+  const HomeTecItem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "حلقة : $halaqhName",
-            style: TextStyle(
-              color: yallowTextColor,
-              fontSize: 23,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            width: double.infinity,
-            height: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: greenColor,
-            ),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    ItemHalaqh(stdName: 's'),
-                    ItemHalaqh(stdName: 's'),
-                    ItemHalaqh(stdName: 's'),
-                    ItemHalaqh(stdName: 's'),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+    final HomeTeacherController HomeTeachercontroller =
+        Get.put(HomeTeacherController());
+
+    return Container(
+        decoration: const BoxDecoration(
+          gradient: GradientGreen,
+        ),
+        child: Scaffold(
+            appBar: AppBar(
+                title: CustomAppBar("الطلاب"),
+                centerTitle: true,
+                backgroundColor: darkGreen,
+                leading: IconButton(
+                    onPressed: () {
+                      HomeTeachercontroller.ClearmemberNames();
+                      navigator?.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: goldenColor,
+                      size: 27,
+                    ))),
+            backgroundColor: Colors.transparent,
+            body: Obx(
+              () => ListView.builder(
+                  itemCount: HomeTeachercontroller.memberNames.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final String CurrentName =
+                        HomeTeachercontroller.memberNames.value[index];
+                    return SingleChildScrollView(
+                      child: Center(
+                        child: Column(
+                          children: [
+                            ItemHalaqh(stdName: CurrentName,index: index+1),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+            )));
   }
 }
 
 class ItemHalaqh extends StatelessWidget {
   String stdName;
-  ItemHalaqh({super.key,  required this.stdName}) ;
+  int index;
+  ItemHalaqh({super.key, required this.stdName,required this.index});
 
   @override
   Widget build(BuildContext context) {
+    final HomeTeacherController HomeTeachercontroller =
+        Get.put(HomeTeacherController());
+
     return Container(
       padding: EdgeInsets.all(8),
       width: double.infinity,
@@ -78,9 +88,9 @@ class ItemHalaqh extends StatelessWidget {
                   borderRadius: BorderRadius.circular(60),
                   color: greenColor,
                 ),
-                child:  Center(
+                child: Center(
                   child: Text(
-                    "1",
+                  "${index}",
                     style: TextStyle(
                       color: goldenColor,
                       fontWeight: FontWeight.bold,
@@ -99,11 +109,11 @@ class ItemHalaqh extends StatelessWidget {
               ),
             ],
           ),
-          Icon(
-            Icons.check_circle,
-            color: goldenColor,
-            size: 26,
-          ),
+          // Icon(
+          //   Icons.check_circle,
+          //   color: goldenColor,
+          //   size: 26,
+          // ),
         ],
       ),
     );

@@ -628,6 +628,44 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - agora_rtc_engine (0.0.1):
+    - AgoraIrisRTC_macOS (= 4.3.0-build.2)
+    - AgoraRtcEngine_macOS (= 4.3.0)
+    - FlutterMacOS
+  - AgoraIrisRTC_macOS (4.3.0-build.2)
+  - AgoraRtcEngine_macOS (4.3.0):
+    - AgoraRtcEngine_macOS/AIAEC (= 4.3.0)
+    - AgoraRtcEngine_macOS/AINS (= 4.3.0)
+    - AgoraRtcEngine_macOS/AudioBeauty (= 4.3.0)
+    - AgoraRtcEngine_macOS/ClearVision (= 4.3.0)
+    - AgoraRtcEngine_macOS/ContentInspect (= 4.3.0)
+    - AgoraRtcEngine_macOS/FaceCapture (= 4.3.0)
+    - AgoraRtcEngine_macOS/FaceDetection (= 4.3.0)
+    - AgoraRtcEngine_macOS/RtcBasic (= 4.3.0)
+    - AgoraRtcEngine_macOS/ScreenCapture (= 4.3.0)
+    - AgoraRtcEngine_macOS/SpatialAudio (= 4.3.0)
+    - AgoraRtcEngine_macOS/VideoAv1CodecDec (= 4.3.0)
+    - AgoraRtcEngine_macOS/VideoCodecDec (= 4.3.0)
+    - AgoraRtcEngine_macOS/VideoCodecEnc (= 4.3.0)
+    - AgoraRtcEngine_macOS/VirtualBackground (= 4.3.0)
+    - AgoraRtcEngine_macOS/VQA (= 4.3.0)
+  - AgoraRtcEngine_macOS/AIAEC (4.3.0)
+  - AgoraRtcEngine_macOS/AINS (4.3.0)
+  - AgoraRtcEngine_macOS/AudioBeauty (4.3.0)
+  - AgoraRtcEngine_macOS/ClearVision (4.3.0)
+  - AgoraRtcEngine_macOS/ContentInspect (4.3.0)
+  - AgoraRtcEngine_macOS/FaceCapture (4.3.0)
+  - AgoraRtcEngine_macOS/FaceDetection (4.3.0)
+  - AgoraRtcEngine_macOS/RtcBasic (4.3.0)
+  - AgoraRtcEngine_macOS/ScreenCapture (4.3.0)
+  - AgoraRtcEngine_macOS/SpatialAudio (4.3.0)
+  - AgoraRtcEngine_macOS/VideoAv1CodecDec (4.3.0)
+  - AgoraRtcEngine_macOS/VideoCodecDec (4.3.0)
+  - AgoraRtcEngine_macOS/VideoCodecEnc (4.3.0)
+  - AgoraRtcEngine_macOS/VirtualBackground (4.3.0)
+  - AgoraRtcEngine_macOS/VQA (4.3.0)
+  - audioplayers_darwin (0.0.1):
+    - FlutterMacOS
   - BoringSSL-GRPC (0.0.24):
     - BoringSSL-GRPC/Implementation (= 0.0.24)
     - BoringSSL-GRPC/Interface (= 0.0.24)
@@ -770,12 +808,16 @@ PODS:
     - gRPC-Core/Interface (= 1.49.1)
   - gRPC-Core/Interface (1.49.1)
   - GTMSessionFetcher/Core (3.2.0)
+  - iris_method_channel (0.0.1):
+    - FlutterMacOS
   - leveldb-library (1.22.2)
   - nanopb (2.30909.1):
     - nanopb/decode (= 2.30909.1)
     - nanopb/encode (= 2.30909.1)
   - nanopb/decode (2.30909.1)
   - nanopb/encode (2.30909.1)
+  - package_info_plus (0.0.1):
+    - FlutterMacOS
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -785,22 +827,43 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - sqflite (0.0.3):
+    - Flutter
+    - FlutterMacOS
   - url_launcher_macos (0.0.1):
     - FlutterMacOS
+  - wakelock_plus (0.0.1):
+    - FlutterMacOS
+  - zego_express_engine (3.13.0):
+    - FlutterMacOS
+  - zego_zim (2.13.1):
+    - FlutterMacOS
+    - ZIM_macOS (= 2.13.1)
+  - ZIM_macOS (2.13.1)
 
 DEPENDENCIES:
+  - agora_rtc_engine (from `Flutter/ephemeral/.symlinks/plugins/agora_rtc_engine/macos`)
+  - audioplayers_darwin (from `Flutter/ephemeral/.symlinks/plugins/audioplayers_darwin/macos`)
   - cloud_firestore (from `Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos`)
   - firebase_auth (from `Flutter/ephemeral/.symlinks/plugins/firebase_auth/macos`)
   - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
+  - iris_method_channel (from `Flutter/ephemeral/.symlinks/plugins/iris_method_channel/macos`)
+  - package_info_plus (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos`)
   - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin`)
   - share_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/share_plus_macos/macos`)
   - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - sqflite (from `Flutter/ephemeral/.symlinks/plugins/sqflite/darwin`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
+  - wakelock_plus (from `Flutter/ephemeral/.symlinks/plugins/wakelock_plus/macos`)
+  - zego_express_engine (from `Flutter/ephemeral/.symlinks/plugins/zego_express_engine/macos`)
+  - zego_zim (from `Flutter/ephemeral/.symlinks/plugins/zego_zim/macos`)
 
 SPEC REPOS:
   trunk:
     - abseil
+    - AgoraIrisRTC_macOS
+    - AgoraRtcEngine_macOS
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAppCheckInterop
@@ -818,8 +881,13 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - ZIM_macOS
 
 EXTERNAL SOURCES:
+  agora_rtc_engine:
+    :path: Flutter/ephemeral/.symlinks/plugins/agora_rtc_engine/macos
+  audioplayers_darwin:
+    :path: Flutter/ephemeral/.symlinks/plugins/audioplayers_darwin/macos
   cloud_firestore:
     :path: Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos
   firebase_auth:
@@ -828,17 +896,33 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/firebase_core/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
+  iris_method_channel:
+    :path: Flutter/ephemeral/.symlinks/plugins/iris_method_channel/macos
+  package_info_plus:
+    :path: Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos
   path_provider_foundation:
     :path: Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin
   share_plus_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/share_plus_macos/macos
   shared_preferences_foundation:
     :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin
+  sqflite:
+    :path: Flutter/ephemeral/.symlinks/plugins/sqflite/darwin
   url_launcher_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
+  wakelock_plus:
+    :path: Flutter/ephemeral/.symlinks/plugins/wakelock_plus/macos
+  zego_express_engine:
+    :path: Flutter/ephemeral/.symlinks/plugins/zego_express_engine/macos
+  zego_zim:
+    :path: Flutter/ephemeral/.symlinks/plugins/zego_zim/macos
 
 SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
+  agora_rtc_engine: 69f23015669c4a4e91f268c5ed192aec026905c9
+  AgoraIrisRTC_macOS: f575979d2de182f24e4f18778dae71ecccc9b576
+  AgoraRtcEngine_macOS: d52d4a49cf17225c7973c51d05e496d348f43913
+  audioplayers_darwin: dcad41de4fbd0099cb3749f7ab3b0cb8f70b810c
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   cloud_firestore: 920342c959912f120c23a8665619f647b5e02cd7
   Firebase: 10c8cb12fb7ad2ae0c09ffc86cd9c1ab392a0031
@@ -857,13 +941,20 @@ SPEC CHECKSUMS:
   "gRPC-C++": 2df8cba576898bdacd29f0266d5236fa0e26ba6a
   gRPC-Core: a21a60aefc08c68c247b439a9ef97174b0c54f96
   GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
+  iris_method_channel: fba932d668df5b2a085f19bcd0b1f23d667a83cd
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
+  package_info_plus: 02d7a575e80f194102bef286361c6c326e4c29ce
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   share_plus_macos: 853ee48e7dce06b633998ca0735d482dd671ade4
   shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
+  sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
   url_launcher_macos: d2691c7dd33ed713bf3544850a623080ec693d95
+  wakelock_plus: 4783562c9a43d209c458cb9b30692134af456269
+  zego_express_engine: 76416768387f9a0a3b412283a79240d282948439
+  zego_zim: b801d02b4fc16f6c25eea454a0b57d695bef540f
+  ZIM_macOS: 721266907c7bc91aa0d802f04c47d006306e203f
 
 PODFILE CHECKSUM: 236401fc2c932af29a9fcf0e97baeeb2d750d367
 

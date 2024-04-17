@@ -46,7 +46,9 @@ class GroupChatScreen extends StatelessWidget {
             child: SafeArea(
               child: Stack(
                 children: [
-                  Container(child: ChatListGroup()),
+                  Container(
+                  margin: EdgeInsets.only(bottom: 30),
+                  child: ChatListGroup()),
                   Positioned(
                     bottom: 0,
                     child: Container(
@@ -65,8 +67,8 @@ class GroupChatScreen extends StatelessWidget {
                         children: [
                           IconButton(
                               onPressed: () {
-                                Halaqhcontroller.GetHalaqhName(
-                                    Halaqhcontroller.GroupUid);
+                                // Halaqhcontroller.GetHalaqhName(
+                                //     Halaqhcontroller.GroupUid);
                               },
                               icon: Icon(
                                 Icons.add,
@@ -75,6 +77,7 @@ class GroupChatScreen extends StatelessWidget {
                               )),
                           Container(
                             width: 300,
+                            // margin: EdgeInsets.only(t),
                             child: TextField(
                               onChanged: (value) {},
                               controller: ControllerChat.textControllerGroup,
@@ -103,6 +106,7 @@ class GroupChatScreen extends StatelessWidget {
                                   recieverUserId:
                                       Halaqhcontroller.currenthalaqhId.value,
                                 );
+                                ControllerChat.textControllerGroup.clear();
                               },
                               icon: Icon(
                                 Icons.send,

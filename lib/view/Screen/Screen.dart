@@ -16,6 +16,7 @@ import 'package:frist_file_taj_alwaqar/view/Shared/tabBarST.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import '../../Controller/Screen/screenController.dart';
 import '../../Controller/pagesController/createHalaqhController.dart';
 import '../../Controller/sharedController/botoomNavController.dart';
 import '../Pages/ChatGroupScr.dart';
@@ -26,6 +27,7 @@ class userScreen extends StatelessWidget {
     final TabBarController controllerTabBar = Get.put(TabBarController());
     final bottomNavnController controllernav = Get.put(bottomNavnController());
     final HalaqhController Halaqhcontroller = Get.put(HalaqhController());
+    final ScreenController screenController = Get.put(ScreenController());
     Halaqhcontroller.checkAndReturnGroupUid();
     return Scaffold(
       bottomNavigationBar: botoom(),
@@ -37,7 +39,7 @@ class userScreen extends StatelessWidget {
           children: [
             AI(),
             Quran(),
-            controllerTabBar.indexOfTabBar == 0 ? Home() : HomePageTec(),
+            screenController.userType.value? Home() : HomePageTec(),
             Chat(),
            Halaqhcontroller.GroupUid.value==null||Halaqhcontroller.GroupUid.isEmpty? CreateOrJoinHalaqh():GroupChatScreen (),
           ],

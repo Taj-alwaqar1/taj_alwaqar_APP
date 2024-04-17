@@ -48,6 +48,8 @@ class HalaqhList extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               final halaqhName = Halaqhcontroller.HalaqhNames.value[index];
               var groupid = Halaqhcontroller.Halaqhids.value![index];
+              final TeacherName = Halaqhcontroller.TeacherNames.value[index];
+              final halaqhDyas = Halaqhcontroller.halaqhDays.value[index];
               return SingleChildScrollView(
                 child: Center(
                   child: Column(
@@ -69,7 +71,7 @@ class HalaqhList extends StatelessWidget {
 
                                 // print(groupid);
                                 // DisplayHalaqhinfo(context);
-                                DisplayHalaqhinfo(context, groupid, halaqhName);
+                                DisplayHalaqhinfo(context, groupid, halaqhName,TeacherName,halaqhDyas);
                               },
                               title: Row(
                                 mainAxisAlignment:
@@ -111,7 +113,7 @@ class HalaqhList extends StatelessWidget {
   }
 }
 
-DisplayHalaqhinfo(BuildContext context, groupid, halaqhName) {
+DisplayHalaqhinfo(BuildContext context, groupid, halaqhName,TeacherName,halaqhDyas) {
   final HalaqhController Halaqhcontroller = Get.put(HalaqhController());
 
   showDialog(
@@ -151,14 +153,14 @@ DisplayHalaqhinfo(BuildContext context, groupid, halaqhName) {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'xxxxxxxxxxxx',
+                      TeacherName,
                       style: TextStyle(
                           color: yallowTextColor,
                           fontSize: 26,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'xxxxxxxxxxxx',
+                      halaqhDyas,
                       style: TextStyle(
                           color: yallowTextColor,
                           fontSize: 26,
@@ -182,16 +184,17 @@ DisplayHalaqhinfo(BuildContext context, groupid, halaqhName) {
                         borderRadius: BorderRadius.circular(25),
                         side: BorderSide(color: darkGreen))),
                   ),
-                  onPressed: () {
+                  onPressed: ()async {
                     // print(Halaqhcontroller.uid);
-                    Get.to(GroupChatScreen());
-                    Halaqhcontroller.addGroupUidToFirestore(
+                    
+                  await  Halaqhcontroller.addGroupUidToFirestore(
                         Halaqhcontroller.uid, groupid);
-                    Halaqhcontroller.addUserToGroup(
+                   await Halaqhcontroller.addUserToGroup(
                         groupid, Halaqhcontroller.uid);
+                        Get.to(GroupChatScreen());
                   },
                   child: Text(
-                    'xxxxxxx',
+                    'انضمام',
                     style: TextStyle(
                         color: yallowTextColor,
                         fontSize: 21,
