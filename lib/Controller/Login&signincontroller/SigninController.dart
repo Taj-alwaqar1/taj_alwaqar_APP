@@ -42,7 +42,7 @@ class SigninController extends GetxController {
     passwordController.dispose();
     super.dispose();
   }
-
+//must be arbic litter 
   String? validateEmail(String value) {
     if (!GetUtils.isEmail(value)) {
       loading();

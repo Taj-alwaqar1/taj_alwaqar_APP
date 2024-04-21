@@ -56,6 +56,7 @@ dependencies:
   zego_express_engine: ^3.13.0
   zego_uikit_prebuilt_call: ^4.5.1
   zego_uikit_signaling_plugin: ^2.7.6
+  speech_to_text: ^6.6.0
 
 dev_dependencies:
   flutter_test:
