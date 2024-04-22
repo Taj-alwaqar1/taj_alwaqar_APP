@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +16,7 @@ import 'package:frist_file_taj_alwaqar/view/Shared/HalaqhList.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../Controller/Screen/screenController.dart';
 import '../../Controller/pagesController/SaveSyllaubsDataControler.dart';
 import '../../Controller/pagesController/createHalaqhController.dart';
 import 'ChatGroupScr.dart';
@@ -26,6 +27,7 @@ class CreateOrJoinHalaqh extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HalaqhController controller = Get.put(HalaqhController());
+    final ScreenController screenController = Get.put(ScreenController());
 
     return Container(
       decoration: BoxDecoration(
@@ -61,7 +63,16 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 70),
                     child: ElevatedButton(
                       onPressed: () {
-                        BottomSheet(context);
+                        if (screenController.userType.value) {
+                          BottomSheet(context);
+                        } else
+                          Get.snackbar(
+                            'Error',
+                            'User must be a teacher',
+                            // snackPosition: SnackPosition.TOP,s
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                          );
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(goldenColor),
