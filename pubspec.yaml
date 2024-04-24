@@ -47,8 +47,8 @@ dependencies:
   cloud_firestore: ^4.15.4
   rxdart: ^0.27.7
   rxstream: ^1.0.0
-  scrollable_positioned_list: ^0.2.3
-  share_plus: ^4.0.3
+  scrollable_positioned_list: ^0.3.8
+  share_plus: ^9.0.0
   url_launcher: ^6.1.6
   xid: ^1.1.2
   riverpod: ^2.5.1
@@ -57,10 +57,14 @@ dependencies:
   zego_uikit_prebuilt_call: ^4.5.1
   zego_uikit_signaling_plugin: ^2.7.6
   speech_to_text: ^6.6.0
+  firebase_auth_mocks: ^0.13.0
+  fake_cloud_firestore: ^2.5.1
+  firebase_storage_mocks: ^0.6.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.4.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

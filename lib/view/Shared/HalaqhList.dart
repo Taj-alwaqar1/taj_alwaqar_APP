@@ -71,7 +71,8 @@ class HalaqhList extends StatelessWidget {
 
                                 // print(groupid);
                                 // DisplayHalaqhinfo(context);
-                                DisplayHalaqhinfo(context, groupid, halaqhName,TeacherName,halaqhDyas);
+                                DisplayHalaqhinfo(context, groupid, halaqhName,
+                                    TeacherName, halaqhDyas);
                               },
                               title: Row(
                                 mainAxisAlignment:
@@ -113,7 +114,8 @@ class HalaqhList extends StatelessWidget {
   }
 }
 
-DisplayHalaqhinfo(BuildContext context, groupid, halaqhName,TeacherName,halaqhDyas) {
+DisplayHalaqhinfo(
+    BuildContext context, groupid, halaqhName, TeacherName, halaqhDyas) {
   final HalaqhController Halaqhcontroller = Get.put(HalaqhController());
 
   showDialog(
@@ -184,14 +186,19 @@ DisplayHalaqhinfo(BuildContext context, groupid, halaqhName,TeacherName,halaqhDy
                         borderRadius: BorderRadius.circular(25),
                         side: BorderSide(color: darkGreen))),
                   ),
-                  onPressed: ()async {
+                  onPressed: () async {
                     // print(Halaqhcontroller.uid);
-                    
-                  await  Halaqhcontroller.addGroupUidToFirestore(
+
+                    await Halaqhcontroller.addGroupUidToFirestore(
                         Halaqhcontroller.uid, groupid);
-                   await Halaqhcontroller.addUserToGroup(
+                    await Halaqhcontroller.addUserToGroup(
                         groupid, Halaqhcontroller.uid);
-                        Get.to(GroupChatScreen());
+
+                    await Halaqhcontroller.GiveHalaqhIdValue22(groupid);
+                    await Halaqhcontroller.GetHalaqhName(groupid);
+                    // Get.offAll(GroupChatScreen());
+                    // here put methde that go to screen  and give value 2
+                   Halaqhcontroller.goToChatScreen();
                   },
                   child: Text(
                     'انضمام',

@@ -7,6 +7,7 @@ import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/AuthenticateAcc.dar
 import 'package:frist_file_taj_alwaqar/Model/GetUserData/GetTeacherData.dart';
 // import 'package:frist_file_taj_alwaqar/Model/createHalaqhModel.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/Halaqh.dart';
+import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
@@ -16,6 +17,7 @@ import '../../Model/sendDataToStore/SendUserData.dart';
 import '../../Model/sendDataToStore/SendUserData.dart';
 import '../../Model/sendDataToStore/createHalaqhModel.dart';
 import '../../view/Pages/ChatGroupScr.dart';
+import '../sharedController/botoomNavController.dart';
 import 'SaveSyllaubsDataControler.dart';
 
 class HalaqhController extends GetxController {
@@ -50,6 +52,16 @@ class HalaqhController extends GetxController {
   bool isLoading = false;
 
   bool isVisibile = true;
+
+
+    final bottomNavnController controllernav = Get.put(bottomNavnController());
+
+
+goToChatScreen()async{
+//  await controllernav.changepageindex(5); /
+  Get.offAll(userScreen());
+
+}
 
   @override
   void dispose() {
@@ -200,7 +212,16 @@ checkAndReturnGroupUid(){
 }
 GiveHalaqhIdValue(){
   // print('=====================${GroupUid.value}');s
- currenthalaqhId.value=GroupUid.value;
+ if (currenthalaqhId.value.isEmpty) {
+   currenthalaqhId.value=GroupUid.value;
+ }
+ 
+// GroupUid
+}
+GiveHalaqhIdValue22(group){
+  // print('=====================${GroupUid.value}');s
+ currenthalaqhId.value=group;
+ GroupUid.value=group;
 // GroupUid
 }
 

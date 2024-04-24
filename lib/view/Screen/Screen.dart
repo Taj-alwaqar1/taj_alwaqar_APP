@@ -33,7 +33,9 @@ class userScreen extends StatelessWidget {
       bottomNavigationBar: botoom(),
       body: Obx(
         () => PageView(
-          onPageChanged: (index) {},
+          onPageChanged: (index) {
+            
+          },
           physics: NeverScrollableScrollPhysics(),
           controller: controllernav.pageControllerindex,
           children: [
@@ -57,6 +59,10 @@ Widget botoom() {
       () => CupertinoTabBar(
           backgroundColor: greenColor,
           onTap: (index) {
+            // if (controllernav. currentpage.value!=2) {
+            //   index=controllernav. currentpage.value;
+            // }
+           
             controllernav.pageControllerindex.jumpToPage(index);
             controllernav.changepageindex(index);
           },
