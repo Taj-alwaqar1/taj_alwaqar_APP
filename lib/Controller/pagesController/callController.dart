@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_interpolation_to_compose_strings
 
 import 'dart:math';
 
@@ -67,25 +67,16 @@ class CallController extends GetxController {
 
   Stream<DocumentSnapshot> get callStream => GetCallData.callStream;
 
-  checkValue() async {
-    calleridFromFire.value = await GetCallData.getCallIdFromFirestore(
-            receiveruid.value, calleridFromFire.value) ??
-        'x';
-    if (
-        calleridFromFire.value=='' ||
-      calleridFromFire.value == null ||
-        calleridFromFire.value.isEmpty 
-        ) {
-      print('yyyyyyyyyyyyyyyyy');
-      String callId = '';
-      callId = DateTime.now().millisecondsSinceEpoch.toString() +
-          '_' +
-          randomString(8);
-      CallId.value = callId;
-    } 
-     
-  }
+checkValue() async {
+  calleridFromFire.value = await GetCallData.getCallIdFromFirestore(receiveruid.value) ?? '';
 
+  if (calleridFromFire.value == '' || calleridFromFire.value == null || calleridFromFire.value.isEmpty) {
+    print('No caller ID found in Firestore');
+    CallId.value = DateTime.now().millisecondsSinceEpoch.toString() + '_' + randomString(8);
+  } else {
+    CallId.value = calleridFromFire.value;
+  }
+}
   String randomString(int length) {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
     final random = Random();

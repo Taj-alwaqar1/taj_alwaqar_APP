@@ -9,10 +9,7 @@ import 'package:get/get.dart';
 import '../../Controller/pagesController/callController.dart';
 
 class callRepository extends GetxController{
-  // final FirebaseAuth auth;
-  // final FirebaseFirestore firestore;
-
-//send data to store Heree !!!!!
+ 
   makeCall(firestore,Call senderCallData, Call receiverCallData ) async {
    
     try {

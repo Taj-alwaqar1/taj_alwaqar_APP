@@ -34,33 +34,100 @@ class getCallData extends GetxController {
 //   }
 // }
 
- Future<String?> getCallIdFromFirestore(String receiveruid,String calleridFromFire) async {
-   try {
-     final docRef = FirebaseFirestore.instance
-         .collection('call')
-         .where('callerId', isEqualTo: currentUser!.uid)
-         .where('receiverId', isEqualTo: receiveruid)
-         ;
-     final docSnap = await docRef.get();
-     if (docSnap.docs.isNotEmpty) {
+Future<String?> getCallIdFromFirestore(String receiveruid) async {
+  try {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) return null; // Handle null user
+
+    final myId = currentUser.uid;
+
+    // Create queries for both directions (caller/receiver)
+    final query1 = FirebaseFirestore.instance
+      .collection('call')
+      .where('callerId', isEqualTo: myId)
+      .where('receiverId', isEqualTo: receiveruid);
+
+    final query2 = FirebaseFirestore.instance
+      .collection('call')
+      .where('callerId', isEqualTo: receiveruid)
+      .where('receiverId', isEqualTo: myId);
+
+    // Combine results from both queries
+    final combinedSnapshot = await Future.wait([query1.get(), query2.get()]);
+
+    for (var docSnap in combinedSnapshot) {
+      if (docSnap.docs.isNotEmpty) {
+        final data = docSnap.docs.first.data();
+        if (data != null && data['callId'] != null) {
+          return data['callId']; // Return the first found callId
+        }
+      }
+    }
+
+    // No matching call found in either direction
+    return null;
+  } catch (e) {
+    print('Error getting callId from Firestore: $e');
+    return null;
+  }
+}
+
+
+// Future<String?> getCallIdFromFirestore(String receiveruid) async {
+//   try {
+//     final currentUser = FirebaseAuth.instance.currentUser;
+//     if (currentUser == null) return null; // Handle null user
+
+//     final docRef = FirebaseFirestore.instance
+//       .collection('call')
+//       .where('callerId', isEqualTo: currentUser.uid)
+//       .where('receiverId', isEqualTo: receiveruid);
+
+//     final docSnap = await docRef.get();
+//     if (docSnap.docs.isNotEmpty) {
+//       final data = docSnap.docs.first.data();
+//       if (data != null && data['callId'] != null) {
+//         print('xxxxxxxxxxxxxxxx${data['callId']}');
+//         return data['callId']; // Return existing callId
+//       }
+//     }
+    
+//   } catch (e) {
+//     print('Error getting callId from Firestore: $e');
+//     return null;
+//   }
+// }
+
+
+//  Future<String?> getCallIdFromFirestore(String receiveruid,) async {
+//    try {
+//      final docRef = FirebaseFirestore.instance
+//          .collection('call')
+//          .where('callerId', isEqualTo: currentUser!.uid )
+//          .where('receiverId', isEqualTo: receiveruid)
+         
+//          ;
+//      final docSnap = await docRef.get();
+//      if (docSnap.docs.isNotEmpty) {
        
-       final data = docSnap.docs.first.data();
-       if (data != null && data['callId'] != null) {
-         return data['callId'];
-       } else {
-         print('Document exists but callId is missing or null for user: $currentUser!.uid');
-         return null;  
-       }
-     } else {
+//        final data = docSnap.docs.first.data();
+//        if (data != null && data['callId'] != null) {
+//         print(data['callId']);
+//          return data['callId'];
+//        } else {
+//          print('Document exists but callId is missing or null for user: $currentUser!.uid');
+//          return null;  
+//        }
+//      } else {
        
-       print('No matching call document found for user and receiver');
-       return null;  
-     }
-   } catch (e) {
-     print('Error getting callId from Firestore: $e');
-     return null; 
-   }
- }
+//        print('No matching call document found for user and receiver');
+//        return null;  
+//      }
+//    } catch (e) {
+//      print('Error getting callId from Firestore: $e');
+//      return null; 
+//    }
+//  }
 //   Future<String?> getcalleridFromFire(String receiverid) async {
 //     final uid = currentUser?.uid;
 //     final callStream = getAllCallsStream() ;

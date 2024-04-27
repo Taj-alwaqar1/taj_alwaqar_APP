@@ -3,8 +3,7 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/AuthenticateAcc.dart';
-import 'package:frist_file_taj_alwaqar/Model/GetUserData/GetTeacherData.dart';
+ import 'package:frist_file_taj_alwaqar/Model/GetUserData/GetTeacherData.dart';
 // import 'package:frist_file_taj_alwaqar/Model/createHalaqhModel.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/Halaqh.dart';
 import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
@@ -59,6 +58,8 @@ class HalaqhController extends GetxController {
 
 goToChatScreen()async{
 //  await controllernav.changepageindex(5); /
+controllernav.currentpage.value=4;
+controllernav.pageControllerindex=PageController(initialPage: 4);
   Get.offAll(userScreen());
 
 }

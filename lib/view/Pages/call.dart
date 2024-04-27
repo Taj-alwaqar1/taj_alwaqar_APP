@@ -104,7 +104,7 @@ class CallScreen  extends StatelessWidget{
         userID:  SideBarcontroller.username.value,
         //here will showen in left bottom
         userName: SideBarcontroller.username.value,
-        callID:callController.calleridFromFire.value,
+        callID:callController.CallId.value,
         plugins: [ZegoUIKitSignalingPlugin()],
         config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
          ..topMenuBar.isVisible = true

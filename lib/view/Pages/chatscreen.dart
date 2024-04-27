@@ -35,7 +35,7 @@ class ChatScreen extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () async {
-                callController.checkValue();
+              await  callController.checkValue();
                 await callController.actionButton();
                 Get.to(() => CallScreen());
               },
