@@ -97,8 +97,10 @@ class CallScreen  extends StatelessWidget{
   final callController=Get.put(CallController()); 
   final  SideBarcontroller = Get.put(sideBarController());
    return    ZegoUIKitPrebuiltCall(
-        appID: 1633904689,
-        appSign: '734c923fc8927f2c3e444575d75d40bda77e82466434cee7bb55fc397237f82e' ,
+    //yourAppID
+        appID: 854672523,
+        //yourAppSign
+        appSign: 'b63638c3d66febae618bfe2ca9af6c860cf8e5ce953b23d7aa9821e4e39e25c5' ,
         userID:  SideBarcontroller.username.value,
         //here will showen in left bottom
         userName: SideBarcontroller.username.value,
