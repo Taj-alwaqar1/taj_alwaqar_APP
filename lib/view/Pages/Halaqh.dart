@@ -172,9 +172,9 @@ void BottomSheet(BuildContext context) {
                         onSaved: (value) {
                           halaqhController.mosqueNameController.text = value!;
                         },
-                        // validator: (value) {
-                        //   return halaqhController.validateMosqueName(value!);
-                        // },
+                        validator: (value) {
+                          return halaqhController.validateMosqueName(value!);
+                        },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
@@ -202,9 +202,9 @@ void BottomSheet(BuildContext context) {
                         onSaved: (value) {
                           halaqhController.halqahNameController.text = value!;
                         },
-                        // validator: (value) {
-                        //   return halaqhController.validateHalaqhName(value!);
-                        // },
+                        validator: (value) {
+                          return halaqhController.validateHalaqhName(value!);
+                        },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),

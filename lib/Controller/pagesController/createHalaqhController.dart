@@ -301,39 +301,3 @@ class halaqh {
   }
 }
 
-
-
-
-
-
-// class Sylabus {
-//   String day;
-//   String nameOfSurah;
-//   String StartVerse;
-//   String EndVerse;
-//   Sylabus({
-//     required this.day,
-//     required this.nameOfSurah,
-//     required this.StartVerse,
-//     required this.EndVerse,
-//   });
-//     Map<String, dynamic> toMap() {
-//     return {
-//       'day': day,
-//       'nameOfSurah': nameOfSurah,
-//       'StartVerse': StartVerse,
-//       'EndVerse': EndVerse,
-//     };
-    
-//   }
-//   factory Sylabus.fromMap(Map<String, dynamic> map) {
-//     return Sylabus(
-//       day: map['day'] ?? '',
-     
-//       nameOfSurah: map['nameOfSurah'] ?? '',
-//       StartVerse: map['StartVerse'] ?? '',
-//       EndVerse: map['EndVerse'] ?? '',
-//     );
-//   }
-
-// }
