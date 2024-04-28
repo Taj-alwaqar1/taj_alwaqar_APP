@@ -9,6 +9,13 @@ class GetData extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  final RxString firstname = ''.obs;
+  final RxString email = ''.obs;
+  final RxString phonenumber = ''.obs;
+
+
+ 
+
   Future<Map<String, dynamic>?> getStudentsData() async {
     final user = _auth.currentUser;
 
@@ -50,7 +57,7 @@ class GetData extends GetxController {
       return null;
     }
   }
-  
+
   Future<void> checkAndReturnGroupUid() async {
     final userId = _auth.currentUser!.uid;
 
@@ -79,6 +86,28 @@ class GetData extends GetxController {
     } catch (error) {
       print('Error fetching groupUid: $error');
       // Handle any errors that occur during the fetch
+    }
+  }
+
+  Future<Map<String, dynamic>?> getUserAttributes() async {
+    try {
+      final docRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(_auth.currentUser!.uid);
+
+      final docSnap = await docRef.get();
+      if (docSnap.exists) {
+        final data = docSnap.data();
+        if (data != null) {
+          email.value = data['email'];
+          firstname.value = data['firstname'];
+          phonenumber.value = data['phonenumber'];
+        }
+      }
+      return null; // No document found or data is missing
+    } catch (e) {
+      print('Error getting user attributes: $e');
+      return null;
     }
   }
 }

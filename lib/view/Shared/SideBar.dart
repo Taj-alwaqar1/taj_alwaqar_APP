@@ -7,6 +7,8 @@ import 'package:frist_file_taj_alwaqar/view/Shared/SideBarAccount.dart';
 import 'package:frist_file_taj_alwaqar/view/Shared/sideBarItem.dart';
 import 'package:get/get.dart';
 
+import '../../Model/GetUserData/getStudentData.dart';
+
 Widget SideBar() {
   final sideBarController controller = Get.put(sideBarController());
   return Drawer(
@@ -26,7 +28,9 @@ Widget SideBar() {
             child: Column(
               children: [
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async{
+                    GetData getDatauser = Get.put(GetData());
+                   await getDatauser.getUserAttributes();
                     Get.to(() => Account_Info());
                   },
                   style: ButtonStyle(

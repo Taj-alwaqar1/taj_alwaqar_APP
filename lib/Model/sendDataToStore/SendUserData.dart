@@ -58,4 +58,24 @@ class SendStdData extends GetxController {
 
   print('groupUid added to document successfully!');
 }
+
+  updateFirebaseValue(firstname,email,phonenumber) async {
+  try {
+ 
+
+    final docRef = FirebaseFirestore.instance.collection('users').doc(_auth.currentUser?.uid);
+
+    await docRef.update({
+      'firstname':firstname,
+      'email':email,
+      'phonenumber':phonenumber,
+       // Replace 'attributeName' with the actual attribute you want to update
+    });
+
+    print('Value updated successfully');
+  } catch (e) {
+    print('Error updating value in Firestore: $e');
+  }
+}
+
 }
