@@ -480,12 +480,12 @@ void DisplayHalaqhCurriculm(BuildContext context) {
                         startVerse: 10,
                         endVerse: 15,
                       ),
-                      Curriculum(
-                        halaqhDays: 'الاربعاء',
-                        nameOfSurah: 'الحج',
-                        startVerse: 15,
-                        endVerse: 20,
-                      ),
+                      // Curriculum(
+                      //   halaqhDays: 'الاربعاء',
+                      //   nameOfSurah: 'الحج',
+                      //   startVerse: 15,
+                      //   endVerse: 20,
+                      // ),
                     ],
                   ),
                 ),

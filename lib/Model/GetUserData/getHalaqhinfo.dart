@@ -236,4 +236,21 @@ class GetHalaqhInfo extends GetxController {
 
     return RxList<String>([]);
   }
+
+Future<List<Map<String, dynamic>>> getAllSyllabus(String groupId) async {
+  try {
+    final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
+        .collection('halaqh')
+        .doc(groupId)
+        .collection('Syllabus')
+        .get();
+
+    final List<Map<String, dynamic>> syllabusList = snapshot.docs.map((doc) => doc.data()).toList();
+    return syllabusList;
+  } catch (e) {
+    print('Error retrieving syllabus: $e');
+    return [];
+  }
+}
+
 }

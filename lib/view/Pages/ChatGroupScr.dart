@@ -10,13 +10,16 @@ import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 import '../../Controller/pagesController/createHalaqhController.dart';
 import '../../Model/GetUserData/getMessage.dart';
+import '../Shared/Curriculum.dart';
+import '../Shared/HalaqhList.dart';
+import 'TeacherDetail.dart';
 
 class GroupChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ControllerChat = Get.put(MessageController());
     HalaqhController Halaqhcontroller = Get.put(HalaqhController());
-    // Halaqhcontroller. checkAndReturnGroupUid();
+    // Halaqhcontroller. checkAndReturnGroupUid();displaySyllabuses
     Halaqhcontroller.GetHalaqhName(Halaqhcontroller.GroupUid.value);
     return Container(
       decoration: BoxDecoration(
@@ -33,22 +36,39 @@ class GroupChatScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 33)),
             ),
+            leading: IconButton(
+              onPressed: () async {
+                print('xxxxxxxxxxx${Halaqhcontroller.GroupUid.value}');
+                await Halaqhcontroller.displaySyllabuses(
+                    Halaqhcontroller.GroupUid.value);
 
+                DisplayHalaqhCurriculmSpecificForOwnHalaqh(context);
+              },
+              icon: Icon(
+                Icons.calendar_month,
+                color: goldenColor,
+                size: 29,
+              ),
+            ),
             centerTitle: true,
-            // actions: [
-            //   IconButton(
-            //     onPressed: () => makeCall(context),
-            //     icon: const Icon(Icons.video_call),
-            //   ),
-            // ],
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.video_call,
+                  color: goldenColor,
+                  size: 26,
+                ),
+              ),
+            ],
           ),
           body: SafeArea(
             child: SafeArea(
               child: Stack(
                 children: [
                   Container(
-                  margin: EdgeInsets.only(bottom: 30),
-                  child: ChatListGroup()),
+                      margin: EdgeInsets.only(bottom: 30),
+                      child: ChatListGroup()),
                   Positioned(
                     bottom: 0,
                     child: Container(
@@ -77,6 +97,7 @@ class GroupChatScreen extends StatelessWidget {
                               )),
                           Container(
                             width: 300,
+                            // height: 200,
                             // margin: EdgeInsets.only(t),
                             child: TextField(
                               onChanged: (value) {},
@@ -118,65 +139,6 @@ class GroupChatScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-
-                // Container(
-                //   width: 400,
-                //   height: 50,
-                //   decoration: BoxDecoration(
-                //     border: Border(
-                //       top: BorderSide(
-                //         color: darkGreen,
-                //         width: 1,
-                //       ),
-                //     ),
-                //   ),
-
-                //     child: Row(
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                // children: [
-                //   IconButton(
-                //       onPressed: () {},
-                //       icon: Icon(
-                //         Icons.add,
-                //         color: goldenColor,
-                //         size: 26,
-                //       )),
-                // TextField(
-                //   onChanged: (value) {},
-                //   controller: ControllerChat.textControllerGroup,
-                //   autofocus: false,
-                //   focusNode: ControllerChat.contentnodeGroup,
-                //   decoration: InputDecoration(
-                //     contentPadding: EdgeInsets.symmetric(
-                //       vertical: 10,
-                //       horizontal: 20,
-                //     ),
-                //     hintText: 'Write your message here...',
-                //     border: OutlineInputBorder(
-                //       borderRadius: BorderRadius.circular(10.0),
-                //       borderSide: BorderSide(
-                //         color: Colors.black,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                //       IconButton(
-                //           onPressed: () async {
-                //             ControllerChat.sendTextMessage(
-                //               context: context,
-                //               text: ControllerChat.textControllerGroup.text,
-                //               recieverUserId:
-                //                   Halaqhcontroller.currenthalaqhId.value,
-                //             );
-                //           },
-                //           icon: Icon(
-                //             Icons.send,
-                //             color: goldenColor,
-                //             size: 26,
-                //           ))
-                //     ],
-                //   ),
-                // ),
               ),
             ),
           )),
@@ -324,5 +286,96 @@ Widget SenderMessageCard(messageData) {
         )
       ],
     ),
+  );
+}
+
+DisplayHalaqhCurriculmSpecificForOwnHalaqh(BuildContext context) {
+  HalaqhController Halaqhcontroller = Get.put(HalaqhController());
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: Container(
+          decoration: BoxDecoration(
+            color: greenColor,
+            borderRadius: BorderRadius.circular(11),
+          ),
+          height: 400,
+          child: Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.delete,
+                          size: 30,
+                          color: goldenColor,
+                        )),
+                    Text(
+                      "المنهج",
+                      style: TextStyle(color: yallowTextColor, fontSize: 30),
+                    ),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.edit,
+                          size: 30,
+                          color: goldenColor,
+                        )),
+                  ],
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child:   Row(
+                      children: [
+                        Curriculum(
+                          halaqhDays: Halaqhcontroller.syllabusDays.value[0],
+                          nameOfSurah: Halaqhcontroller.nameOfSurah.value[0],
+                          startVerse: Halaqhcontroller.startVerses.value[0],
+                          endVerse: Halaqhcontroller.endVerses.value[0],
+                        ),
+                        Curriculum(
+                          halaqhDays: Halaqhcontroller.syllabusDays.value[1],
+                          nameOfSurah: Halaqhcontroller.nameOfSurah.value[1],
+                          startVerse: Halaqhcontroller.startVerses.value[1],
+                          endVerse: Halaqhcontroller.endVerses.value[1],
+                        ),
+                        Curriculum(
+                          halaqhDays: Halaqhcontroller.syllabusDays.value[2],
+                          nameOfSurah: Halaqhcontroller.nameOfSurah.value[2],
+                          startVerse: Halaqhcontroller.startVerses.value[2],
+                          endVerse: Halaqhcontroller.endVerses.value[2],
+                        ),
+                        // Curriculum(
+                        //   halaqhDays: 'الاربعاء',
+                        //   nameOfSurah: 'الحج',
+                        //   startVerse: 15,
+                        //   endVerse: 20,
+                        // ),
+                      ],
+                    ),
+                 
+                ),
+                SizedBox(
+                  height: 22,
+                ),
+                // JoinButton(),
+                TimeForTsme3(),
+                SizedBox(
+                  height: 22,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    },
   );
 }

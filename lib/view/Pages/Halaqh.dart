@@ -63,6 +63,7 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 70),
                     child: ElevatedButton(
                       onPressed: () {
+                        // screenController.userType.value is the user teacher or students if teacher will returen true 
                         if (screenController.userType.value) {
                           BottomSheet(context);
                         } else
@@ -508,7 +509,7 @@ Container ContainerSylaubs(BuildContext context) {
                   ),
                   child: TextFormField(
                     controller: controller.StartVerseController[0],
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
@@ -536,7 +537,7 @@ Container ContainerSylaubs(BuildContext context) {
                   ),
                   child: TextFormField(
                     controller: controller.EndVerseController[0],
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
@@ -647,7 +648,7 @@ Container ContainerSylaubs1(BuildContext context) {
                   ),
                   child: TextFormField(
                     controller: controller.StartVerseController[1],
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
@@ -676,7 +677,7 @@ Container ContainerSylaubs1(BuildContext context) {
                   child: TextFormField(
                     controller: controller.EndVerseController[1],
 
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
@@ -789,7 +790,7 @@ Container ContainerSylaubs2(BuildContext context) {
                   child: TextFormField(
                     controller: controller.StartVerseController[2],
 
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
@@ -818,7 +819,7 @@ Container ContainerSylaubs2(BuildContext context) {
                   child: TextFormField(
                     controller: controller.EndVerseController[2],
 
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(

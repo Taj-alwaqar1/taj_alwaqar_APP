@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
- import 'package:frist_file_taj_alwaqar/Model/GetUserData/GetTeacherData.dart';
+import 'package:frist_file_taj_alwaqar/Model/GetUserData/GetTeacherData.dart';
 // import 'package:frist_file_taj_alwaqar/Model/createHalaqhModel.dart';
 import 'package:frist_file_taj_alwaqar/view/Pages/Halaqh.dart';
 import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
@@ -42,27 +42,24 @@ class HalaqhController extends GetxController {
   CreateSylaubsController CreateSylaubscontroller =
       Get.put(CreateSylaubsController());
 
-    final String uid = FirebaseAuth.instance.currentUser!.uid;
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
 
   RxString currenthalaqhName = ''.obs;
   RxString currenthalaqhId = ''.obs;
-  String halaqhnameee='';
+  String halaqhnameee = '';
   // GetData getinfo = Get.put(GetData());
   bool isLoading = false;
 
   bool isVisibile = true;
 
+  final bottomNavnController controllernav = Get.put(bottomNavnController());
 
-    final bottomNavnController controllernav = Get.put(bottomNavnController());
-
-
-goToChatScreen()async{
+  goToChatScreen() async {
 //  await controllernav.changepageindex(5); /
-controllernav.currentpage.value=4;
-controllernav.pageControllerindex=PageController(initialPage: 4);
-  Get.offAll(userScreen());
-
-}
+    controllernav.currentpage.value = 4;
+    controllernav.pageControllerindex = PageController(initialPage: 4);
+    Get.offAll(userScreen());
+  }
 
   @override
   void dispose() {
@@ -119,43 +116,35 @@ controllernav.pageControllerindex=PageController(initialPage: 4);
 
   RxList<String> get HalaqhNames => getHalaqhInfo.HalaqhNames.value;
 
-
-
   RxList<String> get TeacherNames => getHalaqhInfo.TeacherNames.value;
-
 
   RxList<String> get halaqhDays => getHalaqhInfo.halaqhDays.value;
 
-  
-
-
   RxString get GroupUid => Getdata.groupUid;
 
-
   String get HalaqhName => getHalaqhInfo.halaqhName;
-
-
 
   RxList<String> get Halaqhids => getHalaqhInfo.Halaqhids.value;
 
   getHalaqhNames() {
     getHalaqhInfo.getHalaqhNames();
   }
+
   getHalaqhids() {
     getHalaqhInfo.getHalaqhids();
   }
-   getTeacherNames() {
+
+  getTeacherNames() {
     getHalaqhInfo.getTeacherNames();
   }
-   gethalaqhDays() {
+
+  gethalaqhDays() {
     getHalaqhInfo.gethalaqhDays();
   }
 
-
-
   SendDateToModel() async {
     var groupId = '${DateTime.now().millisecondsSinceEpoch}_${randomString(8)}';
-    currenthalaqhId.value=groupId;
+    currenthalaqhId.value = groupId;
     final auth = FirebaseAuth.instance;
     List<String> uids = [];
 
@@ -165,21 +154,16 @@ controllernav.pageControllerindex=PageController(initialPage: 4);
       teacherName: teacherNameController.text,
       halaqhDays: halaqhDaysController.text,
       halqahTime: halqahTimeController.text,
-
       teacheruid: uid,
       senderId: uid,
       groupId: groupId,
       lastMessage: '',
       membersUid: [auth.currentUser!.uid, ...uids],
       timeSent: DateTime.now(),
-
     );
     CreateSylaubscontroller.addMembertoSyllabus();
 
-       sendHalaqhInfo.createHalaqh(halqhData);
-    
-   
-    
+    sendHalaqhInfo.createHalaqh(halqhData);
   }
 
   String randomString(int length) {
@@ -192,52 +176,70 @@ controllernav.pageControllerindex=PageController(initialPage: 4);
     return stringBuffer.toString();
   }
 
+  getvalueAndGoToChatGroup(halaqhid, halaqhname) {
+    currenthalaqhId.value = halaqhid;
+    currenthalaqhName.value = halaqhname;
+  }
 
+  addUserToGroup(groupId, userId) {
+    sendHalaqhInfo.addUserToGroup(groupId, userId);
+  }
 
- getvalueAndGoToChatGroup(  halaqhid,halaqhname){
-  currenthalaqhId.value=halaqhid;
-  currenthalaqhName.value=halaqhname;
+  addGroupUidToFirestore(userId, groupId) {
+    SendStddata.addGroupUidToFirestore(userId, groupId);
+  }
 
- } 
- 
- addUserToGroup( groupId,  userId){
- sendHalaqhInfo.addUserToGroup( groupId,  userId);
-}
+  checkAndReturnGroupUid() {
+    Getdata.checkAndReturnGroupUid();
+  }
 
-addGroupUidToFirestore( userId,groupId  ){
- SendStddata.addGroupUidToFirestore( userId,groupId);
-}
+  GiveHalaqhIdValue() {
+    // print('=====================${GroupUid.value}');s
+    if (currenthalaqhId.value.isEmpty) {
+      currenthalaqhId.value = GroupUid.value;
+    }
 
-checkAndReturnGroupUid(){
-  Getdata.checkAndReturnGroupUid();
-}
-GiveHalaqhIdValue(){
-  // print('=====================${GroupUid.value}');s
- if (currenthalaqhId.value.isEmpty) {
-   currenthalaqhId.value=GroupUid.value;
- }
- 
 // GroupUid
-}
-GiveHalaqhIdValue22(group){
-  // print('=====================${GroupUid.value}');s
- currenthalaqhId.value=group;
- GroupUid.value=group;
-// GroupUid
-}
+  }
 
-GetHalaqhName(currenthalaqhId)async{
+  GiveHalaqhIdValue22(group) {
+    // print('=====================${GroupUid.value}');s
+    currenthalaqhId.value = group;
+    GroupUid.value = group;
+// GroupUid
+  }
+
+  GetHalaqhName(currenthalaqhId) async {
 // await checkAndReturnGroupUid();
-  currenthalaqhName.value =  
-  await getHalaqhInfo.ReturnHalaqhName(currenthalaqhId) ;
-  
+    currenthalaqhName.value =
+        await getHalaqhInfo.ReturnHalaqhName(currenthalaqhId);
+  }
+
+  final endVerses = RxList<int>([]).obs;
+  final startVerses = RxList<int>([]).obs;
+  final syllabusDays = RxList<String>([]).obs;
+  final nameOfSurah = RxList<String>([]).obs;
+
+  Future<void> displaySyllabuses(halaqahGroupId) async {
+    final syllabuses = await getHalaqhInfo.getAllSyllabus(halaqahGroupId);
+
+    if (syllabuses.isNotEmpty) {
+      for (final syllabus in syllabuses) {
+         final endVerse = syllabus['EndVerse'];
+      final startVerse = syllabus['StartVerse'];
+
+        if (endVerse != null && startVerse != null) {
+          endVerses.value.add(endVerse);
+          startVerses.value.add(startVerse);
+          syllabusDays.value.add(syllabus['SyllabusDays']);
+          nameOfSurah.value.add(syllabus['nameOfSurah']);
+        }
+      }
+    } else {
+          print('No syllabuses found for the Halaqah group.');
+        }
+  }
 }
-
-
-}
-
-
-
 
 class halaqh {
   final String mosqueName;
@@ -300,4 +302,3 @@ class halaqh {
     );
   }
 }
-

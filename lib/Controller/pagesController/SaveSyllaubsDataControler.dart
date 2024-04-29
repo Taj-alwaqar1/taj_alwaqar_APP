@@ -66,20 +66,20 @@ class CreateSylaubsController extends GetxController {
     Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[0].text ?? 'xxx',
       nameOfSurah: NameOfSurahController[0].text ?? 'xxx',
-      StartVerse: StartVerseController[0].text ?? 'xxx',
-      EndVerse: EndVerseController[0].text ?? 'xxxx',
+      StartVerse:int.parse( StartVerseController[0].text) ,
+      EndVerse:int.parse(  EndVerseController[0].text),
     ));
     Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[1].text ?? '',
       nameOfSurah: NameOfSurahController[1].text ?? '',
-      StartVerse: StartVerseController[1].text ?? '',
-      EndVerse: EndVerseController[1].text ?? '',
+      StartVerse: int.parse( StartVerseController[1].text),
+      EndVerse:int.parse(  EndVerseController[1].text),
     ));
     Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[2].text ?? '',
       nameOfSurah: NameOfSurahController[2].text ?? '',
-      StartVerse: StartVerseController[2].text ?? '',
-      EndVerse: EndVerseController[2].text ?? '',
+      StartVerse: int.parse( StartVerseController[2].text),
+      EndVerse: int.parse(  EndVerseController[2].text),
     ));
   }
 }
@@ -87,8 +87,8 @@ class CreateSylaubsController extends GetxController {
 class SyllabusInfo {
   String SyllabusDays;
   String nameOfSurah;
-  String StartVerse;
-  String EndVerse;
+  int StartVerse;
+  int EndVerse;
 
   SyllabusInfo({
     required this.SyllabusDays,
