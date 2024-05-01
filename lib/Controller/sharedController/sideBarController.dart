@@ -29,7 +29,14 @@ class sideBarController extends GetxController {
    await sendstdData.updateFirebaseValue(firstname, email, phonenumber);
    await getUserAttributes();
   }
-
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    firstnameController.dispose();
+    emailController.dispose();
+    phonenumberController.dispose();
+  }
   @override
   void onInit() {
     super.onInit();

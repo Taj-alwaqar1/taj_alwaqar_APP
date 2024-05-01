@@ -68,7 +68,7 @@ class HalaqhList extends StatelessWidget {
                                 //send to halqah chat
                                 await Halaqhcontroller.getvalueAndGoToChatGroup(
                                     groupid, halaqhName);
-
+                              await  Halaqhcontroller.ReturnMosqueName(groupid);
                                 // print(groupid);
                                 // DisplayHalaqhinfo(context);
                                 DisplayHalaqhinfo(context, groupid, halaqhName,
@@ -148,31 +148,35 @@ DisplayHalaqhinfo(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      halaqhName,
+                      'الحلقة: ${halaqhName}',
                       style: TextStyle(
                           color: yallowTextColor,
-                          fontSize: 26,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      TeacherName,
+                       'المعلم: ${TeacherName}'
+                      ,
                       style: TextStyle(
                           color: yallowTextColor,
-                          fontSize: 26,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      halaqhDyas,
+                       'ايام الحلقة:\n ${halaqhDyas}'
+
+                      ,
                       style: TextStyle(
                           color: yallowTextColor,
-                          fontSize: 26,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'xxxxxxxxxxxx',
+                       ' المسجد : ${ Halaqhcontroller.mosqueName}'
+                    ,
                       style: TextStyle(
                           color: yallowTextColor,
-                          fontSize: 26,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -198,7 +202,7 @@ DisplayHalaqhinfo(
                     await Halaqhcontroller.GetHalaqhName(groupid);
                     // Get.offAll(GroupChatScreen());
                     // here put methde that go to screen  and give value 2
-                   Halaqhcontroller.goToChatScreen();
+                    Halaqhcontroller.goToChatScreen();
                   },
                   child: Text(
                     'انضمام',

@@ -17,6 +17,7 @@ class GetHalaqhInfo extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late String halaqhName;
+  RxString mosqueName=''.obs;
 
   var last = null;
 
@@ -252,5 +253,35 @@ Future<List<Map<String, dynamic>>> getAllSyllabus(String groupId) async {
     return [];
   }
 }
+
+  Future<String> ReturnMosqueName(currenthalaqhId) async {
+    final User? user = _auth.currentUser;
+
+    if (user == null) {
+      print('User is not authenticated.');
+      return halaqhName ?? "kkkkk";
+    }
+    try {
+      // Get a reference to the document in the 'halaqh' collection
+      final docRef = _firestore.collection('halaqh').doc(currenthalaqhId);
+
+      // Fetch the document data
+      final docSnapshot = await docRef.get();
+
+      if (docSnapshot.exists) {
+        final data = docSnapshot.data();
+        mosqueName.value = data?['mosqueName'] as String;
+        
+        // Return the extracted string value
+        return  mosqueName.value;
+      } else {
+        print('User document does not exist for Halaqh name!');
+        return '';
+      }
+    } catch (error) {
+      print('Error fetching Halaqh name: ${error}');
+      return '';
+    }
+  }
 
 }

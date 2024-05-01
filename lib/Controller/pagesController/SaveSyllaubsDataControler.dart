@@ -13,12 +13,7 @@ class CreateSylaubsController extends GetxController {
   final GlobalKey<FormState> CreateSylaubsFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> CreateSylaubsFormKey2 = GlobalKey<FormState>();
   final GlobalKey<FormState> CreateSylaubsFormKey1 = GlobalKey<FormState>();
-
-  // final SyllabusDaysController = TextEditingController();
-  // final VerseNameController = TextEditingController();
-  // final StartVerseController = TextEditingController();
-  // final EndVerseController = TextEditingController();
-
+ 
   final RxList<TextEditingController> SylabusDaysController =
       <TextEditingController>[
     TextEditingController(),
@@ -49,14 +44,16 @@ class CreateSylaubsController extends GetxController {
 
 
 
-  @override
-  void dispose() {
-    // SyllabusDaysController.dispose();
-    // VerseNameController.dispose();
-    // StartVerseController.dispose();
-    // EndVerseController.dispose();
-    super.dispose();
+@override
+void dispose() {
+  for (var i = 0; i < SylabusDaysController.length; i++) {
+    SylabusDaysController[i].dispose();
+    NameOfSurahController[i].dispose();
+    StartVerseController[i].dispose();
+    EndVerseController[i].dispose();
   }
+  super.dispose();
+}
 
   void saveDataAndNavigate() async {
     final SyllabusInfo = CreateSylaubsFormKey.currentState!.save();
@@ -89,7 +86,6 @@ class SyllabusInfo {
   String nameOfSurah;
   int StartVerse;
   int EndVerse;
-
   SyllabusInfo({
     required this.SyllabusDays,
     required this.nameOfSurah,

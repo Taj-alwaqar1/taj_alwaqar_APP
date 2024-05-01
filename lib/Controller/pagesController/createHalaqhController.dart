@@ -124,6 +124,9 @@ class HalaqhController extends GetxController {
 
   String get HalaqhName => getHalaqhInfo.halaqhName;
 
+
+  String get mosqueName => getHalaqhInfo.mosqueName.value;
+
   RxList<String> get Halaqhids => getHalaqhInfo.Halaqhids.value;
 
   getHalaqhNames() {
@@ -140,6 +143,10 @@ class HalaqhController extends GetxController {
 
   gethalaqhDays() {
     getHalaqhInfo.gethalaqhDays();
+  }
+
+  ReturnMosqueName(currenthalaqhId)async{
+   await getHalaqhInfo.ReturnMosqueName(currenthalaqhId);
   }
 
   SendDateToModel() async {

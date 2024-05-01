@@ -109,7 +109,7 @@ class GroupChatScreen extends StatelessWidget {
                                   vertical: 10,
                                   horizontal: 20,
                                 ),
-                                hintText: 'Write your message here...',
+                                hintText: 'اكتب رسالتك هنا ...',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                   borderSide: BorderSide(

@@ -6,6 +6,7 @@ import 'package:frist_file_taj_alwaqar/Controller/Login&signincontroller/loginCo
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../Controller/pagesController/AiController.dart';
@@ -23,7 +24,12 @@ class _AIState extends State<AI> {
     super.initState();
     controller.initSpeech();
   }
-
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controller.userWord.value='';
+  }
   void initSpeech() async {
     //speechToText.initialize() return true or false that check the  audio capture, loading necessary resources, and checking for compatibility with the device.
     controller.initSpeech();

@@ -19,9 +19,7 @@ class Chat extends StatelessWidget {
 
     final ControllerChat = Get.put(MessageController());
     final callController = Get.put(CallController());
-
-
-    // callController.
+ 
     return Container(
       decoration: BoxDecoration(
         gradient: GradientGreen,
@@ -79,8 +77,7 @@ class Chat extends StatelessWidget {
                                  ControllerChat.displayMsg();
                                  callController.getvalue(id,userName);
                                 await callController. checkValue();
-
-                                 callController.makeCall();
+                                callController.makeCall();
                               }
                              
                             },
@@ -108,9 +105,9 @@ class Chat extends StatelessWidget {
                                       width: 15,
                                     ),
                                     Text(
-                                      userName,
+                                      userName.split(' ')[0],
                                       style: TextStyle(
-                                          color: yallowTextColor, fontSize: 28),
+                                          color: yallowTextColor, fontSize: 28,),
                                     ),
                                   ],
                                 ),

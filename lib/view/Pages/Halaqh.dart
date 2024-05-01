@@ -63,8 +63,8 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 70),
                     child: ElevatedButton(
                       onPressed: () {
-                        // screenController.userType.value is the user teacher or students if teacher will returen true 
-                        if (screenController.userType.value) {
+                        // screenController.userType.value is the user teacher or students if teacher will returen false 
+                        if (!screenController.userType.value) {
                           BottomSheet(context);
                         } else
                           Get.snackbar(
@@ -104,7 +104,7 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                         await controller.getHalaqhids();
                         await controller.getTeacherNames();
                         await controller.gethalaqhDays();
-
+                        
                         Get.to(HalaqhList());
                       },
                       style: ButtonStyle(

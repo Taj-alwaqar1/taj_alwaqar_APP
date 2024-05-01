@@ -35,11 +35,11 @@ class ChatScreen extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () async {
-              await  callController.checkValue();
+                await callController.checkValue();
                 await callController.actionButton();
                 Get.to(() => CallScreen());
               },
-              icon: Icon(Icons.video_call),
+              icon: Icon(Icons.video_call,color: goldenColor,),
             ),
           ],
         ),
@@ -83,7 +83,7 @@ class ChatScreen extends StatelessWidget {
                                 vertical: 10,
                                 horizontal: 20,
                               ),
-                              hintText: 'Write your message here...',
+                              hintText: 'اكتب رسالتك هنا ...',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                                 borderSide: BorderSide(
