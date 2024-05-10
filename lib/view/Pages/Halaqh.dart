@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:frist_file_taj_alwaqar/Controller/sharedController/SaveSyllaubsDataControler.dart';
@@ -64,7 +63,7 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 70),
                     child: ElevatedButton(
                       onPressed: () {
-                        // screenController.userType.value is the user teacher or students if teacher will returen false 
+                        // screenController.userType.value is the user teacher or students if teacher will returen false
                         if (!screenController.userType.value) {
                           BottomSheet(context);
                         } else
@@ -105,7 +104,7 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                         await controller.getHalaqhids();
                         await controller.getTeacherNames();
                         await controller.gethalaqhDays();
-                        
+
                         Get.to(HalaqhList());
                       },
                       style: ButtonStyle(
@@ -235,7 +234,7 @@ void BottomSheet(BuildContext context) {
                           halaqhController.teacherNameController.text = value!;
                         },
                         validator: (value) {
-                          // return controller.ValidateAgeFeild(value!);
+                          return halaqhController.ValidateTexfFeild(value!);
                         },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
@@ -372,7 +371,7 @@ void BottomSheet(BuildContext context) {
                 ),
                 GetBuilder<HalaqhController>(
                   builder: (halaqhController) => ElevatedButton(
-                    onPressed: () async { 
+                    onPressed: () async {
                       halaqhController.checkCreateHalaqh();
                       await halaqhController.SendDateToModel();
 
@@ -459,10 +458,8 @@ Container ContainerSylaubs(BuildContext context) {
                     //    fieldsForCreateSyllabus.copyWith( labelText:
                     // controller.SylabusDaysController [0].text.isEmpty ?
                     // 'اليوم ': controller.SylabusDaysController [0].text),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) =>
+                        controller.validateDaysAndNumOfVerse(int.parse(value!)),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -487,10 +484,7 @@ Container ContainerSylaubs(BuildContext context) {
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'اسم السوره '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) => controller.ValidateTexfFeild(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -515,10 +509,8 @@ Container ContainerSylaubs(BuildContext context) {
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم بداية الاية '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) =>
+                        controller.validateDaysAndNumOfVerse(int.parse(value!)),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -543,10 +535,8 @@ Container ContainerSylaubs(BuildContext context) {
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم نهاية الاية '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) =>
+                        controller.validateDaysAndNumOfVerse(int.parse(value!)),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),

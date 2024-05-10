@@ -13,7 +13,7 @@ class CreateSylaubsController extends GetxController {
   final GlobalKey<FormState> CreateSylaubsFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> CreateSylaubsFormKey2 = GlobalKey<FormState>();
   final GlobalKey<FormState> CreateSylaubsFormKey1 = GlobalKey<FormState>();
- 
+
   final RxList<TextEditingController> SylabusDaysController =
       <TextEditingController>[
     TextEditingController(),
@@ -41,21 +41,40 @@ class CreateSylaubsController extends GetxController {
 
   var Syllabus = [].obs;
 
-  var Syllabustest = [].obs;
+  bool isLoading = false;
 
+  bool isVisibile = true;
 
-
-
-@override
-void dispose() {
-  for (var i = 0; i < SylabusDaysController.length; i++) {
-    SylabusDaysController[i].dispose();
-    NameOfSurahController[i].dispose();
-    StartVerseController[i].dispose();
-    EndVerseController[i].dispose();
+  @override
+  void dispose() {
+    for (var i = 0; i < SylabusDaysController.length; i++) {
+      SylabusDaysController[i].dispose();
+      NameOfSurahController[i].dispose();
+      StartVerseController[i].dispose();
+      EndVerseController[i].dispose();
+    }
+    super.dispose();
   }
-  super.dispose();
-}
+
+  loading() {
+    isLoading = !isLoading;
+  }
+
+  String? validateDaysAndNumOfVerse(int days) {
+    if (days <= 0 || days > 7) {
+      loading();
+      return "Enter a valid number of days (1-7)";
+    }
+    return null;
+  }
+
+  String? ValidateTexfFeild(String value) {
+    if (value.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+      loading();
+      return "Enter correct Name";
+    }
+    return null;
+  }
 
   void saveDataAndNavigate() async {
     final SyllabusInfo = CreateSylaubsFormKey.currentState!.save();
@@ -65,29 +84,22 @@ void dispose() {
     Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[0].text ?? 'xxx',
       nameOfSurah: NameOfSurahController[0].text ?? 'xxx',
-      StartVerse:int.parse( StartVerseController[0].text??"0") ,
-      EndVerse:int.parse(  EndVerseController[0].text??"0"),
+      StartVerse: int.parse(StartVerseController[0].text),
+      EndVerse: int.parse(EndVerseController[0].text),
     ));
     Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[1].text ?? '',
       nameOfSurah: NameOfSurahController[1].text ?? '',
-      StartVerse: int.parse( StartVerseController[1].text??"0"),
-      EndVerse:int.parse(  EndVerseController[1].text??"0"),
+      StartVerse: int.parse(StartVerseController[1].text),
+      EndVerse: int.parse(EndVerseController[1].text),
     ));
     Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[2].text ?? '',
       nameOfSurah: NameOfSurahController[2].text ?? '',
-      StartVerse: int.parse( StartVerseController[2].text??"0"),
-      EndVerse: int.parse(  EndVerseController[2].text??"0"),
+      StartVerse: int.parse(StartVerseController[2].text),
+      EndVerse: int.parse(EndVerseController[2].text),
     ));
   }
-
- addMembertoSyllabustest(add) {
-   Syllabustest.add(add[0]);
-   Syllabustest.add(add[1]);
-  }
-
-
 }
 
 class SyllabusInfo {

@@ -11,7 +11,6 @@ class sideBarController extends GetxController {
   SendStdData sendstdData = Get.put(SendStdData());
   final GlobalKey<FormState> FormKey = GlobalKey<FormState>();
 
-
   final firstnameController = TextEditingController();
   final emailController = TextEditingController();
   final phonenumberController = TextEditingController();
@@ -25,11 +24,15 @@ class sideBarController extends GetxController {
     await getStudentsDataModel.getUsername();
   }
 
-  updateFirebaseValue(firstname, email, phonenumber)async {
-   await sendstdData.updateFirebaseValue(firstname, email, phonenumber);
-   await getUserAttributes();
+  updateFirebaseValue(firstname, email, phonenumber) async {
+    await sendstdData.updateFirebaseValue(firstname, email, phonenumber);
+    await getUserAttributes();
   }
-@override
+
+  bool isLoading = false;
+
+  bool isVisibile = true;
+  @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
@@ -37,16 +40,47 @@ class sideBarController extends GetxController {
     emailController.dispose();
     phonenumberController.dispose();
   }
+
   @override
   void onInit() {
     super.onInit();
     fetchUsername();
   }
 
+  String? validateEmail(String value) {
+    if (!GetUtils.isEmail(value)) {
+      loading();
+      return "Provide valid Email";
+    }
+    return null;
+  }
+
+  String? ValidateTexfFeild(String value) {
+    if (value.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+      loading();
+      return "Enter correct Name";
+    }
+    return null;
+  }
+
+  String? ValidateNumFeild(String value) {
+    if (value.isEmpty ||
+        !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s\.\/0-9]+$')
+            .hasMatch(value)) {
+      loading();
+      return "Enter correct number";
+    }
+    return null;
+  }
+
+  loading() {
+    isLoading = !isLoading;
+  }
+
   getUserAttributes() {
     getStudentsDataModel.getUserAttributes();
   }
-//change place 
+
   signOut() async {
     await FirebaseAuth.instance.signOut();
     Get.offAll(() => Login());

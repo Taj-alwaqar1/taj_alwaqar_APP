@@ -19,7 +19,6 @@ class Account_Info extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- 
     sideBarController SideBarController = Get.put(sideBarController());
     return Container(
       decoration: BoxDecoration(
@@ -75,14 +74,15 @@ class Account_Info extends StatelessWidget {
                     ),
                   ),
                   child: Obx(
-                   ()=> Form(
-                    key: SideBarController.FormKey,
-                     child: Column(
+                    () => Form(
+                      key: SideBarController.FormKey,
+                      child: Column(
                         children: [
                           Directionality(
                             textDirection: TextDirection.rtl,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               child: Container(
                                   decoration: BoxDecoration(
                                     color: greenColor,
@@ -95,16 +95,18 @@ class Account_Info extends StatelessWidget {
                                     textInputAction: TextInputAction.next,
                                     obscureText: false,
                                     decoration: fieldsForAccountUser.copyWith(
-                                      labelText:
-                                          SideBarController.firstname.value.isNotEmpty
-                                              ? SideBarController.firstname.value
-                                              : 'الاسم',
+                                      labelText: SideBarController
+                                              .firstname.value.isNotEmpty
+                                          ? SideBarController.firstname.value
+                                          : 'الاسم',
                                     ),
                                     onSaved: (value) {
-                                      // Save the value
+                                      SideBarController
+                                          .firstnameController.text = value!;
                                     },
                                     validator: (value) {
-                                      // Perform validation
+                                      return SideBarController
+                                          .ValidateTexfFeild(value!);
                                     },
                                     autovalidateMode:
                                         AutovalidateMode.onUserInteraction,
@@ -117,7 +119,8 @@ class Account_Info extends StatelessWidget {
                           Directionality(
                             textDirection: TextDirection.rtl,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: greenColor,
@@ -130,14 +133,17 @@ class Account_Info extends StatelessWidget {
                                   textInputAction: TextInputAction.next,
                                   obscureText: false,
                                   decoration: fieldsForAccountUser.copyWith(
-                                      labelText: SideBarController.email.value.isNotEmpty
+                                      labelText: SideBarController
+                                              .email.value.isNotEmpty
                                           ? SideBarController.email.value
                                           : 'البريد الالكتروني '),
                                   onSaved: (value) {
-                                    // controller.emailController.text = value!;
+                                    SideBarController.emailController.text =
+                                        value!;
                                   },
                                   validator: (value) {
-                                    // return controller.validateEmail(value!);
+                                    return SideBarController.validateEmail(
+                                        value!);
                                   },
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
@@ -151,7 +157,8 @@ class Account_Info extends StatelessWidget {
                           Directionality(
                             textDirection: TextDirection.rtl,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: greenColor,
@@ -165,15 +172,17 @@ class Account_Info extends StatelessWidget {
                                   textInputAction: TextInputAction.next,
                                   obscureText: false,
                                   decoration: fieldsForAccountUser.copyWith(
-                                      labelText:
-                                          SideBarController.phonenumber.value.isNotEmpty
-                                              ? SideBarController.phonenumber.value
-                                              : 'رقم الهاتف '),
+                                      labelText: SideBarController
+                                              .phonenumber.value.isNotEmpty
+                                          ? SideBarController.phonenumber.value
+                                          : 'رقم الهاتف '),
                                   onSaved: (value) {
-                                    // controller.emailController.text = value!;
+                                    SideBarController
+                                        .phonenumberController.text = value!;
                                   },
                                   validator: (value) {
-                                    // return controller.validateEmail(value!);
+                                    return SideBarController.ValidateNumFeild(
+                                        value!);
                                   },
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
@@ -184,70 +193,6 @@ class Account_Info extends StatelessWidget {
                           SizedBox(
                             height: 40,
                           ),
-                          // Directionality(
-                          //   textDirection: TextDirection.rtl,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.symmetric(horizontal: 16),
-                          //     child: Container(
-                          //       decoration: BoxDecoration(
-                          //         color: greenColor,
-                          //         borderRadius: BorderRadius.circular(20),
-                          //         //  border: Border.all(color: yallowTextColor,width: 2)
-                          //       ),
-                          //       child: TextFormField(
-                          //         // controller: controller.emailController,
-                          //         keyboardType: TextInputType.emailAddress,
-                          //         textInputAction: TextInputAction.next,
-                          //         obscureText: false,
-                          //         decoration: fieldsForAccountUser.copyWith(
-                          //             labelText: 'العنوان '),
-                          //         onSaved: (value) {
-                          //           // controller.emailController.text = value!;
-                          //         },
-                          //         validator: (value) {
-                          //           // return controller.validateEmail(value!);
-                          //         },
-                          //         autovalidateMode:
-                          //             AutovalidateMode.onUserInteraction,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // SizedBox(
-                          //   height: 40,
-                          // ),
-                          // Directionality(
-                          //   textDirection: TextDirection.rtl,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.symmetric(horizontal: 16),
-                          //     child: Container(
-                          //       decoration: BoxDecoration(
-                          //         color: greenColor,
-                          //         borderRadius: BorderRadius.circular(20),
-                          //         //  border: Border.all(color: yallowTextColor,width: 2)
-                          //       ),
-                          //       child: TextFormField(
-                          //         // controller: controller.emailController,
-                          //         keyboardType: TextInputType.emailAddress,
-                          //         textInputAction: TextInputAction.next,
-                          //         obscureText: false,
-                          //         decoration: fieldsForAccountUser.copyWith(
-                          //             labelText: 'الجنس '),
-                          //         onSaved: (value) {
-                          //           // controller.emailController.text = value!;
-                          //         },
-                          //         validator: (value) {
-                          //           // return controller.validateEmail(value!);
-                          //         },
-                          //         autovalidateMode:
-                          //             AutovalidateMode.onUserInteraction,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // SizedBox(
-                          //   height: 40,
-                          // ),
                           Container(
                               width: 150,
                               height: 60,
@@ -255,18 +200,18 @@ class Account_Info extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20)),
                               child: ElevatedButton(
-                                  onPressed: ()async {
-                                   
-                                  await  SideBarController.updateFirebaseValue(
-                                        SideBarController.firstnameController.text,
+                                  onPressed: () async {
+                                    await SideBarController.updateFirebaseValue(
+                                        SideBarController
+                                            .firstnameController.text,
                                         SideBarController.emailController.text,
                                         SideBarController
                                             .phonenumberController.text);
-                                            
                                   },
                                   style: ButtonStyle(
                                       backgroundColor:
-                                          MaterialStateProperty.all(goldenColor)),
+                                          MaterialStateProperty.all(
+                                              goldenColor)),
                                   child: Text(
                                     "تعديل",
                                     style: TextStyle(
@@ -276,7 +221,7 @@ class Account_Info extends StatelessWidget {
                                   ))),
                         ],
                       ),
-                   ),
+                    ),
                   ),
                 ),
               ],

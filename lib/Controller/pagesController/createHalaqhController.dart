@@ -42,6 +42,8 @@ class HalaqhController extends GetxController {
   CreateSylaubsController CreateSylaubscontroller =
       Get.put(CreateSylaubsController());
 
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+
   RxString currenthalaqhName = ''.obs;
   RxString currenthalaqhId = ''.obs;
   String halaqhnameee = '';
@@ -50,15 +52,13 @@ class HalaqhController extends GetxController {
 
   bool isVisibile = true;
 
-  final String uid = FirebaseAuth.instance.currentUser!.uid;
-
   final bottomNavnController controllernav = Get.put(bottomNavnController());
 
   goToChatScreen() async {
 //  await controllernav.changepageindex(5); /
     controllernav.currentpage.value = 4;
     controllernav.pageControllerindex = PageController(initialPage: 4);
-    Get.offAll(()=>userScreen());
+    Get.offAll(userScreen());
   }
 
   @override
@@ -96,6 +96,14 @@ class HalaqhController extends GetxController {
         !RegExp(r'^[a-zA-Z][a-zA-Z0-9_-]{2,15}$').hasMatch(value)) {
       loading();
       return "Halaqh Name must be unique";
+    }
+    return null;
+  }
+
+  String? ValidateTexfFeild(String value) {
+    if (value.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+      loading();
+      return "Enter correct Name";
     }
     return null;
   }
@@ -149,8 +157,6 @@ class HalaqhController extends GetxController {
   }
 
   SendDateToModel() async {
-     
-
     var groupId = '${DateTime.now().millisecondsSinceEpoch}_${randomString(8)}';
     currenthalaqhId.value = groupId;
     final auth = FirebaseAuth.instance;
@@ -174,7 +180,7 @@ class HalaqhController extends GetxController {
     sendHalaqhInfo.createHalaqh(halqhData);
   }
 
-String randomString(int length) {
+  String randomString(int length) {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
     final random = Random();
     final stringBuffer = StringBuffer();
