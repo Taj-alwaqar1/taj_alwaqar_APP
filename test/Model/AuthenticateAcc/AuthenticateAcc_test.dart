@@ -19,7 +19,7 @@ class MockFirebaseAuth extends Mock implements FirebaseAuth {
       super.noSuchMethod(
           Invocation.method(#createUserWithEmailAndPassword, [email, password]),
           returnValue: Future.value(MockUserCredential()));
-    @override
+  @override
   Future<UserCredential> signInWithEmailAndPassword({
     required String? email,
     required String? password,
@@ -27,6 +27,14 @@ class MockFirebaseAuth extends Mock implements FirebaseAuth {
       super.noSuchMethod(
           Invocation.method(#signInWithEmailAndPassword, [email, password]),
           returnValue: Future.value(MockUserCredential()));
+ @override
+  Future<void> signOut() async {
+    super.noSuchMethod(Invocation.method(#signOut,[]), returnValue: Future.value());
+  }
+  @override
+  Future<void> currentUserSignOut() async {
+    super.noSuchMethod(Invocation.method(#currentUserSignOut, []), returnValue: Future.value());
+  }
 }
 
 void main() {
@@ -38,9 +46,9 @@ void main() {
     mockAuth = MockFirebaseAuth();
     mockFirestore = MockFirestore();
     mockCredential = MockUserCredential();
-    when(mockCredential.user).thenReturn(MockUser()); // Assuming MockUser is required
+    when(mockCredential.user)
+        .thenReturn(MockUser()); // Assuming MockUser is required
   });
-
 
   test("Flutter test", () async {
     when(mockAuth.createUserWithEmailAndPassword(
@@ -48,7 +56,8 @@ void main() {
         .thenAnswer((realInvocation) async => Future.value(mockCredential));
 
     // Assuming impl refers to an instance of UserAuthRemoteDataSourceImpl created elsewhere
-    final result = await mockAuth.createUserWithEmailAndPassword( email: 'email', password: 'password');
+    final result = await mockAuth.createUserWithEmailAndPassword(
+        email: 'email', password: 'password');
     expect(result, mockCredential);
     verify(mockAuth.createUserWithEmailAndPassword(
         email: "email", password: "password"));
@@ -60,76 +69,96 @@ void main() {
     ).thenAnswer((realInvocation) => Future.value(mockCredential));
 
     expect(
-        await mockAuth.createUserWithEmailAndPassword(email: "tadas@gmail.com", password: "123456"),
-       mockCredential);
+        await mockAuth.createUserWithEmailAndPassword(
+            email: "tadas@gmail.com", password: "123456"),
+        mockCredential);
   });
   test("Flutter test - Failure scenario", () async {
-  final errorMessage = "Failed to create user";
-  
-  when(mockAuth.createUserWithEmailAndPassword(
-    email: "invalid_email",
-    password: "invalid_password",
-  )).thenThrow(FirebaseAuthException(message: errorMessage, code: "error_code"));
-  
-  try {
-    await mockAuth.createUserWithEmailAndPassword(
+    final errorMessage = "Failed to create user";
+
+    when(mockAuth.createUserWithEmailAndPassword(
       email: "invalid_email",
       password: "invalid_password",
-    );
-    fail("Exception should have been thrown");
-  } catch (e) {
-    expect(e, isA<FirebaseAuthException>());
-    expect(e.toString(),contains(errorMessage) );
-  }
-  
-  verify(mockAuth.createUserWithEmailAndPassword(
-    email: "invalid_email",
-    password: "invalid_password",
-  ));
-});
-test("Flutter test - Sign in success", () async {
-  final credential = MockUserCredential();
+    )).thenThrow(
+        FirebaseAuthException(message: errorMessage, code: "error_code"));
 
-  when(mockAuth.signInWithEmailAndPassword(
-    email: "valid_email",
-    password: "valid_password",
-  )).thenAnswer((_) async => credential);
+    try {
+      await mockAuth.createUserWithEmailAndPassword(
+        email: "invalid_email",
+        password: "invalid_password",
+      );
+      fail("Exception should have been thrown");
+    } catch (e) {
+      expect(e, isA<FirebaseAuthException>());
+      expect(e.toString(), contains(errorMessage));
+    }
 
-  final result = await mockAuth.signInWithEmailAndPassword(
-    email: "valid_email",
-    password: "valid_password",
-  );
-
-  expect(result, credential);
-
-  verify(mockAuth.signInWithEmailAndPassword(
-    email: "valid_email",
-    password: "valid_password",
-  ));
-});
-
-test("Flutter test - Sign in failure", () async {
-  final errorMessage = "Failed to sign in";
-
-  when(mockAuth.signInWithEmailAndPassword(
-    email: "invalid_email",
-    password: "invalid_password",
-  )).thenThrow(FirebaseAuthException(message: errorMessage, code: 'error_code'));
-
-  try {
-    await mockAuth.signInWithEmailAndPassword(
+    verify(mockAuth.createUserWithEmailAndPassword(
       email: "invalid_email",
       password: "invalid_password",
-    );
-    fail("Exception should have been thrown");
-  } catch (e) {
-    expect(e, isA<FirebaseAuthException>());
-    expect(e.toString(), contains(errorMessage));
-  }
+    ));
+  });
+  test("Flutter test - Sign in success", () async {
+    final credential = MockUserCredential();
 
-  verify(mockAuth.signInWithEmailAndPassword(
-    email: "invalid_email",
-    password: "invalid_password",
-  ));
+    when(mockAuth.signInWithEmailAndPassword(
+      email: "valid_email",
+      password: "valid_password",
+    )).thenAnswer((_) async => credential);
+
+    final result = await mockAuth.signInWithEmailAndPassword(
+      email: "valid_email",
+      password: "valid_password",
+    );
+
+    expect(result, credential);
+
+    verify(mockAuth.signInWithEmailAndPassword(
+      email: "valid_email",
+      password: "valid_password",
+    ));
+  });
+
+  test("Flutter test - Sign in failure", () async {
+    final errorMessage = "Failed to sign in";
+
+    when(mockAuth.signInWithEmailAndPassword(
+      email: "invalid_email",
+      password: "invalid_password",
+    )).thenThrow(
+        FirebaseAuthException(message: errorMessage, code: 'error_code'));
+
+    try {
+      await mockAuth.signInWithEmailAndPassword(
+        email: "invalid_email",
+        password: "invalid_password",
+      );
+      fail("Exception should have been thrown");
+    } catch (e) {
+      expect(e, isA<FirebaseAuthException>());
+      expect(e.toString(), contains(errorMessage));
+    }
+
+    verify(mockAuth.signInWithEmailAndPassword(
+      email: "invalid_email",
+      password: "invalid_password",
+    ));
+  });
+
+ test("Flutter test - Sign out success", () async {
+  await mockAuth.signOut();
+
+  // Assert the expected behavior for sign out
 });
+
+test("Flutter test - Current User Sign out success", () async {
+  await mockAuth.currentUserSignOut();
+
+  // Assert the expected behavior for current user sign out
+});
+test('signOut should call FirebaseAuth.signOut', () async {
+    await mockAuth.signOut();
+
+    verify(mockAuth.signOut()).called(1);
+  });
 }

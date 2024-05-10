@@ -203,7 +203,7 @@ class msg {
   String? from_name;
   String? to_name;
   String? last_msg;
-  Timestamp? last_time;
+  Timestamp last_time;
 
   int? msg_num;
   msg({

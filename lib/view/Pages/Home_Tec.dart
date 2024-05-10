@@ -92,6 +92,7 @@ class HomePageTec extends StatelessWidget {
                                       ),
                                       Text(
                                         OwnHalaqhName, //variable
+                                         maxLines:1,
                                         style: TextStyle(
                                             color: yallowTextColor,
                                             fontSize: 28),

@@ -1,9 +1,12 @@
 import 'dart:ffi';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/Model/AuthenticateAcc/AuthenticateAcc.dart';
 import 'package:frist_file_taj_alwaqar/view/Login&&Signin/LogIn.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 import '../../Model/GetUserData/getStudentData.dart';
 import '../../Model/sendDataToStore/SendUserData.dart';
@@ -26,9 +29,9 @@ class SigninController extends GetxController {
   final SendStdData sendUserinfo = Get.put(SendStdData());
 
   GetData getinfo = Get.put(GetData());
-  bool isLoading = false;
+  RxBool isLoading = false.obs;
 
-  bool isVisibile = true;
+  RxBool isVisibile = true.obs;
 
   @override
   void dispose() {
@@ -42,10 +45,10 @@ class SigninController extends GetxController {
     passwordController.dispose();
     super.dispose();
   }
-//must be arbic litter 
+
+//must be arbic litter
   String? validateEmail(String value) {
     if (!GetUtils.isEmail(value)) {
-      loading();
       return "Provide valid Email";
     }
     return null;
@@ -54,7 +57,6 @@ class SigninController extends GetxController {
   String? ValidateUserNameFeild(String value) {
     if (value.isEmpty ||
         !RegExp(r'^[a-zA-Z][a-zA-Z0-9_-]{2,15}$').hasMatch(value)) {
-      loading();
       return "Enter correct usernam";
     }
     return null;
@@ -62,7 +64,6 @@ class SigninController extends GetxController {
 
   String? ValidateAgeFeild(String value) {
     if (value.isEmpty || !RegExp(r'^\d{1,2}$').hasMatch(value)) {
-      loading();
       return "Enter correct usernam";
     }
     return null;
@@ -72,7 +73,6 @@ class SigninController extends GetxController {
     if (value.isEmpty ||
         !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s\.\/0-9]+$')
             .hasMatch(value)) {
-      loading();
       return "Enter correct number";
     }
     return null;
@@ -80,7 +80,6 @@ class SigninController extends GetxController {
 
   String? ValidateTexfFeild(String value) {
     if (value.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-      loading();
       return "Enter correct Name";
     }
     return null;
@@ -88,7 +87,6 @@ class SigninController extends GetxController {
 
   String? validatePassword(String value) {
     if (value.length < 8) {
-      loading();
       return "Password must be of 8 characters";
     }
     return null;
@@ -97,23 +95,29 @@ class SigninController extends GetxController {
   void checkSignin() async {
     final isValid = signinFormKey.currentState!.validate();
     if (isValid) {
-      signinFormKey.currentState!.save();
       await Authenticatecontroller.registerUser(
           emailController.text, passwordController.text);
+      signinFormKey.currentState!.save();
       SendDateToModel();
-    } else
-      Get.snackbar("error", Authenticatecontroller.messageErrorSignin);
-
-    return;
+      loading();
+    } else {
+      Get.snackbar(
+        "error",
+        'insert some values',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      await loading();
+    }
   }
 
   Visibile() {
-    isVisibile = !isVisibile;
+    isVisibile.value = !isVisibile.value;
     update();
   }
 
   loading() {
-    isLoading = !isLoading;
+    isLoading.value = !isLoading.value;
   }
 
   getlevelStd(newValue) {
@@ -122,16 +126,15 @@ class SigninController extends GetxController {
 
   SendDateToModel() async {
     sendUserinfo.addUser(
-      UserNameController.text,
-      firstNameController.text,
-      lastNameController.text,
-      ageController.text,
-      phoneNumberController.text,
-      levelOfStdController.text,
-      emailController.text,
-      passwordController.text,
-      ''
-    );
+        UserNameController.text,
+        firstNameController.text,
+        lastNameController.text,
+        ageController.text,
+        phoneNumberController.text,
+        levelOfStdController.text,
+        emailController.text,
+        passwordController.text,
+        '');
     await getinfo.getUsername();
   }
 }
@@ -147,7 +150,7 @@ class userInfo {
   String email;
   String groupUid;
   String password;
-  
+
   userInfo({
     required this.uid,
     required this.username,
@@ -160,21 +163,34 @@ class userInfo {
     required this.password,
     required this.groupUid,
   });
-  
-  Map <String,dynamic>convetToMap(){
-   return {
-    'uid':uid,
-    'username':username,
-    'firstname':firstname,
-    'lastname':lastname,
-    'age':age,
-    'phonenumber':phonenumber,
-    'levelstd':levelstd,
-    'email':email,
-    'password':password,
-    'groupUid':groupUid,
+    factory userInfo.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    final data = snapshot.data();
 
-   };
-   
+    return userInfo(
+      uid: data?['uid'] ?? '',
+      username: data?['username'] ?? '',
+      firstname: data?['firstname'] ?? '',
+      lastname: data?['lastname'] ?? '',
+      age: data?['age'] ?? '',
+      phonenumber: data?['phonenumber'] ?? '',
+      levelstd: data?['levelstd'] ?? '',
+      email: data?['email'] ?? '',
+      password: data?['password'] ?? '',
+      groupUid: data?['groupUid'] ?? '',
+    );}
+
+  Map<String, dynamic> convetToMap() {
+    return {
+      'uid': uid,
+      'username': username,
+      'firstname': firstname,
+      'lastname': lastname,
+      'age': age,
+      'phonenumber': phonenumber,
+      'levelstd': levelstd,
+      'email': email,
+      'password': password,
+      'groupUid': groupUid,
+    };
   }
 }

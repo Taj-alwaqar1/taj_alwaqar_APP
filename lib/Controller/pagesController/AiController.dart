@@ -39,42 +39,13 @@ class AiController extends GetxController {
     update();
   }
 
-  //when press icon mic to start
-  // void _startListening() async {
-  //   await speechToText.listen(
-  //       //_onSpeechResult the text that user said
-  //       //onResult: (result) => _onSpeechResult(result),
-  //       onResult: _onSpeechResult,
-  //       localeId: 'ar');
-  // }
-  // void _startListening() async {
-  //   print('xxxxxxxxx');
-  //   await speechToText.listen(
-  //     onResult: _onSpeechResult,
-  //     localeId: 'ar',
-  //   );
-    // myIsListening.value = true;
-  //   update();
-  // }
-
+ 
   void stopListening() async {
     await speechToText.stop();
     myIsListening.value = false;
     update();
   }
-  // void _stopListening() async {
-  //   //end the Listening
-  //   await speechToText.stop();
-  //   // compareTextByWord(_userWord);
-  // }
-
-//here insert text into var _userWord
-  // void _onSpeechResult(result) {
-  //   _userWord.value = result.recognizedWords;
-  //   update();
-  //   // notifyListeners();
-  // }
-
+ 
  
 
 

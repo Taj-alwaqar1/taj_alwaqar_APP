@@ -85,9 +85,15 @@ class Login extends StatelessWidget {
                                   onPressed: () {
                                     controller.Visibile();
                                   },
-                                  icon: Icon(
-                                    Icons.visibility,
-                                    color: yallowTextColor,
+                                  icon: 
+                                  // Obx(
+                                  //   ()=> 
+                                    Icon(
+                                     controller.isVisibile?
+                                      Icons.visibility:
+                                      Icons.visibility_off,
+                                      color: yallowTextColor,
+                                    // ),
                                   ))),
                           onSaved: (value) {
                             controller.passwordController.text = value!;

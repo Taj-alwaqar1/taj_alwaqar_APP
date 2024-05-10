@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frist_file_taj_alwaqar/view/Screen/Screen.dart';
@@ -192,11 +193,12 @@ DisplayHalaqhinfo(
                   ),
                   onPressed: () async {
                     // print(Halaqhcontroller.uid);
+                    final String uid = FirebaseAuth.instance.currentUser!.uid;
 
                     await Halaqhcontroller.addGroupUidToFirestore(
-                        Halaqhcontroller.uid, groupid);
+                        uid, groupid);
                     await Halaqhcontroller.addUserToGroup(
-                        groupid, Halaqhcontroller.uid);
+                        groupid, uid);
 
                     await Halaqhcontroller.GiveHalaqhIdValue22(groupid);
                     await Halaqhcontroller.GetHalaqhName(groupid);

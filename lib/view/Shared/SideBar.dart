@@ -55,6 +55,7 @@ Widget SideBar() {
                       Obx(
                         () => Text(
                           controller.username.value,
+                          maxLines:1,
                           style: TextStyle(
                             fontSize: 30,
                             color: yallowTextColor,

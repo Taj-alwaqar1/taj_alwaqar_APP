@@ -46,7 +46,7 @@ class sideBarController extends GetxController {
   getUserAttributes() {
     getStudentsDataModel.getUserAttributes();
   }
-
+//change place 
   signOut() async {
     await FirebaseAuth.instance.signOut();
     Get.offAll(() => Login());

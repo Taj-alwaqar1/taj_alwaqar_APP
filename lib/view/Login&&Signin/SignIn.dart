@@ -70,7 +70,8 @@ class SignIn extends StatelessWidget {
                         obscureText: false,
                         decoration: fieldsForInfovar.copyWith(
                             labelText: 'اسم المستخدم'),
-                        validator: (value) => controller.ValidateUserNameFeild(value!),
+                        validator: (value) =>
+                            controller.ValidateUserNameFeild(value!),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
@@ -263,17 +264,22 @@ class SignIn extends StatelessWidget {
                           controller: controller.passwordController,
                           keyboardType: TextInputType.visiblePassword,
                           textInputAction: TextInputAction.next,
-                          obscureText: controller.isVisibile ? true : false,
+                          obscureText:
+                              controller.isVisibile.value ? true : false,
                           decoration: fieldsForInfovar.copyWith(
                               labelText: 'كلمة المرور',
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    controller.Visibile();
-                                  },
-                                  icon: Icon(
-                                    Icons.visibility,
-                                    color: yallowTextColor,
-                                  ))),
+                              suffixIcon: Obx(
+                                () => IconButton(
+                                    onPressed: () {
+                                      controller.Visibile();
+                                    },
+                                    icon: Icon(
+                                      controller.isVisibile.value
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: yallowTextColor,
+                                    )),
+                              )),
                           onSaved: (value) {
                             controller.passwordController.text = value!;
                           },
@@ -289,12 +295,11 @@ class SignIn extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                GetBuilder<SigninController>(
-                  builder: (controller) => ElevatedButton(
+                Obx(
+                  () => ElevatedButton(
                     onPressed: () {
-                      controller.checkSignin();
                       controller.loading();
-                      
+                      controller.checkSignin();
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(goldenColor),
@@ -303,7 +308,7 @@ class SignIn extends StatelessWidget {
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6))),
                     ),
-                    child: controller.isLoading
+                    child: controller.isLoading.value
                         ? CircularProgressIndicator(
                             color: greenColor,
                           )

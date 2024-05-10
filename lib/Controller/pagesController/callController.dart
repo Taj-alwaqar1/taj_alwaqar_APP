@@ -35,20 +35,7 @@ class CallController extends GetxController {
   RxString channelId = ''.obs;
   late final Call call;
 
-  // Future<void> initAgora() async {
-  //   client = await RtcEngine.create(AgoraConfig.appId);
-
-  //   await client!.setChannelProfile(ChannelProfile.LiveBroadcasting);
-  //   await client!.setClientRole(ClientRole.Broadcaster);
-
-  //   await client!.joinChannel(
-  //     AgoraConfig.token,
-  //     channelId,
-  //     null,
-  //     0,
-  //   );
-  // }
-
+  
   getvalue(getUserid, getUserName) async {
     receiveruid.value = getUserid;
     receiverName.value = getUserName;

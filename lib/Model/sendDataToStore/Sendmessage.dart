@@ -124,21 +124,11 @@ void saveMessageToMessageSubcollection({
       senderId: auth.currentUser!.uid,
       recieverid: recieverUserId,
       text: text,
-      // type: messageType,
+
       timeSent: timeSent,
-      messageId: messageId,
-      // isSeen: false, repliedMessage: '',
-      // repliedMessage: messageReply == null ? '' : messageReply.message,
-      // repliedTo: messageReply == null
-          // ? ''
-          // : messageReply.isMe
-          //     ? senderUsername
-          //     : recieverUserName ?? '',
-      // repliedMessageType:
-      //     messageReply == null ? MessageEnum.text : messageReply.messageEnum,
+      messageId: messageId, 
     );
-    // if (isGroupChat) {
-      // groups -> group id -> chat -> message
+   
       await firestore
           .collection('halaqh')
           .doc(recieverUserId)
@@ -149,55 +139,5 @@ void saveMessageToMessageSubcollection({
           );
     // } 
      }
-  
-//   void saveDataToContactsSubcollection(
-//     UserModel senderUserData,
-//     UserModel? recieverUserData,
-//     String text,
-//     DateTime timeSent,
-//     String recieverUserId,
-//     bool isGroupChat,
-//   ) async {
-//     if (isGroupChat) {
-//       await firestore.collection('groups').doc(recieverUserId).update({
-//         'lastMessage': text,
-//         'timeSent': DateTime.now().millisecondsSinceEpoch,
-//       });
-//     } else {
-// // users -> reciever user id => chats -> current user id -> set data
-//       var recieverChatContact = ChatContact(
-//         name: senderUserData.name,
-//         profilePic: senderUserData.profilePic,
-//         contactId: senderUserData.uid,
-//         timeSent: timeSent,
-//         lastMessage: text,
-//       );
-//       await firestore
-//           .collection('users')
-//           .doc(recieverUserId)
-//           .collection('chats')
-//           .doc(auth.currentUser!.uid)
-//           .set(
-//             recieverChatContact.toMap(),
-//           );
-//       // users -> current user id  => chats -> reciever user id -> set data
-//       var senderChatContact = ChatContact(
-//         name: recieverUserData!.name,
-//         profilePic: recieverUserData.profilePic,
-//         contactId: recieverUserData.uid,
-//         timeSent: timeSent,
-//         lastMessage: text,
-//       );
-//       await firestore
-//           .collection('users')
-//           .doc(auth.currentUser!.uid)
-//           .collection('chats')
-//           .doc(recieverUserId)
-//           .set(
-//             senderChatContact.toMap(),
-//           );
-//     }
-//   }
-
-
+ 
 }

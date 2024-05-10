@@ -6,14 +6,12 @@ import 'package:frist_file_taj_alwaqar/Controller/sharedController/dropmenuContr
 import 'package:frist_file_taj_alwaqar/view/Shared/Color.dart';
 import 'package:get/get.dart';
 
-import 'package:provider/provider.dart';
-
-// ignore: must_be_immutable
+ 
 class dropMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DropMenuController controllerDropMenu = Get.put(DropMenuController());
-    final SigninController controllerSignin = Get.put(SigninController());
+ 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
@@ -32,11 +30,11 @@ class dropMenu extends StatelessWidget {
               color: greenColor,
             ),
             dropdownColor: greenColor,
-          
+  
             isExpanded: true,
-            onChanged: (String? newValue) {
-              controllerDropMenu.changeinitvalue(newValue);
-              // controllerSignin.getlevelStd(newValue);
+            onChanged: (String? newValue)  {
+               controllerDropMenu.changeinitvalue(newValue);
+              // [controllerSignin.getlevelStd(newValue)];
             },
             value: controllerDropMenu.initvalue.value,
             hint: Text(controllerDropMenu.initvalue.value),
@@ -66,7 +64,6 @@ class dropMenu extends StatelessWidget {
 
 // void HalaqhDropMenu(BuildContext context) {
 //  }
-
 // Directionality(
 //   textDirection: TextDirection.rtl,
 //   child: Padding(

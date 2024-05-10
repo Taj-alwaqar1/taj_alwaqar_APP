@@ -11,26 +11,27 @@ class DropMenuController extends GetxController {
   List days = ['الاحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس'];
 //sign in
 
-SigninController Signincontroller=Get.put(SigninController());
+  SigninController Signincontroller = Get.put(SigninController());
 
-HalaqhController Halaqhcontroller=Get.put(HalaqhController());
   void changeinitvalue(value) {
     initvalue.value = value;
-    //send value to model
-  Signincontroller.levelOfStdController.text=value;
+    Signincontroller.levelOfStdController.text = value;
   }
 
 //create halaqh
   void changeinitvalue1(value) {
     initvalue1.value = value;
+    HalaqhController Halaqhcontroller = Get.put(HalaqhController());
+
     //send value to model
-    Halaqhcontroller.halaqhDaysController.text=value;
+    Halaqhcontroller.halaqhDaysController.text = value;
   }
 
   void changeinitvalue2(value) {
     initvalue2.value = value;
-    //send value to model
-    Halaqhcontroller.halqahTimeController.text=value;
+    HalaqhController Halaqhcontroller = Get.put(HalaqhController());
 
+    //send value to model
+    Halaqhcontroller.halqahTimeController.text = value;
   }
 }

@@ -97,6 +97,7 @@ class Home extends StatelessWidget {
                                       ),
                                       Text(
                                         "المعلم: ${teacherName}", //variable
+                                         maxLines:1,
                                         style: TextStyle(
                                             color: yallowTextColor,
                                             fontSize: 28),

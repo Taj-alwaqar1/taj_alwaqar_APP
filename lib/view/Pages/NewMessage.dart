@@ -147,6 +147,7 @@ class namesOfUser extends StatelessWidget {
                     width: 12,
                   ),
                   Text(
+                     maxLines:1,
                     userName,
                     style: TextStyle(color: yallowTextColor, fontSize: 28),
                   ),

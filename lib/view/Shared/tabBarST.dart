@@ -36,8 +36,8 @@ class StudentOrTeacher extends StatelessWidget {
                   color: Colors.black12,
                 ),
                 controller: controllerTabBar.tabController,
-                onTap: (value) {
-                  controllerTabBar.tabControllerChange(value);
+                onTap: (value)  {
+                   controllerTabBar.tabControllerChange(value);
                 },
                 tabs: [
                   Tab(

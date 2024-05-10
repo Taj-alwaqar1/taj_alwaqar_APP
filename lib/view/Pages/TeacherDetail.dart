@@ -32,7 +32,9 @@ class TeacherDetail extends StatelessWidget {
         backgroundColor: Colors.transparent,
         bottomNavigationBar: botoom(),
         appBar: AppBar(
-          title: Text("المعلم : ${ControllerTecher.Name}",
+          title: Text(
+             maxLines:1,
+            "المعلم : ${ControllerTecher.Name}",
               style: TextStyle(color: yallowTextColor, fontSize: 29)),
           backgroundColor: darkGreen,
         ),
@@ -64,7 +66,9 @@ class TeacherDetail extends StatelessWidget {
                       right: 10,
                       child: Column(
                         children: [
-                          Text("الاسم:  ${ControllerTecher.Name.value}",
+                          Text(
+                             maxLines:1,
+                            "الاسم:  ${ControllerTecher.Name.value}",
                               style: TextStyle(
                                   color: yallowTextColor, fontSize: 19)),
                           Text("التقييم:4.6",
@@ -136,6 +140,7 @@ class TeacherDetail extends StatelessWidget {
               width: double.infinity,
               margin: EdgeInsets.only(right: 50),
               child: Text(
+
                 "المراجعات",
                 style: TextStyle(color: yallowTextColor, fontSize: 27),
               ),
@@ -314,10 +319,13 @@ class CardMenu extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
+                   maxLines:1,
                 " حلقة ${nameOfHalaqh}",
                 style: TextStyle(color: yallowTextColor, fontSize: 18),
               ),
-              Text("مستوى الطلاب: ${levelOfStudent}",
+              Text(
+                
+                "مستوى الطلاب: ${levelOfStudent}",
                   style: TextStyle(color: yallowTextColor, fontSize: 18),
                   textAlign: TextAlign.center),
               Text(

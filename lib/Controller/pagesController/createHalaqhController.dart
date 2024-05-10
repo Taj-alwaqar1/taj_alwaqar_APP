@@ -42,8 +42,6 @@ class HalaqhController extends GetxController {
   CreateSylaubsController CreateSylaubscontroller =
       Get.put(CreateSylaubsController());
 
-  final String uid = FirebaseAuth.instance.currentUser!.uid;
-
   RxString currenthalaqhName = ''.obs;
   RxString currenthalaqhId = ''.obs;
   String halaqhnameee = '';
@@ -52,13 +50,15 @@ class HalaqhController extends GetxController {
 
   bool isVisibile = true;
 
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+
   final bottomNavnController controllernav = Get.put(bottomNavnController());
 
   goToChatScreen() async {
 //  await controllernav.changepageindex(5); /
     controllernav.currentpage.value = 4;
     controllernav.pageControllerindex = PageController(initialPage: 4);
-    Get.offAll(userScreen());
+    Get.offAll(()=>userScreen());
   }
 
   @override
@@ -124,7 +124,6 @@ class HalaqhController extends GetxController {
 
   String get HalaqhName => getHalaqhInfo.halaqhName;
 
-
   String get mosqueName => getHalaqhInfo.mosqueName.value;
 
   RxList<String> get Halaqhids => getHalaqhInfo.Halaqhids.value;
@@ -145,11 +144,13 @@ class HalaqhController extends GetxController {
     getHalaqhInfo.gethalaqhDays();
   }
 
-  ReturnMosqueName(currenthalaqhId)async{
-   await getHalaqhInfo.ReturnMosqueName(currenthalaqhId);
+  ReturnMosqueName(currenthalaqhId) async {
+    await getHalaqhInfo.ReturnMosqueName(currenthalaqhId);
   }
 
   SendDateToModel() async {
+     
+
     var groupId = '${DateTime.now().millisecondsSinceEpoch}_${randomString(8)}';
     currenthalaqhId.value = groupId;
     final auth = FirebaseAuth.instance;
@@ -173,7 +174,7 @@ class HalaqhController extends GetxController {
     sendHalaqhInfo.createHalaqh(halqhData);
   }
 
-  String randomString(int length) {
+String randomString(int length) {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
     final random = Random();
     final stringBuffer = StringBuffer();
@@ -232,8 +233,8 @@ class HalaqhController extends GetxController {
 
     if (syllabuses.isNotEmpty) {
       for (final syllabus in syllabuses) {
-         final endVerse = syllabus['EndVerse'];
-      final startVerse = syllabus['StartVerse'];
+        final endVerse = syllabus['EndVerse'];
+        final startVerse = syllabus['StartVerse'];
 
         if (endVerse != null && startVerse != null) {
           endVerses.value.add(endVerse);
@@ -243,8 +244,8 @@ class HalaqhController extends GetxController {
         }
       }
     } else {
-          print('No syllabuses found for the Halaqah group.');
-        }
+      print('No syllabuses found for the Halaqah group.');
+    }
   }
 }
 

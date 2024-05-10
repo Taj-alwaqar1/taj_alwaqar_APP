@@ -19,14 +19,12 @@ class SendStdData extends GetxController {
       String levelstd,
       String email,
       String password,
-      String groupUid
-      ) async {
+      String groupUid) async {
     final user = _auth.currentUser;
     final uid = user!.uid;
     final docRef = _firestore.collection('users').doc(uid);
-  userInfo userAccounet=
-    userInfo(
-        uid:uid,
+    userInfo userAccounet = userInfo(
+        uid: uid,
         username: username,
         firstname: firstname,
         lastname: lastname,
@@ -35,8 +33,7 @@ class SendStdData extends GetxController {
         levelstd: levelstd,
         email: email,
         password: password,
-        groupUid:groupUid
-        );
+        groupUid: groupUid);
     try {
       await docRef.set(userAccounet.convetToMap());
       print('User added successfully!');
@@ -45,37 +42,37 @@ class SendStdData extends GetxController {
       print('Error adding user: $e');
     }
   }
-  
-  
+
   Future<void> addGroupUidToFirestore(String userId, String groupUid) async {
-  // Get a reference to the specific document
-  final docRef = FirebaseFirestore.instance.collection('users').doc(userId);
+    // Get a reference to the specific document
+    final docRef = FirebaseFirestore.instance.collection('users').doc(userId);
 
-  // Update the document, adding or setting the 'groupUid' field
-  await docRef.update({
-    'groupUid': groupUid,
-  });
-
-  print('groupUid added to document successfully!');
-}
-
-  updateFirebaseValue(firstname,email,phonenumber) async {
-  try {
- 
-
-    final docRef = FirebaseFirestore.instance.collection('users').doc(_auth.currentUser?.uid);
-
+    // Update the document, adding or setting the 'groupUid' field
     await docRef.update({
-      'firstname':firstname,
-      'email':email,
-      'phonenumber':phonenumber,
-       // Replace 'attributeName' with the actual attribute you want to update
+      'groupUid': groupUid,
     });
 
-    print('Value updated successfully');
-  } catch (e) {
-    print('Error updating value in Firestore: $e');
+    print('groupUid added to document successfully!');
   }
-}
+
+  updateFirebaseValue(firstname, email, phonenumber) async {
+    try {
+      final docRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(_auth.currentUser?.uid);
+
+      await docRef.update({
+        'firstname': firstname,
+        'email': email,
+        'phonenumber': phonenumber,
+        // Replace 'attributeName' with the actual attribute you want to update
+      });
+
+      print('Value updated successfully');
+    } catch (e) {
+      print('Error updating value in Firestore: $e');
+    }
+  }
+
 
 }

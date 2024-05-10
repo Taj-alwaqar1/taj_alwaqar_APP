@@ -41,6 +41,8 @@ class CreateSylaubsController extends GetxController {
 
   var Syllabus = [].obs;
 
+  var Syllabustest = [].obs;
+
 
 
 
@@ -63,22 +65,29 @@ void dispose() {
     Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[0].text ?? 'xxx',
       nameOfSurah: NameOfSurahController[0].text ?? 'xxx',
-      StartVerse:int.parse( StartVerseController[0].text) ,
-      EndVerse:int.parse(  EndVerseController[0].text),
+      StartVerse:int.parse( StartVerseController[0].text??"0") ,
+      EndVerse:int.parse(  EndVerseController[0].text??"0"),
     ));
     Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[1].text ?? '',
       nameOfSurah: NameOfSurahController[1].text ?? '',
-      StartVerse: int.parse( StartVerseController[1].text),
-      EndVerse:int.parse(  EndVerseController[1].text),
+      StartVerse: int.parse( StartVerseController[1].text??"0"),
+      EndVerse:int.parse(  EndVerseController[1].text??"0"),
     ));
     Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[2].text ?? '',
       nameOfSurah: NameOfSurahController[2].text ?? '',
-      StartVerse: int.parse( StartVerseController[2].text),
-      EndVerse: int.parse(  EndVerseController[2].text),
+      StartVerse: int.parse( StartVerseController[2].text??"0"),
+      EndVerse: int.parse(  EndVerseController[2].text??"0"),
     ));
   }
+
+ addMembertoSyllabustest(add) {
+   Syllabustest.add(add[0]);
+   Syllabustest.add(add[1]);
+  }
+
+
 }
 
 class SyllabusInfo {

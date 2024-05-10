@@ -13,12 +13,12 @@ class LogInController extends GetxController {
   final EmailController = TextEditingController();
   final passwordController = TextEditingController();
 
-GetData getinfo= Get.put(GetData());
-   bool isLoading=false;
-  
+  GetData getinfo = Get.put(GetData());
+  bool isLoading = false;
+
   bool isVisibile = true;
 
-    final AuthenticateLogIn AuthenticateLogInController =
+  final AuthenticateLogIn AuthenticateLogInController =
       Get.put(AuthenticateLogIn());
 
   String? validateEmail(String value) {
@@ -27,7 +27,8 @@ GetData getinfo= Get.put(GetData());
     }
     return null;
   }
-    loading() {
+
+  loading() {
     isLoading = !isLoading;
     update();
   }
@@ -46,21 +47,25 @@ GetData getinfo= Get.put(GetData());
     return null;
   }
 
-     checkLogIn()async {
+  checkLogIn() async {
     final isValid = loginFormKey.currentState!.validate();
     if (isValid) {
-       AuthenticateLogInController.LogInAcc(EmailController.text, passwordController.text);  
-      loginFormKey.currentState!.save(); 
-          await getinfo.getUsername();
-          
-   
+      AuthenticateLogInController.LogInAcc(
+          EmailController.text, passwordController.text);
+      loginFormKey.currentState!.save();
+      await getinfo.getUsername();
     } else {
-      Get.snackbar("error", "insert Some Value");
+      Get.snackbar(
+        "error",
+        "insert Some Value",
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
       loading();
     }
-      
   }
-   Visibile() {
+
+  Visibile() {
     isVisibile = !isVisibile;
     update();
   }

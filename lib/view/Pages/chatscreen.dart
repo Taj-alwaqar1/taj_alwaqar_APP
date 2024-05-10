@@ -27,6 +27,7 @@ class ChatScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: greenColor,
           title: Text(
+             maxLines:1,
             ControllerChat.to_name.value,
             style:
                 TextStyle(color: yallowTextColor, fontWeight: FontWeight.bold),
