@@ -47,15 +47,14 @@ void main() {
     mockFirestore = MockFirestore();
     mockCredential = MockUserCredential();
     when(mockCredential.user)
-        .thenReturn(MockUser()); // Assuming MockUser is required
+        .thenReturn(MockUser());  
   });
 
   test("Flutter test", () async {
     when(mockAuth.createUserWithEmailAndPassword(
             email: "email", password: "password"))
         .thenAnswer((realInvocation) async => Future.value(mockCredential));
-
-    // Assuming impl refers to an instance of UserAuthRemoteDataSourceImpl created elsewhere
+ 
     final result = await mockAuth.createUserWithEmailAndPassword(
         email: 'email', password: 'password');
     expect(result, mockCredential);

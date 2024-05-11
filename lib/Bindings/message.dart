@@ -6,7 +6,7 @@ class MessageDataBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MessageController>(
-      () => MessageController(), // Create the controller instance
+      () => MessageController(),  
     );
   }
 }
