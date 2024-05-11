@@ -60,16 +60,19 @@ class CreateSylaubsController extends GetxController {
     isLoading = !isLoading;
   }
 
-  String? validateDaysAndNumOfVerse(int days) {
-    if (days <= 0 || days > 7) {
+  String? validateDaysAndNumOfVerse(String value) {
+ if (value.isEmpty ||
+    !RegExp(r'^(?:[+]*[(]{0,1}[0-9]{1,2}[)]{0,1}[\.\/0-9]+|287|\d)$').hasMatch(value)) {
       loading();
-      return "Enter a valid number of days (1-7)";
+      return "Invalid number";
     }
     return null;
   }
 
   String? ValidateTexfFeild(String value) {
-    if (value.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+    if (value.isEmpty ||
+        !RegExp(r'^[\p{L}a-zA-Z0-9_-\u0600-\u06FF]{2,15}$', unicode: true)
+            .hasMatch(value)) {
       loading();
       return "Enter correct Name";
     }

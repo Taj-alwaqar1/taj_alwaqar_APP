@@ -79,7 +79,9 @@ class SigninController extends GetxController {
   }
 
   String? ValidateTexfFeild(String value) {
-    if (value.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+       if (value.isEmpty ||
+        !RegExp(r'^[\p{L}a-zA-Z0-9_-\u0600-\u06FF]{2,15}$', unicode: true)
+            .hasMatch(value)) {
       return "Enter correct Name";
     }
     return null;
@@ -129,8 +131,8 @@ class SigninController extends GetxController {
         UserNameController.text,
         firstNameController.text,
         lastNameController.text,
-        ageController.text,
-        phoneNumberController.text,
+        int.parse(ageController.text),
+        int.parse(phoneNumberController.text),
         levelOfStdController.text,
         emailController.text,
         passwordController.text,
@@ -144,8 +146,8 @@ class userInfo {
   String username;
   String firstname;
   String lastname;
-  String age;
-  String phonenumber;
+  int age;
+  int phonenumber;
   String levelstd;
   String email;
   String groupUid;
@@ -163,7 +165,8 @@ class userInfo {
     required this.password,
     required this.groupUid,
   });
-    factory userInfo.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+  factory userInfo.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> snapshot) {
     final data = snapshot.data();
 
     return userInfo(
@@ -177,7 +180,8 @@ class userInfo {
       email: data?['email'] ?? '',
       password: data?['password'] ?? '',
       groupUid: data?['groupUid'] ?? '',
-    );}
+    );
+  }
 
   Map<String, dynamic> convetToMap() {
     return {

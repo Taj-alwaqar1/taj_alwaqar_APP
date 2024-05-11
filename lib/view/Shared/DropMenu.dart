@@ -125,10 +125,10 @@ class TimesHalaqhDropMenu extends dropMenu {
             items: <String>[
               if (controllerDropMenu.initvalue2.value != 'العصر - المغرب' &&
                   controllerDropMenu.initvalue2.value !=
-                      'العصر - المغرب - العشاء' &&
+                     'العصر - العشاء' &&
                   controllerDropMenu.initvalue2.value != 'المغرب - العشاء')
                 controllerDropMenu.initvalue2.value,
-              'العصر - المغرب - العشاء',
+              'العصر - العشاء',
               'العصر - المغرب',
               'المغرب - العشاء',
             ].map<DropdownMenuItem<String>>((String value) {

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -318,9 +318,11 @@ DisplayHalaqhCurriculmSpecificForOwnHalaqh(BuildContext context) {
                           size: 30,
                           color: goldenColor,
                         )),
-                    Text(
-                      "المنهج",
-                      style: TextStyle(color: yallowTextColor, fontSize: 30),
+                    Center(
+                      child: Text(
+                        "المنهج",
+                        style: TextStyle(color: yallowTextColor, fontSize: 30),
+                      ),
                     ),
                     IconButton(
                         onPressed: () {},
@@ -353,12 +355,7 @@ DisplayHalaqhCurriculmSpecificForOwnHalaqh(BuildContext context) {
                           startVerse: Halaqhcontroller.startVerses.value[2],
                           endVerse: Halaqhcontroller.endVerses.value[2],
                         ),
-                        // Curriculum(
-                        //   halaqhDays: 'الاربعاء',
-                        //   nameOfSurah: 'الحج',
-                        //   startVerse: 15,
-                        //   endVerse: 20,
-                        // ),
+           
                       ],
                     ),
                  
@@ -367,10 +364,10 @@ DisplayHalaqhCurriculmSpecificForOwnHalaqh(BuildContext context) {
                   height: 22,
                 ),
                 // JoinButton(),
-                TimeForTsme3(),
-                SizedBox(
-                  height: 22,
-                ),
+                // TimeForTsme3(),
+                // SizedBox(
+                //   height: 22,
+                // ),
               ],
             ),
           ),

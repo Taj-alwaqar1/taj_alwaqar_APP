@@ -24,11 +24,10 @@ import '../Pages/ChatGroupScr.dart';
 class userScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TabBarController controllerTabBar = Get.put(TabBarController());
+    final ScreenController screenController = Get.put(ScreenController()); 
     final bottomNavnController controllernav = Get.put(bottomNavnController());
     final HalaqhController Halaqhcontroller = Get.put(HalaqhController());
-    final ScreenController screenController = Get.put(ScreenController());
-    Halaqhcontroller.checkAndReturnGroupUid();
+     Halaqhcontroller.checkAndReturnGroupUid();
     return Scaffold(
       bottomNavigationBar: botoom(),
       body: Obx(

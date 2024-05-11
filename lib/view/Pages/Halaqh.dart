@@ -458,8 +458,7 @@ Container ContainerSylaubs(BuildContext context) {
                     //    fieldsForCreateSyllabus.copyWith( labelText:
                     // controller.SylabusDaysController [0].text.isEmpty ?
                     // 'اليوم ': controller.SylabusDaysController [0].text),
-                    // validator: (value) =>
-                    //     controller.validateDaysAndNumOfVerse(int.parse(value!)),
+                    validator: (value) => controller.ValidateTexfFeild(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -510,7 +509,7 @@ Container ContainerSylaubs(BuildContext context) {
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم بداية الاية '),
                     validator: (value) =>
-                        controller.validateDaysAndNumOfVerse(int.parse(value!)),
+                        controller.validateDaysAndNumOfVerse(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -536,7 +535,7 @@ Container ContainerSylaubs(BuildContext context) {
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم نهاية الاية '),
                     validator: (value) =>
-                        controller.validateDaysAndNumOfVerse(int.parse(value!)),
+                        controller.validateDaysAndNumOfVerse(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -582,16 +581,12 @@ Container ContainerSylaubs1(BuildContext context) {
                   ),
                   child: TextFormField(
                     controller: controller.SylabusDaysController[1],
-
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration:
                         fieldsForCreateSyllabus.copyWith(labelText: 'اليوم '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) => controller.ValidateTexfFeild(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -616,10 +611,7 @@ Container ContainerSylaubs1(BuildContext context) {
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'اسم السوره '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) => controller.ValidateTexfFeild(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -644,10 +636,8 @@ Container ContainerSylaubs1(BuildContext context) {
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم بداية الاية '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) =>
+                        controller.validateDaysAndNumOfVerse(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -667,16 +657,13 @@ Container ContainerSylaubs1(BuildContext context) {
                   ),
                   child: TextFormField(
                     controller: controller.EndVerseController[1],
-
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم نهاية الاية '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) =>
+                        controller.validateDaysAndNumOfVerse(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -722,16 +709,12 @@ Container ContainerSylaubs2(BuildContext context) {
                   ),
                   child: TextFormField(
                     controller: controller.SylabusDaysController[2],
-
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration:
                         fieldsForCreateSyllabus.copyWith(labelText: 'اليوم '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) => controller.ValidateTexfFeild(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -751,16 +734,12 @@ Container ContainerSylaubs2(BuildContext context) {
                   ),
                   child: TextFormField(
                     controller: controller.NameOfSurahController[2],
-
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'اسم السوره '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) => controller.ValidateTexfFeild(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -780,16 +759,13 @@ Container ContainerSylaubs2(BuildContext context) {
                   ),
                   child: TextFormField(
                     controller: controller.StartVerseController[2],
-
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم بداية الاية '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) =>
+                        controller.validateDaysAndNumOfVerse(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),
@@ -809,16 +785,13 @@ Container ContainerSylaubs2(BuildContext context) {
                   ),
                   child: TextFormField(
                     controller: controller.EndVerseController[2],
-
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: fieldsForCreateSyllabus.copyWith(
                         labelText: 'رقم نهاية الاية '),
-                    // validator: (value) =>
-                    //     controller
-                    //         .ValidateUserNameFeild(
-                    //             value!),
+                    validator: (value) =>
+                        controller.validateDaysAndNumOfVerse(value!),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ),

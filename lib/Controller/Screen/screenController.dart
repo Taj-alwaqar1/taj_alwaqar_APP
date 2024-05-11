@@ -3,14 +3,12 @@ import 'package:get/get.dart';
 import '../../Model/GetUserData/GetTeacherData.dart';
 
 class ScreenController extends GetxController {
-
   final getTeacherData = Get.put(GetTeacherData());
-   @override
+  @override
   void onInit() async {
     super.onInit();
-   getTeacherData.getUserType();
+    await getTeacherData.getUserType();
   }
- RxBool get userType => getTeacherData.userType;
-  
 
+  RxBool get userType => getTeacherData.userType;
 }

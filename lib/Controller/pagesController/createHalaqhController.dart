@@ -83,8 +83,9 @@ class HalaqhController extends GetxController {
   }
 
   String? validateMosqueName(String value) {
-    if (value.isEmpty ||
-        !RegExp(r'^[a-zA-Z][a-zA-Z0-9_-]{2,15}$').hasMatch(value)) {
+     if (value.isEmpty ||
+        !RegExp(r'^[\p{L}a-zA-Z0-9_ -\u0600-\u06FF]{2,15}$', unicode: true)
+            .hasMatch(value)) {
       loading();
       return "Mosque Name must be unique";
     }
@@ -92,8 +93,9 @@ class HalaqhController extends GetxController {
   }
 
   String? validateHalaqhName(String value) {
-    if (value.isEmpty ||
-        !RegExp(r'^[a-zA-Z][a-zA-Z0-9_-]{2,15}$').hasMatch(value)) {
+     if (value.isEmpty ||
+        !RegExp(r'^[\p{L}a-zA-Z0-9_ -\u0600-\u06FF]{2,15}$', unicode: true)
+            .hasMatch(value)) {
       loading();
       return "Halaqh Name must be unique";
     }
@@ -101,7 +103,9 @@ class HalaqhController extends GetxController {
   }
 
   String? ValidateTexfFeild(String value) {
-    if (value.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+   if (value.isEmpty ||
+        !RegExp(r'^[\p{L}a-zA-Z0-9_ -\u0600-\u06FF]{2,15}$', unicode: true)
+            .hasMatch(value)) {
       loading();
       return "Enter correct Name";
     }
