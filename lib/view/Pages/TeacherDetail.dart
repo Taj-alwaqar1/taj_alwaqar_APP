@@ -22,8 +22,7 @@ class TeacherDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bottomNavnController controllernav = Get.put(bottomNavnController());
-    final TabBarController controllerTabBar = Get.put(TabBarController());
+ 
     final ControllerTecher = Get.put(TeacherController());
 
     return Container(

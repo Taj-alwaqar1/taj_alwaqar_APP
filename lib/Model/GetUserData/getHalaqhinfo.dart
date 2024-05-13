@@ -205,7 +205,7 @@ class GetHalaqhInfo extends GetxController {
   Future<List<String>> getMemberIDs(String docID) async {
     final docRef = FirebaseFirestore.instance.collection('halaqh').doc(docID);
     final docSnapshot = await docRef.get();
-
+    
     if (docSnapshot.exists) {
       final data = docSnapshot.data();
       if (data != null && data.containsKey('membersUid')) {

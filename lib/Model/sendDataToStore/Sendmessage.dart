@@ -1,4 +1,4 @@
-
+// ignore_for_file: unnecessary_brace_in_string_interps, avoid_print, non_constant_identifier_names
 
 import 'dart:io';
 import 'dart:math';
@@ -17,7 +17,6 @@ import '../AuthenticateAcc/AuthenticateAcc.dart';
 class SendMessage extends GetxController {
   final auth = FirebaseAuth.instance;
   final firestore = FirebaseFirestore.instance;
-
 
   goChat(userid, userName) async {
     final sideBarController controllerSideBar = Get.put(sideBarController());
@@ -56,7 +55,7 @@ class SendMessage extends GetxController {
               toFirestore: (msg Msg, options) => Msg.toFirestore())
           .add(msgdata)
           .then((value) {
-          Get.toNamed('/chat', parameters: {
+        Get.toNamed('/chat', parameters: {
           'doc_id': value.id,
           'to_uid': userid ?? "",
           'to_name': userName ?? ""
@@ -80,11 +79,7 @@ class SendMessage extends GetxController {
     }
   }
 
-
-
-
-
-  sendMsg(content,doc_id,textController,sendContent) async {
+  sendMsg(content, doc_id, textController, sendContent) async {
     await firestore
         .collection('message')
         .doc(doc_id)
@@ -105,39 +100,33 @@ class SendMessage extends GetxController {
     });
   }
 
-
-//for a group chatingg 
-void saveMessageToMessageSubcollection({
-  //this is group id = recieverUserId
+//for a group chatingg
+  void saveMessageToMessageSubcollection({
+    //this is group id = recieverUserId
     required String recieverUserId,
     required String text,
     required DateTime timeSent,
     required String messageId,
     required String username,
-    // required MessageEnum messageType,
-    // required MessageReply? messageReply,
     required String senderUsername,
     required String? recieverUserName,
-    // required bool isGroupChat,
   }) async {
     final message = MessageGroup(
       senderId: auth.currentUser!.uid,
       recieverid: recieverUserId,
       text: text,
-
       timeSent: timeSent,
-      messageId: messageId, 
+      messageId: messageId,
     );
-   
-      await firestore
-          .collection('halaqh')
-          .doc(recieverUserId)
-          .collection('chats')
-          .doc(messageId)
-          .set(
-            message.toMap(),
-          );
-    // } 
-     }
- 
+
+    await firestore
+        .collection('halaqh')
+        .doc(recieverUserId)
+        .collection('chats')
+        .doc(messageId)
+        .set(
+          message.toMap(),
+        );
+    // }
+  }
 }

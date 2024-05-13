@@ -83,7 +83,7 @@ class HalaqhController extends GetxController {
   }
 
   String? validateMosqueName(String value) {
-     if (value.isEmpty ||
+    if (value.isEmpty ||
         !RegExp(r'^[\p{L}a-zA-Z0-9_ -\u0600-\u06FF]{2,15}$', unicode: true)
             .hasMatch(value)) {
       loading();
@@ -93,7 +93,7 @@ class HalaqhController extends GetxController {
   }
 
   String? validateHalaqhName(String value) {
-     if (value.isEmpty ||
+    if (value.isEmpty ||
         !RegExp(r'^[\p{L}a-zA-Z0-9_ -\u0600-\u06FF]{2,15}$', unicode: true)
             .hasMatch(value)) {
       loading();
@@ -103,7 +103,7 @@ class HalaqhController extends GetxController {
   }
 
   String? ValidateTexfFeild(String value) {
-   if (value.isEmpty ||
+    if (value.isEmpty ||
         !RegExp(r'^[\p{L}a-zA-Z0-9_ -\u0600-\u06FF]{2,15}$', unicode: true)
             .hasMatch(value)) {
       loading();
@@ -116,11 +116,20 @@ class HalaqhController extends GetxController {
     final isValid = HalaqhFormKey.currentState!.validate();
     if (isValid) {
       HalaqhFormKey.currentState!.save();
-      // SendDateToModel();
+      await SendDateToModel();
+
+      await checkAndReturnGroupUid();
+      addGroupUidToFirestore(uid, currenthalaqhId.value);
+      await GetHalaqhName(currenthalaqhId.value);
+
+      await addGroupUidToFirestore(uid, GroupUid.value);
+
+      await addUserToGroup(currenthalaqhId.value, uid);
+      goToChatScreen();
     } else {
       Get.snackbar(
         "Error",
-        "Please fix the errors in the form",
+        "Please enter value",
         duration: Duration(seconds: 2),
       );
     }

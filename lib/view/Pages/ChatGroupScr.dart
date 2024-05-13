@@ -335,30 +335,28 @@ DisplayHalaqhCurriculmSpecificForOwnHalaqh(BuildContext context) {
                 ),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child:   Row(
-                      children: [
-                        Curriculum(
-                          halaqhDays: Halaqhcontroller.syllabusDays.value[0],
-                          nameOfSurah: Halaqhcontroller.nameOfSurah.value[0],
-                          startVerse: Halaqhcontroller.startVerses.value[0],
-                          endVerse: Halaqhcontroller.endVerses.value[0],
-                        ),
-                        Curriculum(
-                          halaqhDays: Halaqhcontroller.syllabusDays.value[1],
-                          nameOfSurah: Halaqhcontroller.nameOfSurah.value[1],
-                          startVerse: Halaqhcontroller.startVerses.value[1],
-                          endVerse: Halaqhcontroller.endVerses.value[1],
-                        ),
-                        Curriculum(
-                          halaqhDays: Halaqhcontroller.syllabusDays.value[2],
-                          nameOfSurah: Halaqhcontroller.nameOfSurah.value[2],
-                          startVerse: Halaqhcontroller.startVerses.value[2],
-                          endVerse: Halaqhcontroller.endVerses.value[2],
-                        ),
-           
-                      ],
-                    ),
-                 
+                  child: Row(
+                    children: [
+                      Curriculum(
+                        halaqhDays: Halaqhcontroller.syllabusDays.value[2],
+                        nameOfSurah: Halaqhcontroller.nameOfSurah.value[2],
+                        startVerse: Halaqhcontroller.startVerses.value[2],
+                        endVerse: Halaqhcontroller.endVerses.value[2],
+                      ),
+                      Curriculum(
+                        halaqhDays: Halaqhcontroller.syllabusDays.value[1],
+                        nameOfSurah: Halaqhcontroller.nameOfSurah.value[1],
+                        startVerse: Halaqhcontroller.startVerses.value[1],
+                        endVerse: Halaqhcontroller.endVerses.value[1],
+                      ),
+                      Curriculum(
+                        halaqhDays: Halaqhcontroller.syllabusDays.value[0],
+                        nameOfSurah: Halaqhcontroller.nameOfSurah.value[0],
+                        startVerse: Halaqhcontroller.startVerses.value[0],
+                        endVerse: Halaqhcontroller.endVerses.value[0],
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 22,

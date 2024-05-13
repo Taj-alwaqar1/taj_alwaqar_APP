@@ -57,7 +57,7 @@ Widget SideBar() {
                           controller.username.value,
                           maxLines:1,
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 21,
                             color: yallowTextColor,
                             fontWeight: FontWeight.bold,
                           ),

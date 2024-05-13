@@ -61,8 +61,9 @@ class CreateSylaubsController extends GetxController {
   }
 
   String? validateDaysAndNumOfVerse(String value) {
- if (value.isEmpty ||
-    !RegExp(r'^(?:[+]*[(]{0,1}[0-9]{1,2}[)]{0,1}[\.\/0-9]+|287|\d)$').hasMatch(value)) {
+    if (value.isEmpty ||
+        !RegExp(r'^(?:[+]*[(]{0,1}[0-9]{1,2}[)]{0,1}[\.\/0-9]+|287|\d)$')
+            .hasMatch(value)) {
       loading();
       return "Invalid number";
     }
@@ -84,7 +85,8 @@ class CreateSylaubsController extends GetxController {
   }
 
   addMembertoSyllabus() {
-    Syllabus.add(SyllabusInfo(
+    try {
+      Syllabus.add(SyllabusInfo(
       SyllabusDays: SylabusDaysController[0].text ?? 'xxx',
       nameOfSurah: NameOfSurahController[0].text ?? 'xxx',
       StartVerse: int.parse(StartVerseController[0].text),
@@ -102,8 +104,28 @@ class CreateSylaubsController extends GetxController {
       StartVerse: int.parse(StartVerseController[2].text),
       EndVerse: int.parse(EndVerseController[2].text),
     ));
+    } catch (e) {
+      Get.snackbar("error", "add Syllabus for halaqh");
+    }
+    
   }
-}
+
+  void checkCreateSyllabus() async {
+    final isValid = CreateSylaubsFormKey.currentState!.validate();
+    final isValid1 = CreateSylaubsFormKey1.currentState!.validate();
+    final isValid2 = CreateSylaubsFormKey2.currentState!.validate();
+    if (isValid&&isValid1&&isValid2) {
+      CreateSylaubsFormKey.currentState!.save();
+    navigator?.pop();
+    } else {
+      Get.snackbar(
+        "Error",
+        " Please enter value",
+        duration: Duration(seconds: 2),
+      );
+    }
+  }
+ }
 
 class SyllabusInfo {
   String SyllabusDays;

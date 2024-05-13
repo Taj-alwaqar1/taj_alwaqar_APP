@@ -99,6 +99,14 @@ class ItemHalaqh extends StatelessWidget {
                   ),
                 ),
               ),
+              index==1?Text(
+                "المعلم : ${stdName}",
+                style: TextStyle(
+                  color: yallowTextColor,
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                ),
+              ):
               Text(
                 stdName,
                 style: TextStyle(

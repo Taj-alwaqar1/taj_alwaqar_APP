@@ -49,7 +49,7 @@ class CreateOrJoinHalaqh extends StatelessWidget {
                         height: 100,
                         alignment: Alignment.center,
                         child: Text(
-                          "لا يوجد حلقة قم بإنشاء او انضم لحلقة",
+                          "لا يوجد حلقة قم بإنشاء او انضم إلى حلقة",
                           style: TextStyle(
                               color: yallowTextColor,
                               fontSize: 25,
@@ -296,7 +296,8 @@ void BottomSheet(BuildContext context) {
                                                 BorderRadius.circular(20)),
                                         child: ElevatedButton(
                                             onPressed: () {
-                                              navigator?.pop(context);
+                                              Syllabuscontroller
+                                                  .checkCreateSyllabus();
                                             }, // اضافة
                                             style: ButtonStyle(
                                                 backgroundColor:
@@ -372,24 +373,11 @@ void BottomSheet(BuildContext context) {
                 GetBuilder<HalaqhController>(
                   builder: (halaqhController) => ElevatedButton(
                     onPressed: () async {
-                      halaqhController.checkCreateHalaqh();
-                      await halaqhController.SendDateToModel();
+                      halaqhController.checkCreateHalaqh(); 
 
-                      await halaqhController.checkAndReturnGroupUid();
-                      halaqhController.addGroupUidToFirestore(
-                          halaqhController.uid,
-                          halaqhController.currenthalaqhId.value);
-                      await halaqhController.GetHalaqhName(
-                          halaqhController.currenthalaqhId.value);
+                     
 
-                      await halaqhController.addGroupUidToFirestore(
-                          halaqhController.uid,
-                          halaqhController.GroupUid.value);
 
-                      await halaqhController.addUserToGroup(
-                          halaqhController.currenthalaqhId.value,
-                          halaqhController.uid);
-                      await Get.off(GroupChatScreen());
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(goldenColor),
@@ -1646,3 +1634,5 @@ Container ContainerSylaubs2(BuildContext context) {
 //     ),
 //   );
 // }
+
+//the 
